@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.zjsys.testDataSrc.model">
+  <class name="ZjHandInputFly" table="tried_zj_handInput_fly">
+    <comment>-</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="sampleNum">
+      <column name="sampleNum"/>
+    </property>
+    <property name="dataTime">
+      <column name="dataTime"/>
+    </property>
+    <property name="burnLoss">
+      <column name="burnLoss"/>
+    </property>
+    <property name="h2o">
+      <column name="h2o"/>
+    </property>
+    <property name="h2o1">
+      <column name="h2o1"/>
+    </property>
+    <property name="h2o2">
+      <column name="h2o2"/>
+    </property>
+    <property name="fu200mm">
+      <column name="fu200mm"/>
+    </property>
+    <property name="feo">
+      <column name="feo"/>
+    </property>
+    <property name="m6_3">
+      <column name="m6_3"/>
+    </property>
+    <property name="m0_5">
+      <column name="m0_5"/>
+    </property>
+    <property name="caf2">
+      <column name="caf2"/>
+    </property>
+    
+    <property name="fu200mu">
+      <column name="fu200mu"/>
+    </property>
+    <property name="reactivity">
+      <column name="reactivity"/>
+    </property>
+    <property name="gjcs_rate">
+      <column name="gjcs_rate"/>
+    </property>
+    <property name="mm0_5">
+      <column name="mm0_5"/>
+    </property>
+    <property name="ralone">
+      <column name="ralone"/>
+    </property>
+    <property name="mfe">
+      <column name="mfe"/>
+    </property>
+    <property name="dy_80mm">
+      <column name="dy_80mm"/>
+    </property>
+    <property name="xy25mm">
+      <column name="xy25mm"/>
+    </property>
+    <property name="ca_oh2">
+      <column name="ca_oh2"/>
+    </property>
+    <property name="fu10mm">
+      <column name="fu10mm"/>
+    </property>
+    <property name="nahco3">
+      <column name="nahco3"/>
+    </property>
+    <property name="ph">
+      <column name="ph"/>
+    </property>
+    <property name="sic">
+      <column name="sic"/>
+    </property>
+    <property name="ylc">
+      <column name="ylc"/>
+    </property>
+    <property name="pzrong">
+      <column name="pzrong"/>
+    </property>
+    <property name="jzjia">
+      <column name="jzjia"/>
+    </property>
+    <property name="xs_rate">
+      <column name="xs_rate"/>
+    </property>
+    <property name="xl_size">
+      <column name="xl_size"/>
+    </property>
+    <property name="mtshi">
+      <column name="mtshi"/>
+    </property>
+    <property name="palone">
+      <column name="palone"/>
+    </property>
+    <property name="salone">
+      <column name="salone"/>
+    </property>
+    <property name="calone">
+      <column name="calone"/>
+    </property>
+    <property name="si">
+      <column name="si"/>
+    </property>
+    <property name="mn">
+      <column name="mn"/>
+    </property>
+    <property name="al">
+      <column name="al"/>
+    </property>
+    <property name="ca">
+      <column name="ca"/>
+    </property>
+    <property name="ba">
+      <column name="ba"/>
+    </property>
+    <property name="mt">
+      <column name="mt"/>
+    </property>
+    <property name="m10">
+      <column name="m10"/>
+    </property>
+    <property name="m25">
+      <column name="m25"/>
+    </property>
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+    <property name="recordUser">
+      <column name="recordUser"/>
+    </property>
+    <property name="dataStatus">
+      <column name="dataStatus"/>
+    </property>
+      <property name="recordUserName">
+        <formula>
+      	(select tsu.userName from tried_system_user tsu where tsu.id=recordUser)
+      </formula>
+    </property>
+    
+    <property name="mad">
+      <column name="mad"/>
+    </property>
+    <property name="ad">
+      <column name="ad"/>
+    </property>
+    <property name="vd">
+      <column name="vd"/>
+    </property>
+    <property name="fcad">
+      <column name="fcad"/>
+    </property>
+    <property name="s">
+      <column name="s"/>
+    </property>
+    <property name="gjgw">
+      <column name="gjgw"/>
+    </property>
+    <property name="dwrz">
+      <column name="dwrz"/>
+    </property>
+     <property name="vdaf">
+      <column name="vdaf"/>
+    </property>
+    <!--boxy新加  -->
+    <property name="co2">
+      <column name="co2"/>
+    </property>
+     <property name="o2">
+      <column name="o2"/>
+    </property>
+    <property name="co">
+      <column name="co"/>
+    </property>
+    <property name="lidu">
+      <column name="lidu"/>
+    </property>
+    <property name="na2o">
+      <column name="na2o"/>
+    </property>
+								
+  </class>
+</hibernate-mapping>

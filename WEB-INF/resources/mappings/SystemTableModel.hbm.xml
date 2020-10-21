@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.tried.system.model">
+	<class name="SystemTableModel" table="tried_system_table_model">
+		<comment>表/视图结构</comment>
+		<id name="id">
+			<generator class="uuid.hex" />
+		</id>
+		<property name="parentId">
+			<column name="parentId" />
+		</property>
+		<property name="objectName">
+			<column name="objectName" />
+		</property>
+		<property name="objectTable">
+			<column name="objectTable" />
+		</property>
+		<property name="columnName">
+			<column name="columnName" />
+		</property>
+		<property name="columnTitle">
+			<column name="columnTitle" />
+		</property>
+		<property name="columnIsNull">
+			<column name="columnIsNull" />
+		</property>
+		
+		<property name="columnType">
+			<column name="columnType" />
+		</property>
+		<property name="columnLength">
+			<column name="columnLength" />
+		</property>
+		
+		<property name="columnPk">
+			<column name="columnPk" />
+		</property>
+		<property name="columnSearch">
+			<column name="columnSearch" />
+		</property>
+		<property name="columnSort">
+			<column name="columnSort" />
+		</property>
+		<property name="sequence">
+			<column name="sequence" />
+		</property>
+		<property name="recordDate">
+			<column name="recordDate" />
+		</property>
+		<property name="recordUser">
+			<column name="recordUser" />
+		</property>
+		<property name="packName">
+			<column name="packName" />
+		</property>
+		
+	</class>
+</hibernate-mapping>

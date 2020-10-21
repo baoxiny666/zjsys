@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.system.model">
+  <class name="SystemSerial" table="tried_system_serial">
+    <comment>-</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="sysType">
+      <column name="sysType"/>
+    </property>
+    <property name="sysStandard">
+      <column name="sysStandard"/>
+    </property>
+    <property name="sysSerialNum">
+      <column name="sysSerialNum"/>
+    </property>
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+    <property name="recordUser">
+      <column name="recordUser"/>
+    </property>
+     <property name="recordUserName">
+      <formula>
+			(select a.userName from tried_system_user a where a.id=recordUser)
+		</formula>
+    </property>
+    
+  </class>
+</hibernate-mapping>

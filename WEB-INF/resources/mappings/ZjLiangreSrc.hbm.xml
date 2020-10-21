@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.zjsys.testDataSrc.model">
+  <class name="ZjLiangreSrc" table="tried_zj_liangre_src">
+    <comment>-</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="circleId">
+      <column name="circleId"/>
+    </property>
+    <property name="fileName">
+      <column name="fileName"/>
+    </property>
+    <property name="testDate">
+      <column name="testDate"/>
+    </property>
+    <property name="startTime">
+      <column name="startTime"/>
+    </property>
+    <property name="sampleNum">
+      <column name="sampleNum"/>
+    </property>
+    <property name="sampleName">
+      <column name="sampleName"/>
+    </property>
+    <property name="test_weight">
+      <column name="test_weight"/>
+    </property>
+   
+    <property name="test_jbs">
+      <column name="test_jbs"/>
+    </property>
+    <property name="test_zqws">
+      <column name="test_zqws"/>
+    </property>
+    <property name="test_lrjz">
+      <column name="test_lrjz"/>
+    </property>
+    <property name="test_ttfrValue">
+      <column name="test_ttfrValue"/>
+    </property>
+     <property name="test_yqNum">
+      <column name="test_yqNum"/>
+    </property>
+    
+    <property name="test_kgjgw">
+      <column name="test_kgjgw"/>
+    </property>
+    <property name="test_sdjdw">
+      <column name="test_sdjdw"/>
+    </property>
+    <property name="test_dhwd">
+      <column name="test_dhwd"/>
+    </property>
+    <property name="test_zdwd">
+      <column name="test_zdwd"/>
+    </property>
+    <property name="test_devicerol">
+      <column name="test_devicerol"/>
+    </property>
+    <property name="test_dhsrz">
+      <column name="test_dhsrz"/>
+    </property>
+    <property name="test_sydhs">
+      <column name="test_sydhs"/>
+    </property>
+    <property name="test_tjwzl">
+      <column name="test_tjwzl"/>
+    </property>
+    <property name="test_tjwrz">
+      <column name="test_tjwrz"/>
+    </property>
+    <property name="test_kgjsf">
+      <column name="test_kgjsf"/>
+    </property>
+    <property name="test_kgjhfen">
+      <column name="test_kgjhfen"/>
+    </property>
+    <property name="test_kgjhfa">
+      <column name="test_kgjhfa"/>
+    </property>
+    <property name="test_kgjqh">
+      <column name="test_kgjqh"/>
+    </property>
+    <property name="test_kgjlh">
+      <column name="test_kgjlh"/>
+    </property>
+    <property name="test_sampleDept">
+      <column name="test_sampleDept"/>
+    </property>
+    <property name="test_qmnum">
+      <column name="test_qmnum"/>
+    </property>
+    <property name="huayanPerson">
+      <column name="huayanPerson"/>
+    </property>
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+    <property name="recordUser">
+      <column name="recordUser"/>
+    </property>
+    <property name="dataStatus">
+      <column name="dataStatus"/>
+    </property>
+  </class>
+</hibernate-mapping>

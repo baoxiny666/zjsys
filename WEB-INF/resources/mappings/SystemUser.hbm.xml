@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.tried.system.model">
+	<class name="SystemUser" table="tried_system_user">
+		<comment>用户信息</comment>
+		<id name="id">
+			<generator class="uuid.hex" />
+		</id>
+		<property name="loginName">
+			<column name="loginName" />
+		</property>
+		<property name="loginPass">
+			<column name="loginPass" />
+		</property>
+		<property name="loginNum">
+			<formula>
+				(select count(1)  FROM  tried_system_login_info s where s.recordUser=id )
+			</formula>
+		</property>
+		<property name="userName">
+			<column name="userName" />
+		</property>
+		<property name="userSex">
+			<column name="userSex" />
+		</property>
+		<property name="userBrithday">
+			<column name="userBrithday" />
+		</property>
+		<property name="parentDepName">
+			<formula>
+				(select s.name  FROM  tried_system_department s where s.id in( SELECT t.parentId   FROM  tried_system_department t where t.id=depId))
+			</formula>
+		</property>
+		<property name="depId">
+			<column name="depId" />
+		</property>
+		<property name="depName">
+			<formula>
+				(select s.name from tried_system_department s where s.id=depId)
+			</formula>
+		</property>
+		<property name="workId">
+			<column name="workId" />
+		</property>
+
+		<property name="workName">
+			<formula>
+				(select s.name from tried_system_department s where s.id=workId)
+			</formula>
+
+		</property>
+
+		<property name="flag">
+			<column name="flag" />
+		</property>
+		<property name="recordDate">
+			<column name="recordDate" />
+		</property>
+		<property name="recordUser">
+			<column name="recordUser" />
+		</property>
+		<property name="passKey">
+			<column name="passKey" />
+		</property>
+		<property name="uploadFlag">
+			<formula>
+				(select count(1)  FROM  tried_file_manager s where s.pkId=id and s.pkColumn='system_user_sign_name')
+			</formula>
+		</property>
+
+	</class>
+</hibernate-mapping>

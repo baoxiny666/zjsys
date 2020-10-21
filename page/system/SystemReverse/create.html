@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>表结构</title>
+</head>
+<body>
+<div align="center" style="margin-top: 10px">
+	<!-- 添加表/视图结构 -->
+	    <form id="modelForm" class="easyui-form" action="#" method="post" data-options="novalidate:true" >
+	    		<input name="recordIdS" type="hidden"/> 
+	    		模块类型：
+	    		<select class="easyui-combobox" data-options="panelHeight:'auto'" name="pageName"  style="width: 200px;">
+					        <option value="system">系统信息管理模块</option>
+					   		<option value="device">设备管理</option>
+					   		<option value="basics">基础管理</option>
+					   		<option value="testDataSrc">检测源数据</option>
+					   </select>
+	    		</br>页面类型：<input type="radio" name="pageType" value="CRUD" checked="checked"/>列表
+	    		<input type="radio" name="pageType" value="TREE"/>树
+		</form> 
+		</div>
+</body>
+</html>

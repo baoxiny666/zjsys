@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>报告模板</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+</head>
+<body>
+	<div align="center" style="margin-top: 10px">
+		<!-- 添加报告模板 -->
+		<form id="modelForm" class="easyui-form" action="#" method="post" data-options="validate:true">
+		<input name="id" type="hidden" />
+			<input id="pkId" name="pkId" type="hidden" />					
+			<table cellpadding="0" cellspacing="0" border="0">
+			    <tr>
+					<td style="height: 27px;text-align: right;padding-right: 5px;width:160px;">模板编号：</td>
+					<td style="text-align: left;padding-left: 5px">
+					<input class="easyui-textbox" name="reportNum" data-options="prompt:'如不输入,系统自动编号'" style="width: 260px; height: 25px" />
+					</td>
+				</tr>				
+				<tr>
+					<td style="height: 27px;text-align: right;padding-right: 5px">模板名称：</td>
+					<td style="text-align: left;padding-left: 5px">
+					<input class="easyui-textbox" name="reportName" data-options="required:true" style="width: 260px; height: 25px" />
+					</td>
+				</tr>
+				<tr>
+					<td style="height: 27px;text-align: right;padding-right: 5px">模板类型：</td>
+					<td style="text-align: left;padding-left: 5px">
+					<select class="easyui-combobox" data-options="panelHeight:'80px',required:true" name="modelType"  style="width: 160px;" editable="false">
+						<option value="费用明细" selected="selected" >费用明细</option>
+						<option value="核查表">核查表</option>
+						<option value="试验结果上报表">试验结果上报表</option>
+						<option value="变更确认表">变更确认表</option>
+						<option value="其他" >其他</option>
+					</select>					
+					</td>
+				</tr>
+				<tr>
+				
+					<td style="height: 27px;text-align: right;padding-right: 5px">检测依据名称：</td>
+					<td style="text-align: left;padding-left: 5px">
+					<input class="easyui-textbox" name="jcyiName" data-options="required:false" style="width: 260px; height: 25px" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td style="height: 27px;text-align: right;padding-right: 5px">
+						<a href="#" class="file-upload"> 
+								<input type="file" id="up_file" name="file" onchange="func_upfile(this,'system_report_model_file','pkId',true)" />报告其他附件
+						</a>
+					</td>
+					<td style="text-align: left;padding-left: 5px">
+							<input id="system_report_model_file_edit" name="system_report_model_file" type="hidden" />
+							<table id="system_report_model_file" cellpadding="0" cellspacing="0" border="0" style="border: 0;" ></table>
+					</td>
+				</tr>
+
+			</table>
+		</form>
+	</div>
+</body>
+</html>

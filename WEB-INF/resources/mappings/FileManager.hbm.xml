@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.system.model">
+  <class name="FileManager" table="tried_file_manager">
+    <comment>文件存储表</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="filename">
+      <column name="filename"/>
+    </property>
+    <property name="fileSavePath">
+      <column name="fileSavePath"/>
+    </property>
+     <property name="fileSaveName">
+      <column name="fileSaveName"/>
+    </property>
+  
+    
+    <property name="fileSize">
+      <column name="fileSize"/>
+    </property>
+    <property name="desciption">
+      <column name="desciption"/>
+    </property>
+    <property name="pkId">
+      <column name="pkId"/>
+    </property>
+  
+    <property name="pkTable">
+      <column name="pkTable"/>
+    </property>
+    <property name="pkColumn">
+      <column name="pkColumn"/>
+    </property>
+    <property name="recordUser">
+      <column name="recordUser"/>
+    </property>
+    <property name="recordUserName">
+      <formula>
+      	(select tsu.userName from tried_system_user tsu where tsu.id=recordUser)
+      </formula>
+    </property>
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+     <property name="appPkId">
+      <column name="appPkId"/>
+    </property>
+    
+  </class>
+</hibernate-mapping>

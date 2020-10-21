@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>物料名称</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+</head>
+<body>
+	<div align="center" style="margin-top: 10px">
+		<!-- 添加物料名称 -->
+		<form id="modelForm" class="easyui-form" action="#" method="post" data-options="validate:true">
+			<input name="id" type="hidden" />
+			<table cellpadding="0" cellspacing="0" border="0">
+					<tr>
+					<td style="height: 27px">物料类型：</td>
+					<td><select name="wlType" class="easyui-combobox" data-options="panelHeight:100,required:true"  style="width: 200px;height: 25px">
+							<option  value="燃料" >燃料</option>
+							<option   value="原料" >原料</option>
+							<option  value="辅料" >辅料</option>
+							<option   value="带钢" >带钢</option>
+						</select>
+					
+				</td>
+				</tr>
+					<tr>
+					<td style="height: 27px">物料编码：</td>
+					<td><input class="easyui-textbox" name="wlCode" style="width: 200px; height: 25px" data-options="required:true" /></td>
+				</tr>
+				<tr>
+					<td style="height: 27px">物料名称：</td>
+					<td><input class="easyui-textbox" name="wlName" style="width: 200px; height: 25px" data-options="required:true"/></td>
+				</tr>
+			
+			</table>
+		</form>
+	</div>
+</body>
+</html>

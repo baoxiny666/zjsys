@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>角色信息</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="./../../../css/themes/icon.css">
+			<script type="text/javascript" src="./../../../js/jquery.min.js"></script>
+			<script type="text/javascript" src="./../../../js/jquery.tried.min.js"></script>
+			<script type="text/javascript" src="./../../../js/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+	<div align="center" style="padding-top: 25px">
+		<!-- 添加角色信息 -->
+		<form id="modelForm" class="easyui-form" action="#" method="post" data-options="novalidate:true">
+			<input name="id" type="hidden" />
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td  style="height: 27px">角色代码：</td>
+					<td><input class="easyui-textbox" type="text" name="roleCode" style="width: 200px; height: 25px" /></td>
+				</tr>
+				<tr>
+					<td  style="height: 27px">角色名称：</td>
+					<td><input class="easyui-textbox" type="text" name="roleName" style="width: 200px; height: 25px" /></td>
+				</tr>
+				<tr>
+					<td  style="height: 27px">角色描述：</td>
+					<td><input class="easyui-textbox" type="text" name="roleContent" style="width: 200px; height: 25px" /></td>
+				</tr>
+				<tr>
+					<td style="height: 27px">是否启用</td>
+					<td>
+					<input type="radio" name="flag" value="是"/>是
+					<input type="radio" name="flag" value="否"/>否
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

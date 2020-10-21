@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	 
+   
+   
+   
+   
+  <!-- 配置为开发模式 -->
+
+	 
+   
+   
+   
+   
+  <include file="struts-default.xml"/>
+   
+   
+   
+  <!-- 配置扩展名为action -->
+   
+   
+  <constant name="struts.action.extension" value="action"/>
+   
+   
+  <!-- 当struts的配置文件修改后,系统是否自动重新加载该文件,默认值为false(生产环境下使用),开发阶段最好打开 -->
+   
+   
+  <constant name="struts.configuration.xml.reload" value="true"/>
+   
+   
+  <!-- 配置主题 -->
+   
+   
+  <constant name="struts.ui.theme" value="simple"/>
+   
+   
+  <!-- 让OGNL中可以使用静态的方法 -->
+   
+   
+  <constant name="struts.ognl.allowStaticMethodAccess" value="true"/>
+   
+   
+  <!-- struts2默认上传文件大小为2M,现在设置为50M -->
+   
+   
+  <constant name="struts.multipart.maxSize" value="1073741824"/>
+   
+   
+  <!-- struts临时上传路径 -->
+   
+   
+  <constant name="struts.multipart.saveDir" value="/tmp"/>
+   
+   
+  <include file="struts/struts-base.xml"/>
+   
+   
+  <include file="struts/struts-system.xml"/>
+   
+   
+  <include file="struts/struts-file.xml"/>
+    
+  <include file="struts/struts-basics.xml"/>
+  <include file="struts/struts-testDataSrc.xml"/>
+</struts>

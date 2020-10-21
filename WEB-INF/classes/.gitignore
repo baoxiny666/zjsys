@@ -1,0 +1,13 @@
+/META-INF/
+/applicationContext-common.xml
+/applicationContext.xml
+/com/
+/config.properties
+/jbpm.cfg.xml
+/jdbc.properties
+/log4j.properties
+/mappings/
+/org/
+/param.properties
+/struts.xml
+/struts/

@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>烧结矿</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/black/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/icon.css"/>
+	<script type="text/javascript" src="./../../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="./../../../js/jquery.tried.min.js"></script>
+	<script type="text/javascript" src="./../../../js/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="./../../../js/tried.js"></script>
+</head>
+<body style="overflow: hidden;margin: 0,0,0,0">
+<div id="divConId" data-options="region:'center'" >  
+	<div id="datagrid-烧结矿" style="width:99%;"></div>
+	<div id="tb-烧结矿" style="padding:2px 2px;" >
+	    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+		    <tr>
+		    	<td>
+					&nbsp;日期：<input  id="objStartTime_search-烧结矿"  type= "text" class= "easyui-datebox" style="width:90px"/>
+	                                          至   <input  id="objEndTime_search-烧结矿"  type= "text" class= "easyui-datebox" style="width:90px"/>
+						 
+					<a href="#" class="easyui-linkbutton" iconCls="icon-search" data-options="height:22,width:78" onclick="func_search_s()">检索</a>
+					<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel_sj('烧结矿')">导出</a>
+				</td>
+		    </tr>
+		</table>
+	</div>
+</div>
+<script type="text/javascript">
+var head3 =[ [ {
+	"field" : "factory",
+	"title" : "厂家",
+	"width" : 80,
+	"align" : "center",
+	"sortable" : true
+}, {
+	"field" : "mateName",
+	"title" : "样品名称",
+	"align" : "center",
+	"width" :80,
+	"sortable" : true
+}, {
+	"field" : "positionName",
+	"title" : "货位",
+	"width" :80,
+	"align" : "center",
+	"sortable" : false
+}, {
+	"field" : "orderNum",
+	"title" : "化验编码",
+	"width" :80,
+	"align" : "center",
+	"sortable" : false
+}, {
+	"field" : "checkTime",
+	"title" : "日期",
+	"align" : "center",
+	"width" :100,
+	"sortable" : true,
+	"formatter":formateDate
+},{
+	"field" : "sampleStartTime",
+	"title" : "取样时间",
+	"align" : "center",
+	"width" :60,
+	"sortable" : false,
+	"formatter":formateHM
+},{
+	"field" : "hyTime",
+	"title" : "化验时间",
+	"align" : "center",
+	"width" :60,
+	"sortable" : false,
+	"formatter":function(value,row,index){
+		return formateHmVal(row.checkTime);
+	}
+},{
+	"field" : "tfe",
+	"title" : "Tfe(%)",
+	"width" :50,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+},{
+	"field" : "feO",
+	"title" : "FeO(%)",
+	"width" :50,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+},{
+	"field" : "caO",
+	"title" : "CaO(%)",
+	"width" :50,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+},{
+	"field" : "mgO",
+	"title" : "MgO(%)",
+	"width" :50,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+},{
+	"field" : "siO2",
+	"title" : "SiO2(%)",
+	"width" :50,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+},{
+	"field" : "r",
+	"title" : "R(%)",
+	"width" :50,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+},{
+	"field" : "al2O3",
+	"title" : "Al2O3(%)",
+	"width" :50,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+},{
+	"field" : "tiO2",
+	"title" : "TiO2(%)",
+	"width" :50,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+},{
+	"field" : "strength",
+	"title" : "强度(%)",
+	"width" :50,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+},{
+	"field" : "mnO",
+	"title" : "MnO(%)",
+	"width" :50,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate2num
+},{
+	"field" : "p",
+	"title" : "P(%)",
+	"width" :50,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+},{
+	"field" : "cr2O3",
+	"title" : "Cr2O3(%)",
+	"width" :50,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+},{
+	"field" : "k2O",
+	"title" : "K2O(%)",
+	"width" :50,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+},{
+	"field" : "na2O",
+	"title" : "Na2O(%)",
+	"width" :50,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+},{
+	"field" : "v2O5",
+	"title" : "V2O5(%)",
+	"width" :50,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+},{
+	"field" : "pb",
+	"title" : "Pb(%)",
+	"width" :50,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+},{
+	"field" : "zn",
+	"title" : "Zn(%)",
+	"align" : "center",
+	"width" :50,
+	"sortable" : false,
+	"formatter":formate0toLine
+},{
+	"field" : "cu",
+	"title" : "Cu(%)",
+	"align" : "center",
+	"width" :50,
+	"sortable" : false,
+	"formatter":formate0toLine
+},{
+	"field" : "s",
+	"title" : "S(%)",
+	"width" :50,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+},{
+	"field" : "ni",
+	"title" : "Ni(%)",
+	"width" :50,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate3num
+},{
+	"field" : "as2O3",
+	"title" : "Fe2O3(%)",
+	"width" :50,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":function(value,row,index){
+		if(row.tfe!=""&&row.tfe!=null && row.feO!="" && row.feO!=null){
+			var res = 1.43*row.tfe - 1.11*row.feO;
+			if(res==0){
+				return "-";
+			}else{
+				return  res.toFixed(3);
+			}
+			 
+		}else{
+			if(value == undefined||value==""||value=="0"||value==0){
+				return "-";
+			}else{
+				return value.toFixed(3);
+			}
+		}
+		
+	}
+} ] ];
+	$(function() {
+		reWindowSize();
+		func_init();
+	});
+	function func_init(){
+		$('#datagrid-烧结矿').datagrid({
+			toolbar : '#tb-烧结矿',
+			url : getTgsysUrl() + "/pimes_quality/mateFullSampleAction_mateFullDayList.action",
+			collapsible : false,
+			rownumbers : true, //行号
+			striped : true,    //各行换色
+			checkOnSelect : true, 
+			selectOnCheck : true,
+			ctrlSelect : true,
+		 	queryParams : {  //参数传递
+	 		    objStartTime: func_currentData(),
+				objEndTime:func_currentData(),
+				mateTypeId:6
+			},
+			 onLoadSuccess:function(data){
+			 
+				 func_tabAnalysis('datagrid-烧结矿',data.rows,"factory","factory;mateName;positionName;orderNum;checkTime;sampleStartTime;hyTime;checkTime;",false,true,true,true,false);
+			},   
+			columns : head3
+		});   
+	}
+ 	function func_search_s(){
+		$('#datagrid-烧结矿').datagrid('load',{
+			 
+			objStartTime: $("#objStartTime_search-烧结矿").datebox('getValue'),
+			objEndTime:$("#objEndTime_search-烧结矿").datebox('getValue'),
+			mateTypeId:6
+		}); 
+	}
+ 	/**
+ 	 * 导出到excel文件
+ 	 */
+ 	function func_excel_sj(index){
+ 		func_excelFile('datagrid-'+index,index+"质量看板",index+"质量看板",head3);
+ 	}
+	/**
+	 * 页面缩放监听事件
+	 */
+	$(window).resize(function() {
+		reWindowSize();
+	}).resize();
+	/**
+	 * 页面缩放自适应大小
+	 */
+	function reWindowSize() {
+		var _parentId = $("#divConId-index");
+		var _height = $(_parentId).height()- 5;
+		$('#divConId').css("height",_height);
+		$('#datagrid-烧结矿').css("height",_height);
+	}
+</script>	
+</body>
+</html>

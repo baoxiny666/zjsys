@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>用户信息</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/icon.css">
+	<script type="text/javascript" src="./../../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="./../../../js/jquery.tried.min.js"></script>
+	<script type="text/javascript" src="./../../../js/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="./../../../js/tried.js"></script>
+</head>
+<body>
+	<div align="center">
+		<div style="width: 500px">
+			<fieldset style="margin-top: 20px">
+			<legend>
+				个人密码设置
+			</legend>
+					<!-- 添加用户信息 -->
+			<form id="modelForm" class="easyui-form" action="#" method="post" data-options="novalidate:true">
+				<input name="id" type="hidden" id="userId"/>
+				<table cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td style="height: 27px">原密码：</td>
+						<td align="left">
+						<input class="easyui-textbox"  type="password" id="oldPassword" name="oldPassword" style="width: 200px; height: 25px" onchange="func_checkKey()" />
+							<span style="color: red" id="messimg"> </span>
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 27px">新密码：</td>
+						<td align="left"><input class="easyui-textbox" type="password" id="nowPassword" name="nowPassword" style="width: 200px; height: 25px" /></td>
+					</tr>
+					<tr>
+						<td style="height: 27px">确认密码：</td>
+						<td align="left"><input class="easyui-textbox" type="password" id="confirmPassword" name="confirmPassword" style="width: 200px; height: 25px" /></td>
+					</tr>
+				</table>
+				<div style="margin-top: 20px;">
+				<input type="button" value="确定" onclick="func_confirm()"/>
+				<input type="button" value="取消" onclick="func_cancel()"/>
+				</div>
+			</form>
+			</fieldset>
+		</div>
+	</div>
+</body>
+</html>

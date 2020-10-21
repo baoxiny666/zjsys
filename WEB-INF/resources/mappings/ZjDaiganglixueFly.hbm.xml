@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.zjsys.testDataSrc.model">
+  <class name="ZjDaiganglixueFly" table="tried_zj_daiganglixue_fly">
+    <comment>-</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="circleId">
+      <column name="circleId"/>
+    </property>
+    <property name="srcId">
+      <column name="srcId"/>
+    </property>
+    <property name="deviceNum">
+      <column name="deviceNum"/>
+    </property>
+    <property name="filename">
+      <column name="filename"/>
+    </property>
+    <property name="testTime">
+      <column name="testTime"/>
+    </property>
+    <property name="lunum">
+      <column name="lunum"/>
+    </property>
+    <property name="classGroup">
+      <column name="classGroup"/>
+    </property>
+    <property name="steeltype">
+      <column name="steeltype"/>
+    </property>
+    <property name="steelGuige">
+      <column name="steelGuige"/>
+    </property>
+    <property name="branchFactory">
+      <column name="branchFactory"/>
+    </property>
+    <property name="yieldDown_streng">
+      <column name="yieldDown_streng"/>
+    </property>
+    <property name="kangla_streng">
+      <column name="kangla_streng"/>
+    </property>
+    <property name="duanhouLong_rate">
+      <column name="duanhouLong_rate"/>
+    </property>
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+    <property name="recordUser">
+      <column name="recordUser"/>
+    </property>
+     <property name="recordUserName">
+        <formula>(select s.userName from tried_system_user s where s.id =recordUser)</formula>
+     </property>
+    <property name="dataStatus">
+      <column name="dataStatus"/>
+    </property>
+    
+  </class>
+</hibernate-mapping>

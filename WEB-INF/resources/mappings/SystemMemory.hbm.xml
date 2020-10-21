@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.system.model">
+  <class name="SystemMemory" table="tried_system_memory">
+    <comment>内存存储</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="relationId">
+      <column name="relationId"/>
+    </property>
+     <property name="relationColumn">
+      <column name="relationColumn"/>
+    </property>
+    <property name="relationContext">
+      <column name="relationContext"/>
+    </property>
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+  </class>
+</hibernate-mapping>

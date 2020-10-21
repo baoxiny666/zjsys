@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.system.model">
+  <class name="SystemDataLog" table="tried_system_data_log">
+    <comment>内容修改日志表</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="model_id">
+      <column name="model_id"/>
+    </property>
+    <property name="model_name">
+      <column name="model_name"/>
+    </property>
+    <property name="content_title">
+      <column name="content_title"/>
+    </property>
+    <property name="content_old">
+      <column name="content_old"/>
+    </property>
+    <property name="content_new">
+      <column name="content_new"/>
+    </property>
+    <property name="content_beizhu">
+      <column name="content_beizhu"/>
+    </property>
+    <property name="recordUser">
+      <column name="recordUser"/>
+    </property>
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+  </class>
+</hibernate-mapping>

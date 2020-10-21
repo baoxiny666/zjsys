@@ -1,0 +1,458 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>试验台信息信息</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/black/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/icon.css"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/tried.css"/>
+	<script type="text/javascript" src="./../../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="./../../../js/jquery.tried.min.js"></script>
+	<script type="text/javascript" src="./../../../js/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="./../../../js/tried.js"></script>
+	<script type="text/javascript"  src="./../../../js/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="js/headTitle.js"></script>
+    <script type="text/javascript" src="js/list.js"></script>
+  <style>
+.tabs-header-left .tabs li.tabs-selected a.tabs-inner  {
+  background-color: #666;
+  color: #000;
+  background: linear-gradient(to bottom,yellow 0,yellow 100%);
+}
+</style>
+</head>
+<body style="overflow: hidden;margin: 0,0,0,0">
+<div id="divConId" data-options="region:'center'">   
+	<div id="tabs" class="easyui-tabs" title="质量看板"  style="width:100%;height: 100%" data-options="tabPosition:'left',fit:true,tabHeight:22,headerWidth:132,pill:true">
+		<div title="烧结大样-入炉烧结" style=";border: 0px;padding: 2px">
+			<div id="datagrid-烧结大样-入炉烧结" style="width:98%;border: 0px" data-options="fit:true" ></div>
+			<div id="tb-烧结大样-入炉烧结" style="padding:2px 5px;border: 0px" >
+			    <table cellpadding="0" cellspacing="0" border="0px" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-烧结大样-入炉烧结"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-烧结大样-入炉烧结"  class="easyui-datebox"    type="text" style="width:90px"/>
+						  厂家：<input class="easyui-combobox" name="factoryId" id="factoryId_search-烧结大样-入炉烧结" style="width:90px"/>
+						样品名称：<input class="easyui-combobox" name="mateKindId" id="mateKindId_search-烧结大样-入炉烧结" style="width:90px"/>  
+						货位：<input class="easyui-combobox" name="mateLocationId" id="locationId_search-烧结大样-入炉烧结" style="width:90px"/>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('烧结大样-入炉烧结')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('烧结大样-入炉烧结')">导出</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div title="球团大样-入炉球团" style="height: 10px;padding: 2px">
+			<div id="datagrid-球团大样-入炉球团" style="width:98%;"data-options="fit:true" ></div>
+			<div id="tb-球团大样-入炉球团" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-球团大样-入炉球团"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-球团大样-入炉球团"  class="easyui-datebox"    type="text" style="width:90px"/>
+						   厂家：<input class="easyui-combobox" name="factoryId" id="factoryId_search-球团大样-入炉球团" style="width:90px"/>
+						样品名称：<input class="easyui-combobox" name="mateKindId" id="mateKindId_search-球团大样-入炉球团" style="width:90px"/>  
+						货位：<input class="easyui-combobox" name="locationId" id="locationId_search-球团大样-入炉球团" style="width:90px"/>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('球团大样-入炉球团')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('球团大样-入炉球团')">导出</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div title="入炉块矿" style="height: 10px;">
+			<div id="datagrid-入炉块矿" style="width:98%;"data-options="fit:true" ></div>
+			<div id="tb-入炉块矿" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-入炉块矿"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-入炉块矿"  class="easyui-datebox"    type="text" style="width:90px"/>
+						    厂家：<input class="easyui-combobox" name="factoryId" id="factoryId_search-入炉块矿" style="width:90px"/>
+						样品名称：<input class="easyui-combobox" name="mateKindId" id="mateKindId_search-入炉块矿" style="width:90px"/>  
+						货位：<input class="easyui-combobox" name="locationId" id="locationId_search-入炉块矿" style="width:90px"/>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('入炉块矿')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('入炉块矿')">导出</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div title="入炉杂矿" style="height: 10px;">
+			<div id="datagrid-入炉杂矿" style="width:98%;"data-options="fit:true" ></div>
+			<div id="tb-入炉杂矿" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-入炉杂矿"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-入炉杂矿"  class="easyui-datebox"    type="text" style="width:90px"/>
+						    厂家：<input class="easyui-combobox" name="factoryId" id="factoryId_search-入炉杂矿" style="width:90px"/>
+						样品名称：<input class="easyui-combobox" name="mateKindId" id="mateKindId_search-入炉杂矿" style="width:90px"/>  
+						货位：<input class="easyui-combobox" name="locationId" id="locationId_search-入炉杂矿" style="width:90px"/>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('入炉杂矿')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('入炉杂矿')">导出</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div title="入炉煤" style="height: 10px;">
+			<div id="datagrid-入炉煤" style="width:98%;"data-options="fit:true" ></div>
+			<div id="tb-入炉煤" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-入炉煤"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-入炉煤"  class="easyui-datebox"    type="text" style="width:90px"/>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('入炉煤')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('入炉煤')">导出</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div title="混煤灰分" style="width:98%;"data-options="fit:true" >
+			<div id="datagrid-混煤灰分" style="width:98%;"data-options="fit:true" ></div>
+			<div id="tb-混煤灰分" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-混煤灰分"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-混煤灰分"  class="easyui-datebox"    type="text" style="width:90px"/>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('混煤灰分')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('混煤灰分')">导出</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div title="入炉焦炭" style="width:98%;"data-options="fit:true" >
+			<div id="datagrid-入炉焦炭" style="width:98%;"data-options="fit:true" ></div>
+			<div id="tb-入炉焦炭" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-入炉焦炭"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-入炉焦炭"  class="easyui-datebox"    type="text" style="width:90px"/>
+						     厂家：<input class="easyui-combobox" name="factoryId" id="factoryId_search-入炉焦炭" style="width:90px"/>
+						样品名称：<input class="easyui-combobox" name="mateKindId" id="mateKindId_search-入炉焦炭" style="width:90px"/>  
+						货位：<input class="easyui-combobox" name="locationId" id="locationId_search-入炉焦炭" style="width:90px"/>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('入炉焦炭')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('入炉焦炭')">导出</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div title="入炉焦丁" style="width:98%;"data-options="fit:true" >
+			<div id="datagrid-入炉焦丁" style="width:98%;"data-options="fit:true" ></div>
+			<div id="tb-入炉焦丁" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-入炉焦丁"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-入炉焦丁"  class="easyui-datebox"    type="text" style="width:90px"/>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('入炉焦丁')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('入炉焦丁')">导出</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div title="烧结筛分" style="width:98%;"data-options="fit:true" >
+			<div id="datagrid-烧结筛分" style="width:98%;"data-options="fit:true" ></div>
+			<div id="tb-烧结筛分" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-烧结筛分"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-烧结筛分"  class="easyui-datebox"    type="text" style="width:90px"/>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('烧结筛分')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('烧结筛分')">导出</a>
+						</div>
+						编号：<select class="easyui-combobox" name="orderNum" id="orderNum-烧结筛分"> 
+							<option value="1080-1" selected="selected">1#1080高炉</option>
+							<option value="1080-2">2#1080高炉</option>
+							<option value="1080-3">3#1080高炉</option>
+							<option value="230">230#皮带</option>
+						</select>
+					</td>
+					
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div title="烧结厂烧结成分" style="width:98%;"data-options="fit:true" >
+			<div id="datagrid-烧结厂烧结成分" style="width:98%;"data-options="fit:true" ></div>
+			<div id="tb-烧结厂烧结成分" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-烧结厂烧结成分"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-烧结厂烧结成分"  class="easyui-datebox"    type="text" style="width:90px"/>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('烧结厂烧结成分')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('烧结厂烧结成分')">导出</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div title="样品检测" style="width:98%;"data-options="fit:true" >
+			<div id="datagrid-样品检测" style="width:98%;"data-options="fit:true" ></div>
+			<div id="tb-样品检测" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-样品检测"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-样品检测"  class="easyui-datebox"    type="text" style="width:90px"/>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('样品检测')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('样品检测')">导出</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div title="焦炭外水" style="width:98%;"data-options="fit:true" >
+			<div id="datagrid-焦炭外水" style="width:98%;"data-options="fit:true" ></div>
+			<div id="tb-焦炭外水" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-焦炭外水"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-焦炭外水"  class="easyui-datebox"    type="text" style="width:90px"/>
+						 厂家：<input class="easyui-combobox" name="factoryId" id="factoryId_search-焦炭外水" style="width:90px"/>
+						样品名称：<input class="easyui-combobox" name="mateKindId" id="mateKindId_search-焦炭外水" style="width:90px"/>  
+						货位：<input class="easyui-combobox" name="locationId" id="locationId_search-焦炭外水" style="width:90px"/>
+						 
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('焦炭外水')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('焦炭外水')">导出</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div title="焦炭烘干外水" style="width:98%;"data-options="fit:true" >
+			<div id="datagrid-焦炭烘干外水" style="width:98%;"data-options="fit:true" ></div>
+			<div id="tb-焦炭烘干外水" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-焦炭烘干外水"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-焦炭烘干外水"  class="easyui-datebox"    type="text" style="width:90px"/>
+						 厂家：<input class="easyui-combobox" name="factoryId" id="factoryId_search-焦炭烘干外水" />
+						样品名称：<input class="easyui-combobox" name="mateKindId" id="mateKindId_search-焦炭烘干外水" style="width:90px"/>  
+						货位：<input class="easyui-combobox" name="locationId" id="locationId_search-焦炭烘干外水" style="width:90px"/>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('焦炭烘干外水')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('焦炭烘干外水')">导出</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div title="焦炭粒度" style="width:98%;"data-options="fit:true" >
+			<div id="datagrid-焦炭粒度" style="width:98%;"data-options="fit:true" ></div>
+			<div id="tb-焦炭粒度" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-焦炭粒度"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-焦炭粒度"  class="easyui-datebox"    type="text" style="width:90px"/>
+						   厂家：<input class="easyui-combobox" name="factoryId" id="factoryId_search-焦炭粒度"style="width:90px" />
+						样品名称：<input class="easyui-combobox" name="mateKindId" id="mateKindId_search-焦炭粒度"style="width:90px" />  
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('焦炭粒度')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('焦炭粒度')">导出</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div title="焦丁外水" style="width:98%;"data-options="fit:true" >
+			<div id="datagrid-焦丁外水" style="width:98%;"data-options="fit:true" ></div>
+			<div id="tb-焦丁外水" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-焦丁外水"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-焦丁外水"  class="easyui-datebox"    type="text" style="width:90px"/>
+						   厂家：<input class="easyui-combobox" name="factoryId" id="factoryId_search-焦丁外水" style="width:90px"/>
+						样品名称：<input class="easyui-combobox" name="mateKindId" id="mateKindId_search-焦丁外水" style="width:90px"/>  
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('焦丁外水')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('焦丁外水')">导出</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div title="焦炭热强度" style="width:98%;"data-options="fit:true" >
+		<div id="datagrid-焦炭热强度" style="width:98%;"data-options="fit:true" ></div>
+		<div id="tb-焦炭热强度" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-焦炭热强度"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-焦炭热强度"  class="easyui-datebox"    type="text" style="width:90px"/>
+						   厂家：<input class="easyui-combobox" name="factoryId" id="factoryId_search-焦炭热强度" style="width:90px"/>
+						样品名称：<input class="easyui-combobox" name="mateKindId" id="mateKindId_search-焦炭热强度" style="width:90px"/>  
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('焦炭热强度')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('焦炭热强度')">导出</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div title="焦炭热值" style="width:98%;"data-options="fit:true" >
+			<div id="datagrid-焦炭热值" style="width:98%;"data-options="fit:true" ></div>
+			<div id="tb-焦炭热值" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-焦炭热值"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-焦炭热值"  class="easyui-datebox"    type="text" style="width:90px"/>
+						  厂家：<input class="easyui-combobox" name="factoryId" id="factoryId_search-焦炭热值" style="width:90px"/>
+						样品名称：<input class="easyui-combobox" name="mateKindId" id="mateKindId_search-焦炭热值" style="width:90px"/>  
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('焦炭热值')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('焦炭热值')">导出</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div title="焦炭灰分" style="width:98%;"data-options="fit:true" >
+		<div id="datagrid-焦炭灰分" style="width:98%;"data-options="fit:true" ></div>
+		<div id="tb-焦炭灰分" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-焦炭灰分"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-焦炭灰分"  class="easyui-datebox"    type="text" style="width:90px"/>
+						  厂家：<input class="easyui-combobox" name="factoryId" id="factoryId_search-焦炭灰分" style="width:90px"/>
+						样品名称：<input class="easyui-combobox" name="mateKindId" id="mateKindId_search-焦炭灰分" style="width:90px"/>  
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('焦炭灰分')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('焦炭灰分')">导出</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div title="煤气化验" style="width:98%;"data-options="fit:true" >
+			<div id="datagrid-煤气化验" style="width:98%;"data-options="fit:true" ></div>
+			<div id="tb-煤气化验" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-煤气化验"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-煤气化验"  class="easyui-datebox"    type="text" style="width:90px"/>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('煤气化验')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('煤气化验')">导出</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div title="除尘灰全铁" style="width:98%;"data-options="fit:true" >
+			<div id="datagrid-除尘灰全铁" style="width:98%;"data-options="fit:true" ></div>
+			<div id="tb-除尘灰全铁" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-除尘灰全铁"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-除尘灰全铁"  class="easyui-datebox"    type="text" style="width:90px"/>
+							高炉：<select class="easyui-combobox" name="gaolu" id="gaolu-除尘灰全铁"> 
+							<option value="1" selected="selected">1#1080高炉</option>
+							<option value="2">2#1080高炉</option>
+							<option value="3">3#1080高炉</option>
+						</select>
+						类型:<select class="easyui-combobox" name="type" id="type-除尘灰全铁"> 
+							<option value="1" selected="selected">重力</option>
+							<option value="2">布袋</option>
+							<option value="3">矿槽</option>
+							</select>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('除尘灰全铁')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('除尘灰全铁')">导出</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div title="除尘灰全分析" style="width:98%;"data-options="fit:true" >
+			<div id="datagrid-除尘灰全分析" style="width:98%;"data-options="fit:true" ></div>
+			<div id="tb-除尘灰全分析" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-除尘灰全分析"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-除尘灰全分析"  class="easyui-datebox"    type="text" style="width:90px"/>
+						高炉：<select class="easyui-combobox" name="gaolu" id="gaolu-除尘灰全分析"> 
+							<option value="1" selected="selected">1#1080高炉</option>
+							<option value="2">2#1080高炉</option>
+							<option value="3">3#1080高炉</option>
+						</select>
+						类型:<select class="easyui-combobox" name="type" id="type-除尘灰全分析"> 
+							<option value="1" selected="selected">重力</option>
+							<option value="2">布袋</option>
+							<option value="3">矿槽</option>
+							</select>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search('除尘灰全分析')" data-options="height:22">检索</a>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel('除尘灰全分析')">导出</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<!-- <div title="高炉铁水化验" style="width:98%;"data-options="fit:true" >
+			<div id="datagrid-21" style="width:98%;"data-options="fit:true" ></div>
+			<div id="tb-21" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-21"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-21"  class="easyui-datebox"    type="text" style="width:90px"/>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search(21)">检索</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div> -->
+		<!-- <div title="高炉炉渣化验" style="width:98%;"data-options="fit:true" >
+			<div id="datagrid-22" style="width:98%;"data-options="fit:true" ></div>
+			<div id="tb-22" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+			    <tr>
+			    	<td><div style="float:left">
+						时间: <input id="objStartTime_search-22"  class="easyui-datebox" type="text" style="width:90px"/>
+						 ~<input id="objEndTime_search-22"  class="easyui-datebox"    type="text" style="width:90px"/>
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search(22)">检索</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+	</div> -->
+	
+</div>
+</div>
+</body>
+</html>

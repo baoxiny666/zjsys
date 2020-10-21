@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>公告管理信息</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ 
+</head>
+<body style="overflow: hidden;">
+	<div align="center" style="padding:3px;width : 1080px;height: 364px ">
+		<div id="datagrid_gg" title="" style="border: 0px;" data-options="fit:true"></div>
+		<div id="tb_gg" style="padding: 2px 5px; border: 0px">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td>标题: <input id="notice_title_search" class="easyui-textbox" type="text" style="width: 110px" /> <a href="#" class="easyui-linkbutton" iconCls="icon-search"
+						onclick="func_load_gg()">检索</a>
+					</td>
+
+				</tr>
+			</table>
+		</div>
+	</div>
+	<script>
+	 
+	/**
+	 * 公告管理列表初始化
+	 */
+	function func_load_gg() {
+		 
+ 
+		var head = [ [ {
+			"field" : "ck",
+			"checkbox" : true
+		}, {
+			"field" : "notice_title",
+			"title" : "标题",
+			"width" : 150,
+			"align" : "center",
+			"sortable" : false
+		}, {
+			"field" : "notice_content",
+			"title" : "公告内容",
+			"width" : 200,
+			"align" : "center",
+			"sortable" : false
+		},  
+
+		{
+			"field" : "notice_status",
+			"title" : "发布状态",
+			"width" : 100,
+			"align" : "center",
+			"sortable" : false
+		},
+		{
+			"field" : "recordUserName",
+			"title" : "操作人",
+			"width" : 100,
+			"align" : "center",
+			"sortable" : false
+		}, {
+			"field" : "recordTime",
+			"title" : "操作时间",
+			"width" : 120,
+			"align" : "center",
+			"sortable" : false,
+			"formatter" : function(value, row, index) {
+				if (value == undefined) {
+					return "";
+				} else {
+					var unixTimestamp = new Date(value.time);
+					return unixTimestamp.toLocaleString();
+				}
+			}
+		},{
+				"field" : "_opt",
+				"title" : "详情",
+				"width" : 100,
+				"align" : "center",
+				"sortable" : false,
+				"formatter":function(value,row,index){
+					return '<input type="button" value="详情" style="border:0" onclick="func_gg_info(\'' + row.id + '\')">';
+				}
+		}
+		] ];
+		$('#datagrid_gg').datagrid({
+			toolbar : '#tb_gg',
+			url : getContextPath() + "/tried_system/systemNoticeAction_list.action",
+			collapsible : false,
+			pagination : true,// 分页
+			rownumbers : true, // 行号
+			striped : true, // 各行换色
+			checkOnSelect : true,
+			selectOnCheck : true,
+			ctrlSelect : true,
+			queryParams : { // 参数传递
+				notice_title : $("#notice_title_search").val(),
+				notice_status:"是"
+			},
+			columns : head
+		});
+		 
+	}
+	 
+	</script>
+</body>
+</html>

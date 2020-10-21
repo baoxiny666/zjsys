@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.system.model">
+  <class name="SystemNotice" table="tried_system_notice">
+    <comment>公告管理</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="notice_title">
+      <column name="notice_title"/>
+    </property>
+  	<property name="notice_status">
+      <column name="notice_status"/>
+    </property>
+    <property name="recordUser">
+      <column name="recordUser"/>
+    </property>
+      <property name="recordUserName">
+     <formula>
+     		(select c.userName from tried_system_user c where c.id=recordUser)
+     	</formula>
+    </property>
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.system.model">
+  <class name="SystemReportModel" table="tried_system_report_model">
+    <comment>报告模板</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="reportNum">
+      <column name="reportNum"/>
+    </property>
+    <property name="reportName">
+      <column name="reportName"/>
+    </property>
+    <property name="jcyiName">
+      <column name="jcyiName"/>
+    </property>
+    <property name="modelType">
+      <column name="modelType"/>
+    </property>
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+    <property name="recordUser">
+      <column name="recordUser"/>
+    </property>
+    	<property name="recordUserName">
+			<formula>(select s.userName from tried_system_user s where s.id = recordUser)</formula>
+		</property>
+		<property name="filename">
+	     <formula>(select  top 1  f.filename  from tried_file_manager f where f.pkColumn='system_report_model_file' and f.pkId=id)</formula>
+	    </property>
+    	
+  </class>
+</hibernate-mapping>

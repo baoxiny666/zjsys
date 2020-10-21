@@ -1,0 +1,4 @@
+CA1XB-MF7Y-12ST-PSBP2  离线注册 生成txt文件
+将txt文件内容copy到下列地址注册文件信息里，点击注册，生成license.lic文件
+去此地址生成lic 文件 http://www.zhuozhengsoft.com/po/reg.aspx#
+将license.lic文件放到web-inf/lib

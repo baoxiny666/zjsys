@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.tried.system.model">
+	<class name="SystemDepartment" table="tried_system_department">
+		<comment>部门信息</comment>
+		<id name="id">
+			<generator class="uuid.hex" />
+		</id>
+		<property name="name">
+			<column name="name" />
+		</property>
+		<property name="departmentContent">
+			<column name="departmentContent" />
+		</property>
+		<property name="parentId">
+			<column name="parentId" />
+		</property>
+		<property name="sequence">
+			<column name="sequence" />
+		</property>
+		
+		<property name="flag">
+			<column name="flag" />
+		</property>
+			<property name="dataType">
+			<column name="dataType" />
+		</property>
+		
+	</class>
+</hibernate-mapping>

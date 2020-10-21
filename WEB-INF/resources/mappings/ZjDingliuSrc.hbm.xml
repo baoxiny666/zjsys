@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.zjsys.testDataSrc.model">
+  <class name="ZjDingliuSrc" table="tried_zj_dingliu_src">
+    <comment>-</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="circleId">
+      <column name="circleId"/>
+    </property>
+     <property name="autoNo">
+      <column name="autoNo"/>
+    </property>
+    
+    <property name="deviceNum">
+      <column name="deviceNum"/>
+    </property>
+    <property name="fileName">
+      <column name="fileName"/>
+    </property>
+    <property name="testType">
+      <column name="testType"/>
+    </property>
+    <property name="tesDate">
+      <column name="tesDate"/>
+    </property>
+    <property name="startTime">
+      <column name="startTime"/>
+    </property>
+    <property name="endTime">
+      <column name="endTime"/>
+    </property>
+    <property name="costTime">
+      <column name="costTime"/>
+    </property>
+    <property name="sample_no">
+      <column name="sample_no"/>
+    </property>
+    <property name="test_weight">
+      <column name="test_weight"/>
+    </property>
+    <property name="test_value">
+      <column name="test_value"/>
+    </property>
+    <property name="test_mad">
+      <column name="test_mad"/>
+    </property>
+    <property name="test_std">
+      <column name="test_std"/>
+    </property>
+    <property name="test_stad">
+      <column name="test_stad"/>
+    </property>
+    <property name="test_coef">
+      <column name="test_coef"/>
+    </property>
+    <property name="test_id">
+      <column name="test_id"/>
+    </property>
+    <property name="test_type">
+      <column name="test_type"/>
+    </property>
+    <property name="test_sydw">
+      <column name="test_sydw"/>
+    </property>
+    <property name="test_yqid">
+      <column name="test_yqid"/>
+    </property>
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+    <property name="recordUser">
+      <column name="recordUser"/>
+    </property>
+    <property name="dataStatus">
+      <column name="dataStatus"/>
+    </property>
+       <property name="testIndex">
+      <column name="testIndex"/>
+    </property>
+    
+  </class>
+</hibernate-mapping>

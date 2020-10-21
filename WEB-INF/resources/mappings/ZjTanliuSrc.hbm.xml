@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.zjsys.testDataSrc.model">
+  <class name="ZjTanliuSrc" table="tried_zj_tanliu_src">
+    <comment>-</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="circleId">
+      <column name="circleId"/>
+    </property>
+    <property name="fileName">
+      <column name="fileName"/>
+    </property>
+     <property name="deviceNum">
+      <column name="deviceNum"/>
+    </property>
+    
+    <property name="sampleNum">
+      <column name="sampleNum"/>
+    </property>
+    <property name="analyseNo">
+      <column name="analyseNo"/>
+    </property>
+    <property name="sampleId">
+      <column name="sampleId"/>
+    </property>
+    <property name="sampleName">
+      <column name="sampleName"/>
+    </property>
+    <property name="userNo">
+      <column name="userNo"/>
+    </property>
+    <property name="time">
+      <column name="time"/>
+    </property>
+    <property name="weight">
+      <column name="weight"/>
+    </property>
+    <property name="resultc">
+      <column name="resultc"/>
+    </property>
+    <property name="results">
+      <column name="results"/>
+    </property>
+    <property name="jzfs_c">
+      <column name="jzfs_c"/>
+    </property>
+    <property name="jzfs_s">
+      <column name="jzfs_s"/>
+    </property>
+    <property name="kbz_s">
+      <column name="kbz_s"/>
+    </property>
+    <property name="kbz_c">
+      <column name="kbz_c"/>
+    </property>
+    <property name="bybzz_c">
+      <column name="bybzz_c"/>
+    </property>
+    <property name="bybzz_s">
+      <column name="bybzz_s"/>
+    </property>
+    <property name="jzdp_c">
+      <column name="jzdp_c"/>
+    </property>
+    <property name="jzdp_s">
+      <column name="jzdp_s"/>
+    </property>
+    <property name="peakTime_c">
+      <column name="peakTime_c"/>
+    </property>
+    <property name="peakVal_c">
+      <column name="peakVal_c"/>
+    </property>
+    <property name="anaTime_c">
+      <column name="anaTime_c"/>
+    </property>
+    <property name="peakTime_s">
+      <column name="peakTime_s"/>
+    </property>
+    <property name="peakVal_s">
+      <column name="peakVal_s"/>
+    </property>
+    <property name="anaTime_s">
+      <column name="anaTime_s"/>
+    </property>
+    <property name="area_c">
+      <column name="area_c"/>
+    </property>
+    <property name="area_s">
+      <column name="area_s"/>
+    </property>
+    <property name="count">
+      <column name="count"/>
+    </property>
+    <property name="over_c">
+      <column name="over_c"/>
+    </property>
+    <property name="over_s">
+      <column name="over_s"/>
+    </property>
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+    <property name="recordUser">
+      <column name="recordUser"/>
+    </property>
+    <property name="dataStatus">
+      <column name="dataStatus"/>
+    </property>
+  </class>
+</hibernate-mapping>

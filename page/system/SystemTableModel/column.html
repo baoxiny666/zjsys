@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>表/视图结构</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/icon.css">
+	<script type="text/javascript" src="./../../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="./../../../js/jquery.tried.min.js"></script>
+	<script type="text/javascript" src="./../../../js/easyui-lang-zh_CN.js"></script>
+ 
+</head>
+<body>
+<div align="center" style="margin-top: 10px">
+	<!-- 添加表/视图结构 -->
+	    <form id="modelForm" class="easyui-form" action="#" method="post" data-options="novalidate:true" >
+	    	<input name="id" type="hidden"/> 
+	    	<input name="parentId" type="hidden" />
+	    	<input name="objectTable" type="hidden" />
+			<table cellpadding="0" cellspacing="0" border="0" >
+				<tr>
+					<td style="height: 27px">对象名称：</td>
+					<td><input class="easyui-textbox" readonly="readonly" type="text" name="objectName" style="width: 200px; height: 25px" /></td>
+				</tr>
+				<tr>
+					<td style="height: 27px">字段名称：</td>
+					<td><input class="easyui-textbox" type="text" name="columnName" style="width: 200px; height: 25px" /></td>
+				</tr>
+				<tr>
+					<td style="height: 27px">字段标题：</td>
+					<td><input class="easyui-textbox" type="text" name="columnTitle" style="width: 200px; height: 25px" /></td>
+				</tr>
+				<tr>
+					<td style="height: 27px">字段类型：</td>
+					<td>
+						<select class="easyui-combobox" data-options="panelHeight:'auto'" name="columnType"  style="width: 200px;">
+					    <option value="varchar">varchar</option>
+					    <option value="char">char</option>
+					    <option value="int">int</option>
+					    <option value="float">float</option>
+					    <option value="datetime">datetime</option>
+					    <option value="ntext">ntext</option>
+					   </select>
+	    		
+					</td>
+				</tr>
+					<tr>
+					<td style="height: 27px">字段长度：</td>
+					<td><input class="easyui-textbox" type="text" name="columnLength" style="width: 200px; height: 25px" /></td>
+				</tr>
+				
+				<tr>
+					<td style="height: 27px">是否可空：</td>
+					<td align="left"><input type="radio" name="columnIsNull" value="是" checked="checked"/>是
+					<input type="radio" name="columnIsNull" value="否" />否</td>
+				</tr>
+				<tr>
+					<td style="height: 27px">检索条件：</td>
+					<td align="left"><input type="radio" name="columnSearch" value="是" />是
+					<input type="radio" name="columnSearch" value="否" checked="checked"/>否
+					</td>
+				</tr>
+				<tr>
+					<td style="height: 27px">是否排序：</td>
+					<td  align="left">
+					<input type="radio" name="columnSort" value="是"/>是
+					<input type="radio" name="columnSort" value="否" checked="checked"/>否
+					</td>
+				</tr>
+			</table>
+		</form> 
+		</div>
+</body>
+</html>

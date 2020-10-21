@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.system.model">
+  <class name="SystemSwitchValue" table="tried_system_switchValue">
+    <comment>-</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="switchName">
+      <column name="switchName"/>
+    </property>
+    <property name="switchState">
+      <column name="switchState"/>
+    </property>
+    <property name="switchContext">
+      <column name="switchContext"/>
+    </property>
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+    <property name="recordUser">
+      <column name="recordUser"/>
+    </property>
+    <property name="recordUserName">
+      <formula>(select s.userName from tried_system_user s where s.id =
+				recordUser)</formula>
+    </property>
+  
+  </class>
+</hibernate-mapping>

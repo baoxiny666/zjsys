@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.system.model">
+  <class name="SystemStamp" table="tried_system_stamp">
+    <comment>-</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="name">
+      <column name="name"/>
+    </property>
+    <property name="type">
+      <column name="type"/>
+    </property>
+    <property name="belongId">
+      <column name="belongId"/>
+    </property>
+    <property name="context">
+      <column name="context"/>
+    </property>
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+    <property name="recordUser">
+      <column name="recordUser"/>
+    </property>
+     <property name="recordUserName">
+         <formula>
+			(select a.userName from tried_system_user a where a.id=recordUser)
+		</formula>
+    </property>
+    <property name="uploadFlag">
+			<formula>
+				(select top 1 s.id  FROM  tried_file_manager s where s.pkId=id and s.pkColumn='system_stamp_file')
+			</formula>
+	</property>     
+  </class>
+</hibernate-mapping>

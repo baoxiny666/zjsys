@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>同步周期管理</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+</head>
+<body>
+	<div align="center" style="margin-top: 10px">
+		<!-- 添加同步周期管理 -->
+		<form id="modelForm" class="easyui-form" action="#" method="post" data-options="validate:true">
+			<input name="id" type="hidden" />
+			<table cellpadding="0" cellspacing="0" border="0">
+			<tr>
+					<td style="height: 27px;width: 100px;text-align: right;"  >设备编号：</td>
+					<td><input class="easyui-textbox" name="deviceNum" style="width: 200px; height: 25px" data-options="required:true"/></td>
+					<td style="height: 27px;text-align: right;width: 100px;">设备型号：</td>
+					<td><input class="easyui-textbox" name="deviceType" style="width: 200px; height: 25px" /></td>
+				</tr>
+				<tr>
+					<td style="height: 27px;text-align: right;">设备名称：</td>
+					<td colspan="3" style="text-align: left;padding-left: 2px">
+					<input class="easyui-textbox" name="deviceName" style="width: 515px; height: 25px" data-options="required:true"/></td>
+				</tr>
+				
+				<tr>
+				
+				</tr>
+				<!-- <tr>
+					<td style="height: 27px;text-align: right;">采集方式：</td>
+					<td><select class="easyui-combobox" name="dataType" data-options="required:true" style="width: 200px; height: 25px">
+		    			<option value="手动">手动</option>
+		    			<option value="自动">自动</option>
+		    		</select></td>
+				</tr> -->
+				<tr>
+					<td style="height: 27px;text-align: right;">存储路径：</td>
+					<td  colspan="3"><input class="easyui-textbox" name="dataSavePath" style="width: 515px; height: 25px" /></td>
+				</tr>
+				<tr>
+					<td style="height: 27px;text-align: right;">jdbcUrl地址：</td>
+					<td  colspan="3"><input class="easyui-textbox" name="jdbcUrl" style="width: 515px; height: 25px" /></td>
+				</tr>
+				<tr >
+					<td style="height: 27px;text-align: right;">驱动：</td>
+					<td  colspan="3"><input class="easyui-textbox" name="driverClass" style="width: 515px; height: 25px" /></td>
+				</tr>
+				<tr>
+					<td style="height: 27px;text-align: right;">账户：</td>
+					<td><input class="easyui-textbox" name="username" style="width: 200px; height: 25px" /></td>
+						<td style="height: 27px;text-align: right;">密码：</td>
+					<td><input class="easyui-textbox" name="password" style="width: 200px; height: 25px" /></td>
+				</tr>
+				 
+				<tr>
+				    <td style="height: 27px;text-align: right;">循环周期：</td>
+					<td><input class="easyui-textbox" name="circleTimeNum" style="width: 200px; height: 25px" data-options="required:true" /></td>
+					<td style="height: 27px;text-align: right;">时间单位：</td>
+					<td> 
+					<select class="easyui-combobox" name="circleTimeType" data-options="required:true,editable:false" style="width: 200px; height: 25px">
+		    			<option value="秒">秒</option>
+		    		</select>
+					
+					</td>
+					
+				</tr>
+				<tr>
+					<td style="height: 27px;text-align: right;">ERP远程路径：</td>
+					<td  colspan="3"><input class="easyui-textbox" name="remoteUrlPath" style="width: 515px; height: 25px" /></td>
+				</tr>
+
+			</table>
+		</form>
+	</div>
+</body>
+</html>

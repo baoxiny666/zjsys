@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.system.model">
+  <class name="SystemViewModel" table="tried_system_view_model">
+    <comment>视图工具</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="view_name">
+      <column name="view_name"/>
+    </property>
+    <property name="view_content">
+      <column name="view_content"/>
+    </property>
+    <property name="view_sql">
+      <column name="view_sql"/>
+    </property>
+    <property name="view_package">
+      <column name="view_package"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>除尘灰全铁</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/black/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/icon.css"/>
+	<script type="text/javascript" src="./../../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="./../../../js/jquery.tried.min.js"></script>
+	<script type="text/javascript" src="./../../../js/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="./../../../js/tried.js"></script>
+    <script type="text/javascript" src="js/list.js"></script>
+</head>
+<body style="overflow: hidden;margin: 0,0,0,0">
+<div id="divConId" data-options="region:'center'" >   
+	<div id="datagrid-除尘灰全铁" style="width:99%"></div>
+</div>
+<div id="tb-除尘灰全铁" style="padding:2px 2px;" >
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+	    <tr>
+	    	<td>
+				&nbsp;日期：<input  id="objStartTime_search-除尘灰全铁"  type= "text" class= "easyui-datebox" style="width:90px"/>
+                                          至   <input  id="objEndTime_search-除尘灰全铁"  type= "text" class= "easyui-datebox" style="width:90px"/>
+					高炉：<select class="easyui-combobox" name="gaolu" id="gaolu-除尘灰全铁"> 
+					<option value="">请选择</option>
+					<option value="1">1#1080高炉</option>
+					<option value="2">2#1080高炉</option>
+					<option value="3">3#1080高炉</option>
+					<option value="5">5#高炉</option>
+				</select> 
+					类型:<select class="easyui-combobox" name="type" id="type-除尘灰全铁"> 
+					<option value="">请选择</option>
+							<option value="1" >重力</option>
+							<option value="2">布袋</option>
+							<option value="3">矿槽</option>
+							</select>
+				<a href="#" class="easyui-linkbutton" iconCls="icon-search" data-options="height:22,width:78" onclick="func_search_qt()">检索</a>
+				<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel_chhqt('除尘灰全铁')">导出</a>
+			</td>
+	    </tr>
+	</table>
+</div>
+
+<script type="text/javascript">
+var head12 = [[{
+	"field":"mateName",
+	"title":"样品名称",
+	"width":80,
+	"align":"center"
+},
+{
+	"field":"sampleTime",
+	"title":"取样时间",
+	"align":"center",
+	"width":130,
+	"formatter":formateTime
+},
+{
+	"field":"checkTime",
+	"title":"化验时间",
+	"align":"center",
+	"width":130,
+	"formatter":formateTime
+},{
+	"field":"orderNum",
+	"title":"化验编码",
+	"width":80,
+	"align":"center"
+},{
+	"field":"gaoluNum",
+	"title":"高炉",
+	"width":80,
+	"align":"center"
+},{
+	"field":"tfe",
+	"title":"Tfe",
+	"width":60,
+	"align":"center",
+	"formatter":formate0toLine
+},{
+	"field":"c",
+	"title":"C",
+	"width":60,
+	"align":"center",
+	"formatter":formate0toLine
+}
+]];
+$(function() {
+	reWindowSize();
+	func_init();
+});
+function func_init(){
+	$('#datagrid-除尘灰全铁').datagrid({
+		toolbar : '#tb-除尘灰全铁',
+		url : getTgsysUrl() +  "/pimes_quality/mateDustAction_daylist.action",
+		collapsible : false,
+		rownumbers : true, //行号
+		striped : true,    //各行换色
+		checkOnSelect : true, 
+		selectOnCheck : true,
+		ctrlSelect : true,
+	 	queryParams : {  //参数传递
+ 		    objStartTime: func_currentData(),
+			objEndTime:func_currentData() 
+		},
+		 onLoadSuccess:function(data){
+			 if($("#objStartTime_search-除尘灰全铁").datebox('getValue')==""){
+				 $("#objStartTime_search-除尘灰全铁").datebox('setValue',func_currentData());
+			 }
+			 if($("#objEndTime_search-除尘灰全铁").datebox('getValue')==""){
+				 $("#objEndTime_search-除尘灰全铁").datebox('setValue',func_currentData());
+			 }
+			 
+			 func_tabAnalysis('datagrid-除尘灰全铁',data.rows,"mateName","mateName;sampleTime;checkTime;orderNum;gaoluNum;",false,true,true,true,false);
+		},   
+		columns : head12
+	});   
+}
+	function func_search_qt(){
+		$('#datagrid-除尘灰全铁').datagrid('load',{
+			gaolu:$("#gaolu-除尘灰全铁").datebox('getValue'),
+			type: $("#type-除尘灰全铁").datebox('getValue'),
+			objStartTime: $("#objStartTime_search-除尘灰全铁").datebox('getValue'),
+			objEndTime:$("#objEndTime_search-除尘灰全铁").datebox('getValue')
+		}); 
+} 
+	/**
+ 	 * 导出到excel文件
+ 	 */
+ 	function func_excel_chhqt(index){
+ 		func_excelFile('datagrid-'+index,index+"质量看板",index+"质量看板",head12);
+ 	}
+	/**
+	 * 页面缩放监听事件
+	 */
+	$(window).resize(function() {
+		reWindowSize();
+	}).resize();
+	/**
+	 * 页面缩放自适应大小
+	 */
+	function reWindowSize() {
+		var _parentId = $("#divConId-index");
+		var _height = $(_parentId).height()- 5;
+		$('#divConId').css("height",_height);
+		$('#datagrid-除尘灰全铁').css("height",_height);
+	}
+</script>
+</body>
+</html>

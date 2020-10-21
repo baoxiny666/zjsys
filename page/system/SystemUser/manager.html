@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>用户信息</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ 
+</head>
+<body>
+	<div align="center">
+		<!-- 添加用户信息 -->
+		<form id="modelForm" class="easyui-form" action="#" method="post" data-options="novalidate:true">
+			<input name="id" type="hidden" />
+			<input id="pkId" name="pkId" type="hidden" />
+			
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td style="height: 27px ;width:80px ;text-align: right;padding-right: 3px">登录账户：</td>
+					<td><input class="easyui-textbox" data-options="required:true" type="text" name="loginName" style="width: 200px; height: 25px" /></td>
+				</tr>
+				<tr>
+					<td style="height: 27px;text-align: right;padding-right: 3px">真实姓名：</td>
+					<td><input class="easyui-textbox" type="text" name="userName" style="width: 200px; height: 25px" /></td>
+				</tr>
+				<tr>
+					<td style="height: 27px;text-align: right;padding-right: 3px">性别：</td>
+					<td align="left"><input type="radio" name="userSex" checked="checked"  value="男" />男 <input type="radio" name="userSex" value="女" />女</td>
+				</tr>
+				<tr>
+					<td style="height: 27px;text-align: right;padding-right: 3px">生日：</td>
+					<td><input class="easyui-datebox"   editable="fasle" type="text" name="userBrithday" style="width: 200px; height: 25px" /></td>
+				</tr>
+				<tr>
+					<td style="height: 27px;text-align: right;padding-right: 3px">部门：</td>
+					<td><input class="easyui-combotree"  data-options="required:true"  type="text" id="depId_edit" name="depId" style="width: 200px; height: 25px" /></td>
+				</tr>
+				<tr>
+					<td style="height: 27px;text-align: right;padding-right: 3px">职务：</td>
+					<td><input class="easyui-combobox" type="text" data-options="panelHeight:100" id="workId_edit" name="workId" style="width: 200px; height: 25px" editable="false"/></td>
+				</tr>
+				<tr>
+					<td style="height: 27px;text-align: right;padding-right: 3px">兼职：</td>
+					<td><input class="easyui-combotree" type="text" data-options="panelHeight:180,panelWidth:280,multiple:true,onlyLeafCheck:true,cascadeCheck:false" id="workJz_edit" name="workJzId" style="width: 200px; height: 25px" /></td>
+				</tr>
+				<tr>
+					<td style="height: 27px;text-align: right;padding-right: 3px;vertical-align: top;">
+					<a href="#" class="file-upload">
+							<input type="file" id="up_file" name="file"
+							onchange="func_upfile(this,'system_user_sign_name','pkId',false)" />电子签名
+					</a>：</td>
+					<td  style="text-align: left; padding-left: 3px; overflow-y: 20px">
+						<input id="system_user_sign_name_edit" name="system_user_sign_name" type="hidden" />
+						<table id="system_user_sign_name" width="200px" cellpadding="0"
+							cellspacing="0" border="0" style="border: 0;"></table>
+ 					</td>
+
+				</tr>
+				<tr>
+					<td style="height: 27px;text-align: right;padding-right: 3px">是否启用：</td>
+					<td align="left"><input type="radio" name="flag" checked="checked"  value="是" />是 <input type="radio" name="flag" value="否" />否</td>
+				</tr>
+
+			</table>
+		</form>
+	</div>
+</body>
+</html>

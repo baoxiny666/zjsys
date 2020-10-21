@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>模板序列</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+	<div align="center" style="margin-top: 10px">
+		<!-- 添加模板序列 -->
+		<form id="modelForm" class="easyui-form" action="#" method="post" data-options="validate:true">
+			<input id="id_edit" name="id" type="hidden" /> 
+			<input id="templateId_edit" name="templateId" type="hidden" />
+			<table>
+				<tr>
+					<td style="height: 27px;width: 100px;text-align: right;">序号：</td>
+					<td style="text-align: left;width: 300px"><input class="easyui-textbox" id="serialNumber_edit" name="serialNumber" data-options="required:true" style="width: 300px; height: 25px" /></td>
+				</tr>
+				<tr>
+					<td style="height: 27px;text-align: right;">报告关键字：</td>
+					<td><input class="easyui-textbox" id="serialKey_edit" name="serialKey" data-options="required:true" style="width: 300px; height: 25px" /></td>
+				</tr>
+				<tr>
+					<td style="height: 27px;text-align: right;vertical-align: top;">标题：</td>
+					<td><input class="easyui-textbox" name="serialName" data-options="multiline:true" style="width: 300px; height: 25px" /></td>
+				</tr>
+					<tr>
+					<td style="height: 27px;text-align: right;vertical-align: top;">内容：</td>
+					<td><input class="easyui-textbox" name="serialContent" data-options="multiline:true,required:true" style="width: 300px; height: 75px" /></td>
+				</tr>
+					<tr>
+					<td style="height: 27px;text-align: right;vertical-align: top;">默认值：</td>
+					<td><input class="easyui-textbox" name="checkValue"   style="width: 300px; height: 25px" /></td>
+				</tr>
+					<tr>
+					<td style="height: 27px;text-align: right;vertical-align: top;">备注：</td>
+					<td><input class="easyui-textbox" name="serialBeizhu" data-options="multiline:true" style="width: 300px; height: 75px" /></td>
+				</tr>
+			
+
+			</table>
+		</form>
+	</div>
+</body>
+</html>

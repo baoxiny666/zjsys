@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>欢迎页面</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../css/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="../css/themes/icon.css" />
+<link rel="stylesheet" type="text/css" href="../css/zTreeStyle/zTreeStyle.css" />
+<link rel="stylesheet" type="text/css" href="../css/tried.css" />
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.tried.min.js"></script>
+<script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../js/ckedit/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/ckedit/wangEditor.min.js"></script>
+<script type="text/javascript" src="../js/tried.js"></script>
+<script type="text/javascript" src="../js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="../js/ztree/jquery.ztree.js"></script>
+<script type="text/javascript" src="../js/ztree/jquery.ztree.exedit-3.2.js"></script>
+<script type="text/javascript" src="../js/jquery.edatagrid.js"></script>
+<script type="text/javascript" src="../js/detail.js"></script>
+<script type="text/javascript" src="../js/jquery-migrate-1.1.0.js"></script>
+<script type="text/javascript" src="../js/jquery.jqprint.js"></script>
+<script type="text/javascript" src="../js/highcharts/highcharts.js"></script>
+<script type="text/javascript" src="js/messageTip.js"></script>
+<script type="text/javascript" src="js/first.js"></script>
+<script type="text/javascript" src="../js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="./../pageoffice.js" id="po_js_main"></script>
+<style>
+.panel-header {
+	height: 20px;
+	padding: 0px;
+	background: "";
+	background-image: url("");
+	padding-left: 5px;
+	padding-top: 8px
+}
+</style>
+
+</head>
+<body style="margin-left: 10px; margin-top: 5px" class="easyui-layout">
+	<div id="divConId" class="easyui-layout" style="width: 100%; height: 98%;">
+		<div data-options="region:'north'" data-options="fit:true" style="height: 50%; border: 0;">
+			<div class="easyui-layout" data-options="fit:true" style="width: 100%; height: 98%; border: 0px">
+				<div data-options="region:'center'" style="height: 100%; border: 0; padding: 2px">
+					<div class="easyui-layout" data-options="fit:true" style="width: 100%; height: 98%; border: 0px">
+						
+						<div data-options="region:'center'" style="height: 100%;width: 250px; border: 0; padding-right: 4px">
+							<div data-options="fit:true" style="height: 100%;">
+								<div class="easyui-panel" title="<font color='red'>公告</font>" data-options="iconCls:'icon-ggao',tools:'#gg',fit:true" style="width: 100%; height: 100%; vertical-align: top;">
+									<table id="gg_id" style="width: 98%; border: 0px" class="tableTaskView">
+									</table>
+								</div>
+							</div>
+							<div id="gg">
+								<a href="javascript:funcGgMore()" style="width: 30px; text-decoration: none; font-weight: bold;">更多</a>
+							</div>
+						</div>
+						<div data-options="region:'east'" data-options="fit:true" style="width: 600px; height: 100%; border: 0;">
+							<div data-options="fit:true" style="height: 100%;">
+								<div class="easyui-panel" title="<font color='red'>任务分布</font>" data-options="iconCls:'icon-analyse',tools:'#tt',fit:true"
+									style="width: 100%; height: 100%; vertical-align: top;">
+									<div id="db_container" style="width: 100%; height: 100%"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				 
+			</div>
+		</div>
+		<div data-options="region:'center'" data-options="fit:true" style="height: 50%; border: 0; padding: 2px">
+			<div id="db-datagrid" title="当前任务" data-options="fit:true,iconCls:'icon-notebook'"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		
+	</script>
+</body>
+</html>

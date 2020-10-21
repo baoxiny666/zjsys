@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	 
+   
+   
+  <package name="struts_system" namespace="/tried_system" extends="struts-default,json-default">
+    <result-types>
+      <result-type name="streamx" class="com.sunspoter.lib.web.struts2.dispatcher.StreamResultX"/>
+    </result-types>
+    <!-- 反编译 -->
+    <action name="systemTableModelAction_*" class="systemTableModelAction" method="{1}"/>
+    <action name="systemViewModelAction_*" class="systemViewModelAction" method="{1}"/>
+    <action name="systemReverseAction_*" class="systemReverseAction" method="{1}"/>
+    <!-- 权限管理 -->
+    <action name="systemUserAction_*" class="systemUserAction" method="{1}"/>
+    <action name="systemMenuAction_*" class="systemMenuAction" method="{1}"/>
+    <action name="systemRoleAction_*" class="systemRoleAction" method="{1}"/>
+    <action name="systemDepartmentAction_*" class="systemDepartmentAction" method="{1}"/>
+    <action name="systemLoggerAction_*" class="systemLoggerAction" method="{1}">
+      <result name="download" type="streamx">
+        <param name="contentType">application/octet-stream</param>
+        <param name="inputName">inputStream</param>
+        <param name="contentDisposition">attachment;filename="${filename}"</param>
+      </result>
+    </action>
+    <action name="systemNoticeAction_*" class="systemNoticeAction" method="{1}"/>
+    <action name="systemLoginInfoAction_*" class="systemLoginInfoAction" method="{1}"/>
+    <!-- 序号处理 -->
+    <action name="systemSerialAction_*" class="systemSerialAction" method="{1}"/>
+    <action name="systemDataLogAction_*" class="systemDataLogAction" method="{1}"/>
+     
+    <!-- 信息管理 -->
+     
+    <action name="templateManagerAction_*" class="templateManagerAction" method="{1}"/>
+    <action name="systemSerialMaxAction_*" class="systemSerialMaxAction" method="{1}"/>
+    <action name="systemStampAction_*" class="systemStampAction" method="{1}"/>
+    <action name="systemReportModelAction_*" class="systemReportModelAction" method="{1}"/>
+    <action name="systemSwitchValueAction_*" class="systemSwitchValueAction" method="{1}"/>
+    <action name="templateSerialAction_*" class="templateSerialAction" method="{1}"/>
+   
+  </package>
+</struts>

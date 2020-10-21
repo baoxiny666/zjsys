@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>-</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ 
+</head>
+<body>
+<div align="center" style="margin-top: 10px">
+	<!-- 添加- -->
+	    <form id="modelForm" class="easyui-form" action="#" method="post" data-options="validate:true" >
+	    	<input name="id" type="hidden"/>
+	    	<input id="pkId" name="pkId" type="hidden" /> 
+			<table cellpadding="0" cellspacing="0" border="0">
+					<tr> 
+						<td style="height: 27px">模板名称：</td> 
+						<td><input class="easyui-textbox"  name="templateName" data-options="required:true" style="width: 200px; height: 25px" /></td>
+					</tr>
+					<tr> 
+						<td style="height: 27px">模板类型：</td> 
+						<td>
+						<select class="easyui-combobox" data-options="panelHeight:'auto',required:true" name="templateType"  style="width: 200px;">
+					    	<option value="设备模板">设备定期检查模板</option>
+					     	 <option value="试验模板">试验模板</option>
+					   </select>
+					   </td>
+					</tr>
+					<tr>
+						<td style="height: 27px;vertical-align: top;" >模板文件：</td>
+						<td align="left" style="height: 27px;">
+							<table border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td style="border: 1px solid #95B8E7">
+										<input  id="templateFile_edit" name="templateFile" type="hidden" />
+										<table  id="templateFile" width="200px" cellpadding="0" cellspacing="0" border="0"  style="border: 0;"></table>
+									</td>
+									<td style="vertical-align: top;">
+										&nbsp;<a href="#" class="file-upload">
+									  <input type="file" id="up_file" name="file" onchange="func_upfile(this,'templateFile','pkId',false)" />模板文件</a>
+									</td>
+								</tr>
+							</table>
+	
+						</td>
+				</tr>
+				<tr>
+					<td style="height: 27px; vertical-align: top;">模板描述：</td>
+					<td align="left">
+					<input class="easyui-textbox" data-options="multiline:true" type="text" name="templateContent"
+						style="width: 200px; height: 55px; opacity: 0; position: absolute;" /></td>
+				</tr>
+			</table>
+		</form> 
+		</div>
+</body>
+</html>

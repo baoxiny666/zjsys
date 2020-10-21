@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.zjsys.testDataSrc.model">
+  <class name="ViewHandInput" table="view_handInput">
+    <comment>-</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    
+     <property name="handInput_vdaf">
+      <column name="handInput_vdaf"/>
+    </property>
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+    <property name="dataStatus">
+      <column name="dataStatus"/>
+    </property>
+    <property name="recordUser">
+      <column name="recordUser"/>
+    </property>
+    <property name="handInput_sampleNum">
+      <column name="handInput_sampleNum"/>
+    </property>
+    <property name="handInput_dataTime">
+      <column name="handInput_dataTime"/>
+    </property>
+    <property name="handInput_burnLoss">
+      <column name="handInput_burnLoss"/>
+    </property>
+    <property name="handInput_h2o">
+      <column name="handInput_h2o"/>
+    </property>
+     <property name="handInput_caf2">
+      <column name="handInput_caf2"/>
+    </property>
+    <property name="handInput_h2o1">
+      <column name="handInput_h2o1"/>
+    </property>
+    <property name="handInput_h2o2">
+      <column name="handInput_h2o2"/>
+    </property>
+    <property name="handInput_fu200mm">
+      <column name="handInput_fu200mm"/>
+    </property>
+    <property name="handInput_feo">
+      <column name="handInput_feo"/>
+    </property>
+    <property name="handInput_m6_3">
+      <column name="handInput_m6_3"/>
+    </property>
+    <property name="handInput_m0_5">
+      <column name="handInput_m0_5"/>
+    </property>
+    <property name="handInput_fu200mu">
+      <column name="handInput_fu200mu"/>
+    </property>
+    <property name="handInput_reactivity">
+      <column name="handInput_reactivity"/>
+    </property>
+    <property name="handInput_gjcs_rate">
+      <column name="handInput_gjcs_rate"/>
+    </property>
+    <property name="handInput_mm0_5">
+      <column name="handInput_mm0_5"/>
+    </property>
+    <property name="handInput_ralone">
+      <column name="handInput_ralone"/>
+    </property>
+    <property name="handInput_mfe">
+      <column name="handInput_mfe"/>
+    </property>
+    <property name="handInput_dy_80mm">
+      <column name="handInput_dy_80mm"/>
+    </property>
+    <property name="handInput_xy25mm">
+      <column name="handInput_xy25mm"/>
+    </property>
+    <property name="handInput_ca_oh2">
+      <column name="handInput_ca_oh2"/>
+    </property>
+    <property name="handInput_fu10mm">
+      <column name="handInput_fu10mm"/>
+    </property>
+    <property name="handInput_nahco3">
+      <column name="handInput_nahco3"/>
+    </property>
+    <property name="handInput_ph">
+      <column name="handInput_ph"/>
+    </property>
+    <property name="handInput_sic">
+      <column name="handInput_sic"/>
+    </property>
+    <property name="handInput_ylc">
+      <column name="handInput_ylc"/>
+    </property>
+    <property name="handInput_pzrong">
+      <column name="handInput_pzrong"/>
+    </property>
+    <property name="handInput_jzjia">
+      <column name="handInput_jzjia"/>
+    </property>
+    <property name="handInput_xs_rate">
+      <column name="handInput_xs_rate"/>
+    </property>
+    <property name="handInput_xl_size">
+      <column name="handInput_xl_size"/>
+    </property>
+    <property name="handInput_mtshi">
+      <column name="handInput_mtshi"/>
+    </property>
+    <property name="handInput_palone">
+      <column name="handInput_palone"/>
+    </property>
+    <property name="handInput_salone">
+      <column name="handInput_salone"/>
+    </property>
+    <property name="handInput_calone">
+      <column name="handInput_calone"/>
+    </property>
+    <property name="handInput_si">
+      <column name="handInput_si"/>
+    </property>
+    <property name="handInput_mn">
+      <column name="handInput_mn"/>
+    </property>
+    <property name="handInput_al">
+      <column name="handInput_al"/>
+    </property>
+    <property name="handInput_ca">
+      <column name="handInput_ca"/>
+    </property>
+    <property name="handInput_ba">
+      <column name="handInput_ba"/>
+    </property>
+     <property name="handInput_mt">
+      <column name="handInput_mt"/>
+    </property>
+     <property name="handInput_m10">
+      <column name="handInput_m10"/>
+    </property>
+     <property name="handInput_m25">
+      <column name="handInput_m25"/>
+    </property>
+        <property name="recordUserName">
+        <formula>
+      	(select tsu.userName from tried_system_user tsu where tsu.id=recordUser)
+      </formula>
+    </property>
+     <property name="handInput_mad">
+      <column name="handInput_mad"/>
+    </property>
+     <property name="handInput_ad">
+      <column name="handInput_ad"/>
+    </property>
+     <property name="handInput_vd">
+      <column name="handInput_vd"/>
+    </property>
+     <property name="handInput_fcad">
+      <column name="handInput_fcad"/>
+    </property>
+     <property name="handInput_s">
+      <column name="handInput_s"/>
+    </property>
+     <property name="handInput_gjgw">
+      <column name="handInput_gjgw"/>
+    </property>
+      <property name="handInput_dwrz">
+      <column name="handInput_dwrz"/>
+    </property>
+    
+      <property name="handInput_co2">
+      <column name="handInput_co2"/>
+    </property>
+
+    <property name="handInput_o2">
+      <column name="handInput_o2"/>
+    </property>
+
+    <property name="handInput_co">
+      <column name="handInput_co"/>
+    </property>
+    
+     
+    <property name="handInput_lidu">
+      <column name="handInput_lidu"/>
+    </property>
+    
+  
+    <property name="handInput_na2o">
+      <column name="handInput_na2o"/>
+    </property>
+    
+  </class>
+</hibernate-mapping>

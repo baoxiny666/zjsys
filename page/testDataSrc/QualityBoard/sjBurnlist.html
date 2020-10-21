@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>烧结厂筛分</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/black/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/icon.css"/>
+	<script type="text/javascript" src="./../../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="./../../../js/jquery.tried.min.js"></script>
+	<script type="text/javascript" src="./../../../js/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="./../../../js/tried.js"></script>
+    <script type="text/javascript" src="js/list.js"></script>
+</head>
+<body style="overflow: hidden;margin: 0,0,0,0">
+<div id="divConId" data-options="region:'center'" >   
+	<div id="datagrid-烧结厂筛分" style="width:99%"></div>
+</div>
+<div id="tb-烧结厂筛分" style="padding:2px 2px;" >
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+	    <tr>
+	    	<td>
+				&nbsp;日期：<input  id="objStartTime_search-烧结厂筛分"  type= "text" class= "easyui-datebox" style="width:90px"/>
+                                          至   <input  id="objEndTime_search-烧结厂筛分"  type= "text" class= "easyui-datebox" style="width:90px"/>
+				<a href="#" class="easyui-linkbutton" iconCls="icon-search" data-options="height:22,width:78" onclick="func_search_sjcsf()">检索</a>
+				<a href="#" class="easyui-linkbutton" iconCls="icon-excel" data-options="height:22,width:78" onclick="func_excel_sjcsf('烧结厂筛分')">导出</a>
+			</td>
+	    </tr>
+	</table>
+</div>
+
+<script type="text/javascript">
+var head20 = [ [ {
+	"field" : "classTeam",
+	"title" : "班次",
+	"width":60,
+	"align" : "center",
+	"sortable" : false
+}, {
+	"field" : "orderNum",
+	"title" : "化验编码",
+	"width":80,
+	"align" : "center",
+	"sortable" : false
+},{
+	"field" : "recordTime",
+	"title" : "日期",
+	"width":100,
+	"align" : "center",
+	"sortable" : false,
+	"formatter": formateDate
+},{
+	"field" : "tfe",
+	"title" : "Tfe(%)",
+	"width":60,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+}, {
+	"field" : "feO",
+	"title" : "FeO(%)",
+	"width":60,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+}, {
+	"field" : "caO",
+	"title" : "CaO(%)",
+	"width":60,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+}, {
+	"field" : "mgO",
+	"title" : "MgO(%)",
+	"width":60,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+}, {
+	"field" : "siO2",
+	"title" : "SiO2(%)",
+	"width":60,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+}, {
+	"field" : "r2",
+	"title" : "R2(%)",
+	"width":60,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":function(value,row,index){
+		if(row.siO2>0){
+			   var t1 = row.caO/row.siO2;
+			   return  Math.round(t1*100)/100 ;;
+		}else{
+			return "0";
+		}
+	 }
+}, {
+	"field" : "al2O3",
+	"title" : "Al2O3(%)",
+	"width":60,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+}, {
+	"field" : "stren",
+	"title" : "转鼓(强度)",
+	"width":60,
+	"align" : "center",
+	"sortable" : false,
+	"formatter":formate0toLine
+} ] ];
+$(function() {
+	reWindowSize();
+	func_init();
+});
+function func_init(){
+	$('#datagrid-烧结厂筛分').datagrid({
+		toolbar : '#tb-烧结厂筛分',
+		url : getTgsysUrl() + "/pimes_quality/sampleSJburnAction_daylist.action",
+		collapsible : false,
+		rownumbers : true, //行号
+		striped : true,    //各行换色
+		checkOnSelect : true, 
+		selectOnCheck : true,
+		ctrlSelect : true,
+	 	queryParams : {  //参数传递
+ 		    objStartTime: func_currentData(),
+			objEndTime:func_currentData() 
+		},
+		 onLoadSuccess:function(data){
+			 if($("#objStartTime_search-烧结厂筛分").datebox('getValue')==""){
+				 $("#objStartTime_search-烧结厂筛分").datebox('setValue',func_currentData());
+			 }
+			 if($("#objEndTime_search-烧结厂筛分").datebox('getValue')==""){
+				 $("#objEndTime_search-烧结厂筛分").datebox('setValue',func_currentData());
+			 }
+			 func_tabAnalysis('datagrid-烧结厂筛分',data.rows,"classTeam","classTeam;orderNum;recordTime;",false,true,true,true,false);
+		},   
+		columns : head20
+	});   
+}
+	function func_search_sjcsf(){
+		$('#datagrid-烧结厂筛分').datagrid('load',{
+			objStartTime: $("#objStartTime_search-烧结厂筛分").datebox('getValue'),
+			objEndTime:$("#objEndTime_search-烧结厂筛分").datebox('getValue')
+		}); 
+} 
+	/**
+ 	 * 导出到excel文件
+ 	 */
+ 	function func_excel_sjcsf(index){
+ 		func_excelFile('datagrid-'+index,index+"质量看板",index+"质量看板",head20);
+ 	}
+	/**
+	 * 页面缩放监听事件
+	 */
+	$(window).resize(function() {
+		reWindowSize();
+	}).resize();
+	/**
+	 * 页面缩放自适应大小
+	 */
+	function reWindowSize() {
+		var _parentId = $("#divConId-index");
+		var _height = $(_parentId).height()- 5;
+		$('#divConId').css("height",_height);
+		$('#datagrid-烧结厂筛分').css("height",_height);
+	}
+</script>
+</body>
+</html>

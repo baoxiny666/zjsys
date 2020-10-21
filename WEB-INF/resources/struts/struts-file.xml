@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+ <struts>
+ 	<package name="struts-file" namespace="/system_file" extends="struts-default,json-default">
+		<!-- 文件管理 -->
+		<action name="fileManagerAction_*" class="fileManagerAction" method="{1}">
+		    <result name="download" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${fileFileName}"</param>
+			</result>
+		</action>
+		<action name="systemMemoryAction_*" class="systemMemoryAction" method="{1}"/>
+ 	</package>
+ </struts>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+
+
+	<!-- <service xmlns="http://xfire.codehaus.org/config/1.0">
+		<name>AppLoginService</name>
+		<namespace>http://192.168.10.200:8080/dgsys/</namespace>网站域名+上面节点name
+		<serviceClass>com.tried.dgsys.webservice.service.AppLoginService
+		</serviceClass>
+		<implementationClass>com.tried.dgsys.webservice.service.impl.AppLoginServiceImpl
+		</implementationClass>
+		<createDefaultBindings>true</createDefaultBindings>
+		<bindings>
+			<soap12Binding name="tns:AppLoginServiceSOAP12Binding"
+				transport="http://www.w3.org/2003/05/soap/bindings/HTTP/"
+				allowUndefinedEndpoints="true">
+			</soap12Binding>
+		</bindings>
+	</service>
+	  -->
+</beans>

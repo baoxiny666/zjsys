@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.system.model">
+  <class name="SystemReverse" table="tried_system_reverse">
+    <comment>逆向工具</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="tabel_content">
+      <column name="tabel_content"/>
+    </property>
+    <property name="table_name">
+      <column name="table_name"/>
+    </property>
+  </class>
+</hibernate-mapping>

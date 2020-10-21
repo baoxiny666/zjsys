@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.tried.system.model">
+	<class name="SystemRole" table="tried_system_role">
+		<comment>角色信息</comment>
+		<id name="id">
+			<generator class="uuid.hex" />
+		</id>
+		<property name="roleName">
+			<column name="roleName" />
+		</property>
+		<property name="roleContent">
+			<column name="roleContent" />
+		</property>
+		<property name="flag">
+			<column name="flag" />
+		</property>
+		<property name="roleCode">
+			<column name="roleCode" />
+		</property>
+		
+	</class>
+</hibernate-mapping>

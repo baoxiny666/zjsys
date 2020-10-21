@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.zjsys.testDataSrc.model">
+  <class name="ZjGongyefenxiSrc" table="tried_zj_gongyefenxi_src">
+    <comment>-</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="circleId">
+      <column name="circleId"/>
+    </property>
+    <property name="fileName">
+      <column name="fileName"/>
+    </property>
+     <property name="deviceNum">
+      <column name="deviceNum"/>
+    </property>
+    <property name="testType">
+      <column name="testType"/>
+    </property>
+    <property name="sampleNum">
+      <column name="sampleNum"/>
+    </property>
+    <property name="sampleName">
+      <column name="sampleName"/>
+    </property>
+    <property name="test_syrq">
+      <column name="test_syrq"/>
+    </property>
+    <property name="test_sybh">
+      <column name="test_sybh"/>
+    </property>
+    <property name="test_jgzl">
+      <column name="test_jgzl"/>
+    </property>
+    <property name="test_syzzl">
+      <column name="test_syzzl"/>
+    </property>
+    <property name="test_mad">
+      <column name="test_mad"/>
+    </property>
+    <property name="test_b9">
+      <column name="test_b9"/>
+    </property>
+    <property name="test_b10">
+      <column name="test_b10"/>
+    </property>
+    <property name="test_vad">
+      <column name="test_vad"/>
+    </property>
+    <property name="test_aad">
+      <column name="test_aad"/>
+    </property>
+    <property name="test_m1">
+      <column name="test_m1"/>
+    </property>
+    <property name="test_s1">
+      <column name="test_s1"/>
+    </property>
+    <property name="test_s2">
+      <column name="test_s2"/>
+    </property>
+    <property name="test_s3">
+      <column name="test_s3"/>
+    </property>
+    <property name="test_s4">
+      <column name="test_s4"/>
+    </property>
+    <property name="test_mz">
+      <column name="test_mz"/>
+    </property>
+    <property name="test_jzh">
+      <column name="test_jzh"/>
+    </property>
+    <property name="test_rz">
+      <column name="test_rz"/>
+    </property>
+    <property name="calcula_ad">
+      <column name="calcula_ad"/>
+    </property>
+    <property name="calcula_fcad">
+      <column name="calcula_fcad"/>
+    </property>
+    <property name="calcula_vdvdaf">
+      <column name="calcula_vdvdaf"/>
+    </property>
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+    <property name="recordUser">
+      <column name="recordUser"/>
+    </property>
+    <property name="dataStatus">
+      <column name="dataStatus"/>
+    </property>
+      <property name="testIndex">
+      <column name="testIndex"/>
+    </property>
+  </class>
+</hibernate-mapping>

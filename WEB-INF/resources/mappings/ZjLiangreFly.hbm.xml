@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.zjsys.testDataSrc.model">
+  <class name="ZjLiangreFly" table="tried_zj_liangre_fly">
+    <comment>-</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="srcId">
+      <column name="srcId"/>
+    </property>
+    <property name="circleId">
+      <column name="circleId"/>
+    </property>
+   
+    <property name="testDate">
+      <column name="testDate"/>
+    </property>
+    <property name="sampleNum">
+      <column name="sampleNum"/>
+    </property>
+    <property name="test_ttfrValue">
+      <column name="test_ttfrValue"/>
+    </property>
+     <property name="test_kgjgw">
+      <column name="test_kgjgw"/>
+    </property>
+    <property name="test_sdjdw">
+      <column name="test_sdjdw"/>
+    </property>
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+    <property name="recordUser">
+      <column name="recordUser"/>
+    </property>
+    <property name="dataStatus">
+      <column name="dataStatus"/>
+    </property>
+      <property name="recordUserName">
+        <formula>
+      	(select tsu.userName from tried_system_user tsu where tsu.id=recordUser)
+      </formula>
+    </property>
+  </class>
+</hibernate-mapping>

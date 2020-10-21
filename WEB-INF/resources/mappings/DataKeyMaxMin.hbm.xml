@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.zjsys.testDataSrc.model">
+  <class name="DataKeyMaxMin" table="tried_data_key_max_min">
+    <comment>设备属性阈值</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="deviceName">
+      <column name="deviceName"/>
+    </property>
+    <property name="keyName">
+      <column name="keyName"/>
+    </property>
+    <property name="keyMax">
+      <column name="keyMax"/>
+    </property>
+    <property name="keyMin">
+      <column name="keyMin"/>
+    </property>
+    <property name="recordUser">
+      <column name="recordUser"/>
+    </property>
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+    <property name="fieldName">
+      <column name="fieldName"/>
+    </property>
+    <property name="recordUserName">
+        <formula>
+      	(select tsu.userName from tried_system_user tsu where tsu.id=recordUser)
+      </formula>
+    </property>
+    
+  </class>
+</hibernate-mapping>

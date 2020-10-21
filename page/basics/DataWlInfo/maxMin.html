@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>同步周期管理</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+</head>
+<body>
+	<div align="center" style="margin-top: 10px">
+		<!-- 添加同步周期管理 -->
+		<form id="modelForm" class="easyui-form" action="#" method="post" data-options="validate:true">
+			<input name="id" type="hidden" />
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td style="height: 27px;width: 100px;text-align: right;"  >物料编号：</td>
+					<td><input class="easyui-textbox" id="deviceName_edit" name="deviceName" style="width: 200px; height: 25px" data-options="required:true,editable:false"/></td>
+				</tr>
+				<tr>
+					<td style="height: 27px;text-align: right;">元素名称：</td>
+					<td  style="text-align: left;padding-left: 2px">
+					<input class="easyui-textbox" name="keyName" style="width: 200px; height: 25px" data-options="required:true"/>
+					</td>
+				</tr>
+				<tr>
+					<td style="height: 27px;text-align: right;">属性字段：</td>
+					<td  style="text-align: left;padding-left: 2px">
+					<select id="fieldName_search" name="fieldName" class="easyui-combobox" data-options="panelHeight:160"  style="width: 200px;height: 25px"> 
+								<option selected="selected" value="handInput_burnLoss" >烧损_手录</option>
+								<option  value="handInput_h2o" >H2O_手录</option>
+								<!--boxy  -->
+								<option  value="handInput_co2" >CO2_手录</option>
+								<option  value="handInput_o2" >O2_手录</option>
+								<option  value="handInput_co" >CO_手录</option>
+								<option  value="handInput_lidu" >粒度_手录</option>
+								
+								<option  value="handInput_na2o" >Na2O_手录</option>
+								
+								
+							 	<option  value="handInput_h2o1" >H2O1_手录</option>
+							 	<option  value="handInput_h2o2" >H2O2_手录</option>
+							 	<option  value="handInput_fu200mm" >-200mm_手录</option>
+							 	<option  value="handInput_feo" >FeO_手录</option>
+							 	<option  value="handInput_m6_3" >M6.3_手录</option>
+								<option  value="handInput_m0_5" >M0.5_手录</option>
+							 	<option  value="handInput_fu200mu" >-200目_手录</option>
+							 	<option  value="handInput_reactivity" >活性度_手录</option>
+							 	<option  value="handInput_gjcs_rate" >干基出水率_手录</option>
+							 	<option  value="handInput_mm0_5" >0-5mm_手录</option>
+							 	<option  value="handInput_ralone" >R_手录</option> 	
+							 	<option  value="handInput_mfe" >Mfe_手录</option>
+							 	<option  value="handInput_dy_80mm" >》80mm_手录</option>
+							 	<option  value="handInput_xy25mm" >《25mm_手录</option>
+							 	<option  value="handInput_ca_oh2" >CA(OH)2_手录</option>
+							 	<option  value="handInput_fu10mm" >-10mm_手录</option>
+							 	<option  value="handInput_nahco3" >NaHCO3_手录</option>	
+							 	<option  value="handInput_ph" >PH_手录</option>
+							 	<option  value="handInput_sic" >SiC_手录</option>	
+							 	<option  value="handInput_ylc" >游离碳_手录</option>
+							 	<option  value="handInput_pzrong" >膨胀容_手录</option>
+							 	<option  value="handInput_jzjia" >胶质价_手录</option>
+							 	<option  value="handInput_xs_rate" >吸水率_手录</option>
+							 	<option  value="handInput_xl_size" >吸兰量_手录</option>
+							 	<option  value="handInput_mtshi" >蒙脱石_手录</option>
+							 	<option  value="handInput_palone">P_手录</option>
+							 	<option  value="handInput_salone" >S_手录</option>		 	
+							 	<option  value="handInput_calone" >C_手录</option>
+							 	<option  value="handInput_si" >Si_手录</option>	
+							 	<option  value="handInput_mn" >Mn_手录</option>
+							 	<option  value="handInput_al" >Al_手录</option>
+							 	<option  value="handInput_ca" >Ca_手录</option>
+							 	<option  value="handInput_ba" >Ba_手录</option>
+							 	 <option  value="handInput_caf2" >CaF2_手录</option>
+							 	 <option  value="handInput_mt" >Mt_手录</option>
+							 	 <option  value="handInput_m10" >M10_手录</option>
+							 	 <option  value="handInput_m25" >M25_手录</option>
+							 	 
+							 	 <option  value="handInput_mad" >Mad_手录</option>
+							 	 <option  value="handInput_ad" >Ad_手录</option>
+							 	 <option  value="handInput_vd" >Vd_手录</option>
+							 	 <option  value="handInput_fcad" >Fcad_手录</option>
+							 	 <option  value="handInput_s" >S_手录</option>
+							 	 <option  value="handInput_gjgw" >干基高位热值_手录</option>
+							 	 <option  value="handInput_dwrz" >低位热值_手录</option>
+							 	 <option  value="handInput_vdaf" >Vdaf_手录</option>
+							 	 
+							 	<option  value="yingguang_test_DDS" >DDS_荧光仪</option>
+							 	<option  value="yingguang_test_TFe" >TFe_荧光仪</option>
+							 	<option  value="yingguang_test_SiO2" >SiO2_荧光仪</option>
+							 	<option  value="yingguang_test_CaO" >CaO_荧光仪</option>
+							 	<option  value="yingguang_test_MgO" >MgO_荧光仪</option>
+							 	<option  value="yingguang_test_Al2O3" >Al2O3_荧光仪</option>
+							 	<option  value="yingguang_test_MnO" >MnO_荧光仪</option>
+							 	<option  value="yingguang_test_TiO2" >TiO2_荧光仪</option>
+							 	<option  value="yingguang_test_V2O5" >V2O5_荧光仪</option>
+							 	<option  value="yingguang_test_P" >P_荧光仪</option>
+							 	<option  value="yingguang_test_S" >S_荧光仪</option>
+							 	<option  value="yingguang_test_K2O" >K2O_荧光仪</option>
+							 	<option  value="yingguang_test_Na2O" >Na2O_荧光仪</option>
+							 	<option  value="yingguang_test_Co2O3" >Co2O3_荧光仪</option>
+							 	<option  value="yingguang_test_Pb" >Pb_荧光仪</option>
+							 	<option  value="yingguang_test_As" >As_荧光仪</option>
+							 	<option  value="yingguang_test_Zn" >Zn_荧光仪</option>
+							 	<option  value="yingguang_test_Cu" >Cu_荧光仪</option>
+							 	<option  value="yingguang_test_Ni" >Ni_荧光仪</option>
+							 	<option  value="yingguang_test_Cr" >Cr_荧光仪</option>
+							 	<option  value="yingguang_test_Cr2O3" >Cr2O3_荧光仪</option>
+							 	<option  value="yingguang_test_Au2O" >Au2O_荧光仪</option>
+							 	<option  value="yingguang_test_R2" >R2_荧光仪</option>
+							 	<option  value="yingguang_test_Fe2O3" >Fe2O3_荧光仪</option>
+							 	<option  value="yingguang_test_R" >R_荧光仪</option>
+							 	<option  value="yingguang_test_P2O5" >P2O5_荧光仪</option>
+							 	<option  value="yingguang_test_S2" >S2_荧光仪</option>
+							 	<option  value="yingguang_test_Si" >Si_荧光仪</option>
+							 	<option  value="yingguang_test_Mn" >Mn_荧光仪</option>
+							 	<option  value="yingguang_test_Ti" >Ti_荧光仪</option>
+							 	<option  value="yingguang_test_TMn" >TMn_荧光仪</option>
+							 	<option  value="yingguang_test_FeO" >FeO_荧光仪</option>
+							 				 	
+							 	<option  value="tanliu_C" >C_碳硫仪</option>
+							 	<option  value="tanliu_S" >S_碳硫仪</option>
+							 	<option  value="gongye_test_mad" >Mad_工业分析仪</option>
+							 	<option  value="gongye_calcula_ad" >Ad_工业分析仪</option>
+							 	<option  value="gongye_calcula_fcad" >Fcad_工业分析仪</option>
+							 	<option  value="gongye_calcula_vd" >Vd_工业分析仪</option>
+							 	<option  value="gongye_calcula_vdaf" >Vdaf_工业分析仪</option>
+							 	<option  value="gongye_calcula_fcad" >FCad_工业分析仪</option>
+							 	<option  value="gongye_input_M10" >M10_工业分析仪</option>
+							 	<option  value="gongye_input_Mt" >Mt_工业分析仪</option>
+							 	<option  value="gongye_input_M25" >M25_工业分析仪</option>
+							 	
+							 	<option  value="dingliu_stad_value" >S_定硫仪</option>
+							 	<option  value="liangre_test_kgjgw" >干基高位热值_量热仪</option>
+							 	<option  value="liangre_test_sdjdw" >低位热值_量热仪</option>
+							 	
+							 	
+							 	
+							 	<option  value="daigang_yieldDown_streng" >下屈服强度_带钢</option>
+							 	<option  value="daigang_kangla_streng" >抗拉强度_带钢</option>
+							 	<option  value="daigang_duanhouLong_rate" >断后伸长率_带钢</option>
+							 	
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td style="height: 27px;text-align: right;">最小阈值：</td>
+					<td ><input class="easyui-textbox" name="keyMin" style="width: 200px; height: 25px" /></td>
+				</tr>
+				<tr>
+					<td style="height: 27px;text-align: right;">最大阈值：</td>
+					<td ><input class="easyui-textbox" name="keyMax" style="width: 200px; height: 25px" /></td>
+				</tr>
+				
+				 
+			 
+				 
+			</table>
+		</form>
+	</div>
+</body>
+</html>

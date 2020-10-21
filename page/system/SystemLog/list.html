@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>系统日志表信息</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/material/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/icon.css"/>
+	<script type="text/javascript" src="./../../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="./../../../js/jquery.tried.min.js"></script>
+	<script type="text/javascript" src="./../../../js/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="./../../../js/tried.js"></script>
+    <script type="text/javascript" src="js/list.js"></script>
+</head>
+<body style="overflow: hidden;margin: 0,0,0,0">
+<div id="divConId" data-options="region:'center'">   
+	<div id="datagrid" title="系统日志表" style="width:97%" data-options="fit:true"></div>
+	</div>
+	<div id="tb" style="padding:2px 5px;" >
+	    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+	    <tr>
+	    	<td>
+				日期:<input class="easyui-datebox"  data-options="onSelect:func_search"   name="log_time" id="log_time"  style="width: 110px; " />
+				<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="initDataGrid()">检索</a>
+			</td>
+	    </tr>
+	</table>
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.zjsys.testDataSrc.model">
+  <class name="ZjGongyefenxiFly" table="tried_zj_gongyefenxi_fly">
+    <comment>-</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="circleId">
+      <column name="circleId"/>
+    </property>
+    <property name="srcId">
+      <column name="srcId"/>
+    </property>
+    <property name="sampleNum">
+      <column name="sampleNum"/>
+    </property>
+    <property name="test_syrq">
+      <column name="test_syrq"/>
+    </property>
+    <property name="test_Mad">
+      <column name="test_Mad"/>
+    </property>
+    <property name="calcula_Ad">
+      <column name="calcula_Ad"/>
+    </property>
+    <property name="calcula_FCad">
+      <column name="calcula_FCad"/>
+    </property>
+    <property name="calcula_VdVdaf">
+      <column name="calcula_VdVdaf"/>
+    </property>
+    <property name="input_Mt">
+      <column name="input_Mt"/>
+    </property>
+    <property name="input_M25">
+      <column name="input_M25"/>
+    </property>
+    <property name="input_M10">
+      <column name="input_M10"/>
+    </property>
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+    <property name="recordUser">
+      <column name="recordUser"/>
+    </property>
+     <property name="recordUserName">
+     <formula>(select s.userName from tried_system_user s where s.id =
+				recordUser)</formula>
+    </property>
+    <property name="dataStatus">
+      <column name="dataStatus"/>
+    </property>
+  </class>
+</hibernate-mapping>

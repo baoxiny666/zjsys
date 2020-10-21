@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.system.model">
+	<class name="SystemMessage" table="tried_system_message">
+		<comment>消息管理</comment>
+		<id name="id">
+			<generator class="uuid.hex"/>
+		</id>
+		<property name="message_title">
+			<column name="message_title" />
+		</property>
+		<property name="message_receiveUser">
+			<column name="message_receiveUser" />
+		</property>
+		<property name="message_receiveUserName">
+			<column name="message_receiveUserName" />
+		</property>
+		
+		<property name="message_content">
+			<column name="message_content" />
+		</property>
+		<property name="message_file">
+			<column name="message_file" />
+		</property>
+		<property name="recordUser">
+			<column name="recordUser" />
+		</property>
+		<property name="recordTime">
+			<column name="recordTime" />
+		</property>
+	</class>
+</hibernate-mapping>

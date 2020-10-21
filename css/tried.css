@@ -1,0 +1,210 @@
+ 
+.file-upload {
+	text-align: center;
+	vertical-align: middle;
+	padding: 2px 2px;
+	height: 20px;
+	line-height: 20px;
+	position: relative;
+	text-decoration: none;
+	cursor: pointer;
+	color: #888;
+	background: #fafafa;
+	border: 1px solid #BBBBBB;
+	border-radius: 4px;
+	overflow: hidden;
+	display: inline-block;
+	*display: inline;
+	*zoom: 1
+}
+
+ 
+.file-upload  input {
+	position: absolute;
+	font-size: 100px;
+	right: 0;
+	top: 0;
+	opacity: 0;
+	filter: alpha(opacity =     0);
+	cursor: pointer
+}
+
+.tableTaskView {
+	margin-left: 5px;
+	margin-right: 5px;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.tableTaskView td {
+	border: 1px solid #50aab5;
+	padding: 2px 0px 2px 0px;
+	text-align: center;
+}
+
+.tableContract {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.tableContract td {
+	border: 1px solid #50aab5;
+	padding: 2px 0px 2px 0px;
+	text-align: center;
+}
+
+.tableSheet {
+	border-right: 1px solid #C1C1C1;
+	border-bottom: 1px solid #C1C1C1;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.tableSheet td {
+	height: 27px;
+	border-left: 1px solid #C1C1C1;
+	border-top: 1px solid #C1C1C1;
+	text-align: center;
+}
+
+.tableTask {
+	width: 99%;
+	margin: 0 auto;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.tableTask td {
+	border: 1px solid #50aab5;
+	padding: 2px 0px 2px 0px;
+	text-align: center;
+}
+
+.noBordTable {
+	margin-left: 2px;
+	margin-right: 2px;
+	padding-top: 0;
+	padding-bottom: 0;
+	padding-left: 2%;
+	padding-right: 2%;
+}
+
+.noBordTable td {
+	height: 26px;
+	padding: 2px 0px 2px 0px;
+}
+
+.file-upload:hover {
+	color: #444;
+	background: #E8F1FF;
+	border-color: #95B8E7;
+	text-decoration: none
+}
+
+/* 首页slid样式 */
+.txtMarquee-left {
+	width:600px;
+	position: absolute;
+	z-index:4;
+	left: 25%;
+	float: left;
+	padding-top: 25px;
+	font: normal 12px/22px 宋体;
+}
+
+.txtMarquee-left .bd .tempWrap {
+	width: 550px !important;
+}
+
+.txtMarquee-left .hd .prev,.txtMarquee-left .hd .next {
+	display: block;
+	width: 5px;
+	height: 9px;
+	float: right;
+	margin-right:10px;
+	margin-left:10px;
+	margin-top: 0px;
+	overflow: hidden;
+	cursor: pointer;
+	background: url("../img/png/icoLeft.gif") no-repeat;
+}
+
+.txtMarquee-left .hd .next {
+	background: url("../img/png/icoRight.gif") no-repeat;
+}
+
+/* 用 !important覆盖SuperSlide自动生成的宽度，这样就可以手动控制可视宽度。 */
+.txtMarquee-left .bd ul {
+	overflow: hidden;
+	zoom: 1;
+}
+
+.txtMarquee-left .bd ul li {
+	margin-right: 20px;
+	float: left;
+	height: 24px;
+	line-height: 24px;
+	text-align: left;
+	_display: inline;
+	list-style: none;
+	width: auto !important;
+}
+/* 用 width:auto !important 覆盖SuperSlide自动生成的宽度，解决文字不衔接问题 */
+.txtMarquee-left .bd ul li span { /* 	color: #FBF8CD; */
+      color: #7C7C7C;
+    /* color: #7C7C7C; */
+	/* color: #FFFED6; */
+}
+
+.txtMarquee-left .bd ul li a {
+	text-decoration: none;
+	 color: #F5460C;
+	/* color: #F5FA2A; */
+	/* color: #F5460C; 红色*/
+}
+
+.txtMarquee-left .bd ul li a:hover {
+	color: #1974A1;
+}
+        
+.datagrid-header, .datagrid-td-rownumber {
+ 	background:#fff;
+}
+.btn-file{
+	position:relative;
+	overflow:hidden;
+} 
+.btn-file input[type=file]{
+	position:absolute;
+	top:0;
+	right:0;
+	min-width:100%;
+	min-height:100%;
+	font-size:100px;
+	text-align:right;
+	filter:alpha(opacity=0);
+	opacity:0;
+	outline:none;
+	background:white;
+	cursor:inherit;
+	display:block;
+}
+.panel-body {
+  background: #fff;
+  padding: 0px;
+}
+.nav li{
+	background: black;
+}
+.nav li a{
+	color:white;
+}
+.nav li a:focus, .nav li a:hover{
+	background: blue;
+}
+.textbox-background-transparent{
+   background-color: #FEDBCF;
+    opacity:0.5;
+	
+	
+}

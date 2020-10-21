@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+   
+   
+   
+   
+    
+   
+   
+   
+   
+   
+   
+   
+   
+   
+  <package name="struts-testDataSrc" namespace="/zjsys_testDataSrc" extends="struts-default,json-default">
+     
+     
+     
+     
+     
+ 
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    <action name="yinguangSrcAction_*" class="yinguangSrcAction" method="{1}"/>
+ 
+        
+    <action name="yingguangSrcBxyAction_*" class="yingguangSrcBxyAction" method="{1}"/>
+ 
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    <action name="yinguangFlyAction_*" class="yinguangFlyAction" method="{1}"/>
+ 
+     
+    <action name="yingguangFlyBxyAction_*" class="yingguangFlyBxyAction" method="{1}"/>
+ 
+     
+     
+     
+     
+     
+     
+     
+     
+    <action name="zjTanliuFlyAction_*" class="zjTanliuFlyAction" method="{1}"/>
+ 
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    <action name="zjTanliuSrcAction_*" class="zjTanliuSrcAction" method="{1}"/>
+ 
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    <action name="zjGongyefenxiSrcAction_*" class="zjGongyefenxiSrcAction" method="{1}"/>
+ 
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    <action name="zjGongyefenxiFlyAction_*" class="zjGongyefenxiFlyAction" method="{1}"/>
+ 
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    <action name="zjDingliuFlyAction_*" class="zjDingliuFlyAction" method="{1}"/>
+ 
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    <action name="zjDingliuSrcAction_*" class="zjDingliuSrcAction" method="{1}"/>
+ 
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    <action name="zjLiangreSrcAction_*" class="zjLiangreSrcAction" method="{1}"/>
+ 
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    <action name="zjLiangreFlyAction_*" class="zjLiangreFlyAction" method="{1}"/>
+ 
+     
+     
+     
+     
+     
+     
+     
+    <action name="dataKeyMaxMinAction_*" class="dataKeyMaxMinAction" method="{1}"/>
+ 
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    <action name="zjDaiganglixueSrcAction_*" class="zjDaiganglixueSrcAction" method="{1}"/>
+   
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    <action name="zjDaiganglixueFlyAction_*" class="zjDaiganglixueFlyAction" method="{1}"/>
+     
+     
+     
+     
+     
+    <action name="zjHandInputFlyAction_*" class="zjHandInputFlyAction" method="{1}"/>
+     
+   
+     
+     
+ 
+  </package>
+</struts>

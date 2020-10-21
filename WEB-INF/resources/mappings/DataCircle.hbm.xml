@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.zjsys.basics.model">
+  <class name="DataCircle" table="tried_data_circle">
+    <comment>同步周期管理</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="deviceNum">
+      <column name="deviceNum"/>
+    </property>
+    <property name="deviceName">
+      <column name="deviceName"/>
+    </property>
+    <property name="deviceType">
+      <column name="deviceType"/>
+    </property>
+    <property name="dataType">
+      <column name="dataType"/>
+    </property>
+    <property name="dataSavePath">
+      <column name="dataSavePath"/>
+    </property>
+    <property name="jdbcUrl">
+      <column name="jdbcUrl"/>
+    </property>
+    <property name="driverClass">
+      <column name="driverClass"/>
+    </property>
+    <property name="username">
+      <column name="username"/>
+    </property>
+    <property name="password">
+      <column name="password"/>
+    </property>
+    <property name="circleTimeType">
+      <column name="circleTimeType"/>
+    </property>
+    <property name="circleTimeNum">
+      <column name="circleTimeNum"/>
+    </property>
+    <property name="recordUser">
+      <column name="recordUser"/>
+    </property>
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+    <property name="remoteUrlPath">
+      <column name="remoteUrlPath"/>
+    </property>
+      <property name="recordUserName">
+      	   <formula>
+      	(select tsu.userName from tried_system_user tsu where tsu.id=recordUser)
+      </formula>
+    </property>
+  </class>
+</hibernate-mapping>

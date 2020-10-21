@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>视图工具</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="./../../../css/themes/icon.css">
+			<script type="text/javascript" src="./../../../js/jquery.min.js"></script>
+			<script type="text/javascript" src="./../../../js/jquery.tried.min.js"></script>
+			<script type="text/javascript" src="./../../../js/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+	<div align="center" style="margin-top: 10px">
+		<!-- 添加视图工具 -->
+		<form id="modelForm" class="easyui-form" action="#" method="post" data-options="novalidate:true">
+			<input name="id" type="hidden" />
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td style="height: 27px">SQL英文名称：</td>
+					<td align="left"><input class="easyui-textbox" type="text" name="view_name" style="width: 200px; height: 25px" /></td>
+				</tr>
+			
+				<tr>
+					<td style="height: 27px">SQL中文名称：</td>
+					<td align="left"><input class="easyui-textbox" type="text" name="view_content" style="width: 200px; height: 25px" /></td>
+				</tr>
+				<tr>
+					<td style="height: 27px">所属模块：</td>
+					<td align="left">
+					<select class="easyui-combobox" data-options="panelHeight:'auto'" name="view_package"  style="width: 200px;">
+					    <option value="system">系统信息管理模块</option>
+					    	<option value="personal">个人空间管理模块</option>
+					    	<option value="basis">基础信息管理模块</option>
+					    	<option value="contract">合同管理模块</option>
+					    	<option value="sample">样品管理模块</option>
+					    	<option value="bedstand">试验台管理模块</option>
+					    	<option value="instrument">仪器仪表管理模块</option>
+					    	<option value="experiment">试验管理模块</option>
+					   </select>
+					 </td>
+				</tr>
+				<tr>
+					<td style="height: 27px">视图语句：</td>
+					<td align="left"><input class="easyui-textbox" type="text" data-options="multiline:true" name="view_sql" style="width: 400px; height: 125px" /></td>
+				</tr>
+		
+
+			</table>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" media="screen" />
+<title>检化验数据自动上传系统</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../css/themes/default/easyui.css"/>
+<link rel="stylesheet" type="text/css" href="../css/themes/icon.css"/> 
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.tried.min.js"></script>
+<script type="text/javascript" src="../js/tried.js"></script>
+<script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="./js/login.js"></script>
+<style type="">
+body,h1,h2,h3,h4,h5,p,dl,dd,ul,ol,form,input,textarea,th,td,select { margin:0; padding:0; }
+html,body{
+    width:100%;
+    height:100%;
+    overflow: hidden; 
+    background-color:#79C3ED; 
+    background-size: 100%;
+    font-size:12px; 
+    font-family:"微软雅黑";
+}
+
+em { font-style:normal; }
+li { list-style:none; }
+a { text-decoration:none; }
+img { border:none; vertical-align:top; }
+table { border-collapse:collapse; }
+input,textarea { outline:none; }
+textarea { resize:none; overflow:auto; }
+
+
+</style>
+</head>
+<body  style="background:url(../img/png/loginbg.png) no-repeat;"> 
+	 <table width="100%"   cellpadding="0" border="0" cellspacing="0" style="" >
+		<tr valign="center">
+			<td height="100px" colspan="2" style="text-align:center;font-size: 45px;color: #2F3995;text-transform: uppercase;font-weight: 500;font-family: 'Nunito', sans-serif;vertical-align:bottom;"><!-- 试验健康管理系统（V1.0） --></td>
+		</tr>
+		<tr valign="top">
+			<td align="center" style="height:400px;background-position: center;vertical-align: middle;">
+			<div style="width:100%;height:400px; position:relative; z-index:1;">
+			<!-- <img src="../img/png/zhulou.jpg" style="width:100%;height:400px;"></img> -->
+			
+			<div style="height:330px; width:100%; position:absolute; top:65px; left:0; z-index:2;">
+			<form name="superLoginForm" id="superLoginForm" action="#" method="post">
+			<table>
+			<tr><td></td><td  style="text-align:center;font-size:28px;color: #fff;text-transform: uppercase;font-weight: 500;font-family: 'Nunito', sans-serif;vertical-align:bottom;" >检化验数据自动上传系统</td></tr>
+			<tr>
+			<td>
+			<img src="../img/png/bgcomputer1.png" style="width:100%;height:400px;"></img>
+			</td>
+			<td align="center">			
+				<table border="0" width="300px" height="310px" cellpadding="0" cellspacing="0" style="background: url(../img/png/bg_login.png) repeat;background-color:#fff;overflow:hidden;border:2px solid #F0FFFF">
+					<tr valign="bottom">
+					   <td height="70px" style="font-size:30px;color:#0A6AD0;text-align: center;font-weight: 800;">
+					  <!--  <font>登录</font> -->
+					    <img style="width:65px;height:65px;" src="../img/png/peoplePic.png"></img>
+					   </td>
+					</tr>
+					<tr valign="middle">
+					   <td align="center" style="height:50px">
+					      <input class="easyui-textbox" data-options="prompt:' 请输入账户',iconCls:'icon-man',iconWidth:40" id="loginName" name="loginName" style="width: 230px;height: 40px;padding:12px;" value=""/>
+					   </td>
+					</tr>
+					<tr valign="middle">
+					   <td align="center"  style="height:50px">
+					      <input  class="easyui-textbox"  data-options="prompt:' 请输入密码',iconCls:'icon-lock',iconWidth:40" id="loginPass" type="password" name="loginPass" value="" style="width: 230px;height:40px;padding:12px"/>
+					   </td>
+					</tr>
+					<tr valign="middle">
+					  <td  style="height:60px;padding-top:10px;" align="center" valign="top">
+						<input type="button" value="登        录" onclick="login()" style="width: 230px;height: 40px;background-color: #0A6AD0;border: 0px;color: #ffffff;font-size: 18px;font-weight: bold;"/>
+					 </td>
+					</tr>
+				</table>
+			
+			</td>
+			</tr>
+			</table>
+			</form>			
+			</div>
+			</div>
+			</td>
+		</tr>
+		<tr>
+		<td style="height:100%">
+		&nbsp;
+		</td>
+		</tr>
+	</table>  
+</body>
+</html>

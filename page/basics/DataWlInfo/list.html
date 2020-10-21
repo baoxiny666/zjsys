@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>物料名称信息</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Cache-control" content="no-cache"/>
+<meta http-equiv="Cache" content="no-cache"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/material/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/icon.css"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/tried.css" />
+	<script type="text/javascript" src="./../../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="./../../../js/jquery.tried.min.js"></script>
+	<script type="text/javascript" src="./../../../js/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="./../../../js/tried.js"></script>
+    <script type="text/javascript" src="js/list.js"></script>
+     <script type="text/javascript" src="js/childList.js"></script>
+</head>
+<body style="overflow: hidden;margin: 0,0,0,0">
+<div id="divConId"> 
+ <div id='layoutId' class="easyui-layout" data-options="fit:true">
+ <div data-options="region:'center',title:''" style="border: 0px" >
+	<div id="datagrid"   style="width:97%" data-options="fit:true"></div>
+	</div>
+	<div id="tb" style="padding:2px 5px;" >
+	    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+	    <tr>
+	    	<td>
+				名称：<input id="wlName_search" class="easyui-searchbox" data-options="prompt:'',searcher:func_search" style="width:110px"/>
+				代码：<input id="wlCode_search" class="easyui-searchbox" data-options="prompt:'',searcher:func_search" style="width:110px"/>
+				<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="func_search()">检索</a>
+			</td>
+			<td align="right">
+				<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-copy' " onclick="func_copy()">复制</a>
+				<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add' " onclick="func_add()">新建</a>
+				<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="func_edit()">编辑</a>
+				<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="func_del()">删除</a>
+			</td>
+		</tr>
+	</table>
+	</div>
+	   <div data-options="region:'east',title:'阈值设置',split:true" style="width:560px;border: 0px">   
+        <div id="childGrid"  style="width:100%;" data-options="fit:true" ></div>
+        		 <div id="tbExc" style="padding:2px 5px;" >
+					<table cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tr>
+							<td align="right"><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add' " onclick="func_addMaxMin()">新建</a>
+							    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="func_editMaxMin()">编辑</a> 
+								<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="func_delMaxMin()">删除</a>
+							</td>
+						</tr>
+					</table>
+				</div>
+        </div> 
+	</div></div>
+</body>
+</html>

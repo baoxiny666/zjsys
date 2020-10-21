@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.zjsys.testDataSrc.model">
+  <class name="YingguangFlyBxy" table="tried_yinguang_fly">
+    <comment>-</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="srcId">
+      <column name="srcId"/>
+    </property>
+    <property name="circleId">
+      <column name="circleId"/>
+    </property>
+    <property name="sampleNum">
+      <column name="sampleNum"/>
+    </property>
+    <property name="deviceNum">
+      <column name="deviceNum"/>
+    </property>
+    <property name="dataTime">
+      <column name="dataTime"/>
+    </property>
+     <property name="test_TFe">
+      <column name="test_TFe"/>
+    </property>
+    <property name="test_SiO2">
+      <column name="test_SiO2"/>
+    </property>
+    <property name="test_CaO">
+      <column name="test_CaO"/>
+    </property>
+    <property name="test_MgO">
+      <column name="test_MgO"/>
+    </property>
+    <property name="test_Al2O3">
+      <column name="test_Al2O3"/>
+    </property>
+    <property name="test_MnO">
+      <column name="test_MnO"/>
+    </property>
+    <property name="test_TiO2">
+      <column name="test_TiO2"/>
+    </property>
+    <property name="test_V2O5">
+      <column name="test_V2O5"/>
+    </property>
+    <property name="test_P">
+      <column name="test_P"/>
+    </property>
+    <property name="test_S">
+      <column name="test_S"/>
+    </property>
+    <property name="test_K2O">
+      <column name="test_K2O"/>
+    </property>
+    <property name="test_Na2O">
+      <column name="test_Na2O"/>
+    </property>
+    <property name="test_Co2O3">
+      <column name="test_Co2O3"/>
+    </property>
+    <property name="test_Pb">
+      <column name="test_Pb"/>
+    </property>
+    <property name="test_As">
+      <column name="test_As"/>
+    </property>
+    <property name="test_Zn">
+      <column name="test_Zn"/>
+    </property>
+    <property name="test_Cu">
+      <column name="test_Cu"/>
+    </property>
+    <property name="test_Ni">
+      <column name="test_Ni"/>
+    </property>
+    <property name="test_Cr2O3">
+      <column name="test_Cr2O3"/>
+    </property>
+    <property name="test_Au2O">
+      <column name="test_Au2O"/>
+    </property>
+    <property name="test_R2">
+      <column name="test_R2"/>
+    </property>
+    <property name="test_Fe2O3">
+      <column name="test_Fe2O3"/>
+    </property>
+    
+    <property name="test_R">
+      <column name="test_R"/>
+    </property> 
+    
+    <property name="test_P2O5">
+      <column name="test_P2O5"/>
+    </property> 
+    <property name="test_S2">
+      <column name="test_S2"/>
+    </property> 
+    
+    <property name="test_Si">
+      <column name="test_Si"/>
+    </property> 
+    
+    <property name="test_Mn">
+      <column name="test_Mn"/>
+    </property> 
+    <property name="test_Ti">
+      <column name="test_Ti"/>
+    </property> 
+    
+    <property name="test_TMn">
+      <column name="test_TMn"/>
+    </property> 
+    
+    <property name="test_FeO">
+      <column name="test_FeO"/>
+    </property> 
+    
+    <property name="test_Cr">
+      <column name="test_Cr"/>
+    </property> 
+    
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+    <property name="recordUser">
+      <column name="recordUser"/>
+    </property>
+    <property name="dataStatus">
+      <column name="dataStatus"/>
+    </property>
+  </class>
+</hibernate-mapping>

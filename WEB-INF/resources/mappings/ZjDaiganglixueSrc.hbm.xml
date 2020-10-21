@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping  PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tried.zjsys.testDataSrc.model">
+  <class name="ZjDaiganglixueSrc" table="tried_zj_daiganglixue_src">
+    <comment>-</comment>
+    <id name="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="circleId">
+      <column name="circleId"/>
+    </property>
+    <property name="filename">
+      <column name="filename"/>
+    </property>
+    <property name="deviceNum">
+      <column name="deviceNum"/>
+    </property>
+    <property name="gk_curve">
+      <column name="gk_curve"/>
+    </property>
+    <property name="dataTime">
+      <column name="dataTime"/>
+    </property>
+    <property name="classGroup">
+      <column name="classGroup"/>
+    </property>
+    <property name="lunum">
+      <column name="lunum"/>
+    </property>
+    <property name="steeltype">
+      <column name="steeltype"/>
+    </property>
+    <property name="steelGuige">
+      <column name="steelGuige"/>
+    </property>
+    <property name="branchFactory">
+      <column name="branchFactory"/>
+    </property>
+    <property name="sample_thick">
+      <column name="sample_thick"/>
+    </property>
+    <property name="sample_width">
+      <column name="sample_width"/>
+    </property>
+    <property name="sample_long">
+      <column name="sample_long"/>
+    </property>
+    <property name="orig_biaojv">
+      <column name="Orig_biaojv"/>
+    </property>
+    <property name="duanhou_biaojv">
+      <column name="duanhou_biaojv"/>
+    </property>
+    <property name="sample_area">
+      <column name="sample_area"/>
+    </property>
+    <property name="max_force">
+      <column name="max_force"/>
+    </property>
+    <property name="yieldDown_force">
+      <column name="yieldDown_force"/>
+    </property>
+    <property name="yieldUp_force">
+      <column name="yieldUp_force"/>
+    </property>
+    <property name="yieldDown_streng">
+      <column name="yieldDown_streng"/>
+    </property>
+    <property name="yieldUp_streng">
+      <column name="yieldUp_streng"/>
+    </property>
+    <property name="kangla_streng">
+      <column name="kangla_streng"/>
+    </property>
+    <property name="duanhouLong_rate">
+      <column name="duanhouLong_rate"/>
+    </property>
+    <property name="duareaShrink_rate">
+      <column name="duareaShrink_rate"/>
+    </property>
+    <property name="testTime">
+      <column name="testTime"/>
+    </property>
+    <property name="dataStatus">
+      <column name="dataStatus"/>
+    </property>
+    <property name="testNo">
+      <column name="testNo"/>
+    </property>
+    <property name="recordTime">
+      <column name="recordTime"/>
+    </property>
+    <property name="recordUser">
+      <column name="recordUser"/>
+    </property>
+  </class>
+</hibernate-mapping>
