@@ -109,6 +109,20 @@ private java.lang.String lidu;
 private java.lang.String na2o;
 
 
+//boxy新加
+private java.lang.String tfe;
+private java.lang.String cao;
+private java.lang.String mgo;
+private java.lang.String sio2;
+private java.lang.String al2o3;
+private java.lang.String tio2;
+private java.lang.String mno;
+private java.lang.String cr2o3;
+private java.lang.String k2o;
+private java.lang.String pb;
+private java.lang.String zn;
+private java.lang.String ni;
+
 
 
  public void setId(java.lang.String  id){
@@ -553,6 +567,106 @@ public java.lang.String getNa2o() {
 
 public void setNa2o(java.lang.String na2o) {
 	this.na2o = na2o;
+}
+
+
+
+
+
+public java.lang.String getTfe() {
+	return tfe;
+}
+
+public void setTfe(java.lang.String tfe) {
+	this.tfe = tfe;
+}
+
+public java.lang.String getCao() {
+	return cao;
+}
+
+public void setCao(java.lang.String cao) {
+	this.cao = cao;
+}
+
+public java.lang.String getMgo() {
+	return mgo;
+}
+
+public void setMgo(java.lang.String mgo) {
+	this.mgo = mgo;
+}
+
+public java.lang.String getSio2() {
+	return sio2;
+}
+
+public void setSio2(java.lang.String sio2) {
+	this.sio2 = sio2;
+}
+
+public java.lang.String getAl2o3() {
+	return al2o3;
+}
+
+public void setAl2o3(java.lang.String al2o3) {
+	this.al2o3 = al2o3;
+}
+
+public java.lang.String getTio2() {
+	return tio2;
+}
+
+public void setTio2(java.lang.String tio2) {
+	this.tio2 = tio2;
+}
+
+public java.lang.String getMno() {
+	return mno;
+}
+
+public void setMno(java.lang.String mno) {
+	this.mno = mno;
+}
+
+public java.lang.String getCr2o3() {
+	return cr2o3;
+}
+
+public void setCr2o3(java.lang.String cr2o3) {
+	this.cr2o3 = cr2o3;
+}
+
+public java.lang.String getK2o() {
+	return k2o;
+}
+
+public void setK2o(java.lang.String k2o) {
+	this.k2o = k2o;
+}
+
+public java.lang.String getPb() {
+	return pb;
+}
+
+public void setPb(java.lang.String pb) {
+	this.pb = pb;
+}
+
+public java.lang.String getZn() {
+	return zn;
+}
+
+public void setZn(java.lang.String zn) {
+	this.zn = zn;
+}
+
+public java.lang.String getNi() {
+	return ni;
+}
+
+public void setNi(java.lang.String ni) {
+	this.ni = ni;
 }
 
 public void setRecordTime(java.util.Date  recordTime){

@@ -45,7 +45,7 @@ public class DataKeyMaxMinAction extends BaseAction<DataKeyMaxMin> {
 	public void list() {
 		try {
 			if (strIsNotNull(model.getDeviceName())) {
-				this.condition = " and  deviceName='" + model.getDeviceName() + "' order by viewpaiXu asc ";
+				this.condition = " and  deviceName='" + model.getDeviceName() + "' order by cast(viewpaiXu  as int) asc ";
 				//this.condition +=  this.getOrderColumn();
 				outJsonData(dataKeyMaxMinService.findPage(new Page<DataKeyMaxMin>(page, rows), "from DataKeyMaxMin where 1=1 " + this.condition).getResult());
 			}
@@ -63,26 +63,24 @@ public class DataKeyMaxMinAction extends BaseAction<DataKeyMaxMin> {
 	 */
 	public void add() {
 		try {
-			//需要执行的Sql语句
-	        String sql = "select NEXT VALUE FOR materialyuansuSeq as viewpaiXu";
-	        //通过工具类获取连接
-	        Connection con = JdbcUtils.getConnection();
-	        Statement statement = con.createStatement();
-	        //执行sql语句
-	        ResultSet resultSet = statement.executeQuery(sql);
-	        String viewpaiXu = null;
-	        while (resultSet.next()) {
-	            viewpaiXu = resultSet.getString("viewpaiXu");
-	            
-	        }
-	        //释放资源
-	        
+		
+			/*
+			 * String sql = "select NEXT VALUE FOR materialyuansuSeq as viewpaiXu";
+			 * 
+			 * Connection con = JdbcUtils.getConnection(); Statement statement =
+			 * con.createStatement();
+			 * 
+			 * ResultSet resultSet = statement.executeQuery(sql); String viewpaiXu = null;
+			 * while (resultSet.next()) { viewpaiXu = resultSet.getString("viewpaiXu");
+			 * 
+			 * }
+			 */
 			model.setRecordTime(new Date());
 			model.setRecordUser(getCurrentUser().getId());
 			
-			model.setViewpaiXu(viewpaiXu);
+			//model.setViewpaiXu(viewpaiXu);
 			dataKeyMaxMinService.add(model);
-			JdbcUtils.release(con, statement, resultSet);
+			//JdbcUtils.release(con, statement, resultSet);
 			outSuccessJson("添加成功");
 		} catch (Exception e) {
 			logger.error(e.getMessage());

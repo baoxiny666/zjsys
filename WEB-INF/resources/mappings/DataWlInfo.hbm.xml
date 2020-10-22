@@ -16,8 +16,11 @@
     <property name="recordUser">
       <column name="recordUser"/>
     </property>
-     <property name="wlType">
+    <property name="wlType">
       <column name="wlType"/>
+    </property>
+    <property name="viewpaiXu">
+      <column name="viewpaiXu"/>
     </property>
     
     <property name="recordTime">

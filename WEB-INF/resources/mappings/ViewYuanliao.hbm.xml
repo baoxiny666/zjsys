@@ -179,7 +179,42 @@
       <column name="handInput_na2o"/>
     </property>
 
-    
+    <property name="handInput_tfe">
+      <column name="handInput_tfe"/>
+    </property>
+    <property name="handInput_cao">
+      <column name="handInput_cao"/>
+    </property>
+    <property name="handInput_mgo">
+      <column name="handInput_mgo"/>
+    </property>
+    <property name="handInput_sio2">
+      <column name="handInput_sio2"/>
+    </property>
+    <property name="handInput_al2o3">
+      <column name="handInput_al2o3"/>
+    </property>
+    <property name="handInput_tio2">
+      <column name="handInput_tio2"/>
+    </property>
+    <property name="handInput_mno">
+      <column name="handInput_mno"/>
+    </property>
+    <property name="handInput_cr2o3">
+      <column name="handInput_cr2o3"/>
+    </property>
+    <property name="handInput_k2o">
+      <column name="handInput_k2o"/>
+    </property>
+    <property name="handInput_pb">
+      <column name="handInput_pb"/>
+    </property>
+    <property name="handInput_zn">
+      <column name="handInput_zn"/>
+    </property>
+    <property name="handInput_ni">
+      <column name="handInput_ni"/>
+    </property>
     <property name="tanliu_C">
       <column name="tanliu_C"/>
     </property>

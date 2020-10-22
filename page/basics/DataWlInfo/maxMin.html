@@ -5,18 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript">
-$.extend($.fn.validatebox.defaults.rules, {
-	
-	viewpaiXu:{
-    	validator:function(value){
-    		var tex = /^[1-9]\d*|0$/;
-    		return tex.test(value);
-    	},
-    	message:'只能输入非负整数'
-    }
-		
 
-});
 </script>
 </head>
 <body>
@@ -54,6 +43,23 @@ $.extend($.fn.validatebox.defaults.rules, {
 							 	<option  value="handInput_h2o2" >H2O2_手录</option>
 							 	<option  value="handInput_fu200mm" >-200mm_手录</option>
 							 	<option  value="handInput_feo" >FeO_手录</option>
+							 	
+							 	<!-- 以下boxinyu 新加 -->
+							 	<option  value="handInput_tfe" >TFe_手录</option>
+							 	<option  value="handInput_cao" >CaO_手录</option>
+							 	<option  value="handInput_mgo" >MgO_手录</option>
+							 	<option  value="handInput_sio2" >SiO2_手录</option>
+							 	<option  value="handInput_al2o3" >Al2O3_手录</option>
+							 	<option  value="handInput_tio2" >TiO2_手录</option>
+							 	<option  value="handInput_mno" >MnO_手录</option>
+							 	<option  value="handInput_cr2o3" >Cr2O3_手录</option>
+							 	<option  value="handInput_k2o" >K2O_手录</option>
+							 	<option  value="handInput_pb" >Pb_手录</option>
+							 	<option  value="handInput_zn" >Zn_手录</option>
+							 	<option  value="handInput_ni" >Ni_手录</option>
+							 	<!-- 以上boxinyu 新加 -->
+							 	
+							 	
 							 	<option  value="handInput_m6_3" >M6.3_手录</option>
 								<option  value="handInput_m0_5" >M0.5_手录</option>
 							 	<option  value="handInput_fu200mu" >-200目_手录</option>
@@ -165,7 +171,7 @@ $.extend($.fn.validatebox.defaults.rules, {
 				</tr>
 				<tr>
 					<td style="height: 27px;text-align: right;">功能位置：</td>
-					<td><input class="easyui-textbox" type="text" validType="viewpaiXu" name="viewpaiXu" data-options="required:true" placeholder="按 0-1,2,3...的顺序填写"   style="width: 200px; height: 25px" /></td>
+					<td><input class="easyui-textbox" type="text"  name="viewpaiXu" data-options="required:true" placeholder="按 0-1,2,3...的顺序填写"   style="width: 200px; height: 25px" /></td>
 				</tr>
 				 
 			 

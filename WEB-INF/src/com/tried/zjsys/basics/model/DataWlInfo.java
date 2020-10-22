@@ -14,6 +14,9 @@ private java.lang.String wlName;
 // 物料编码;
 private java.lang.String wlCode;
 private java.lang.String wlType;
+
+//排序
+private String viewpaiXu;
 //;
 private java.lang.String recordUser;
 private java.lang.String recordUserName;
@@ -51,8 +54,19 @@ public java.lang.String  getId(){
  public java.lang.String  getWlCode(){
  return this.wlCode;  
 }
+ 
+ 
+ 
 
- public void setRecordUser(java.lang.String  recordUser){
+ public String getViewpaiXu() {
+	return viewpaiXu;
+}
+
+public void setViewpaiXu(String viewpaiXu) {
+	this.viewpaiXu = viewpaiXu;
+}
+
+public void setRecordUser(java.lang.String  recordUser){
  this.recordUser=recordUser;
 }
 

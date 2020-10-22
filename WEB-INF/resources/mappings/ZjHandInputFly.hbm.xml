@@ -186,6 +186,43 @@
     <property name="na2o">
       <column name="na2o"/>
     </property>
+
+    <property name="tfe">
+      <column name="tfe"/>
+    </property>
+    <property name="cao">
+      <column name="cao"/>
+    </property>
+    <property name="mgo">
+      <column name="mgo"/>
+    </property>
+    <property name="sio2">
+      <column name="sio2"/>
+    </property>
+    <property name="al2o3">
+      <column name="al2o3"/>
+    </property>
+    <property name="tio2">
+      <column name="tio2"/>
+    </property>
+    <property name="mno">
+      <column name="mno"/>
+    </property>
+    <property name="cr2o3">
+      <column name="cr2o3"/>
+    </property>
+    <property name="k2o">
+      <column name="k2o"/>
+    </property>
+    <property name="pb">
+      <column name="pb"/>
+    </property>
+    <property name="zn">
+      <column name="zn"/>
+    </property>
+    <property name="ni">
+      <column name="ni"/>
+    </property>
 								
   </class>
 </hibernate-mapping>

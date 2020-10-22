@@ -28,7 +28,7 @@
     <property name="fieldName">
       <column name="fieldName"/>
     </property>
-    <property name="viewpaiXu">
+    <property name="viewpaiXu" >
       <column name="viewpaiXu"/>
     </property>
     <property name="recordUserName">

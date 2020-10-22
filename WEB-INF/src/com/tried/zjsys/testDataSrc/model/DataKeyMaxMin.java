@@ -22,7 +22,7 @@ private java.lang.String recordUser;
 private java.lang.String recordUserName;
 //;
 private java.lang.String fieldName;
-private java.lang.String  viewpaiXu;
+private java.lang.Integer  viewpaiXu;
 private java.util.Date recordTime;
 public String jsField;
  public void setId(java.lang.String  id){
@@ -101,12 +101,12 @@ public void setKeyMin(java.lang.String keyMin) {
 
 
 
-public java.lang.String getViewpaiXu() {
+public java.lang.Integer getViewpaiXu() {
 	return viewpaiXu;
 }
 
 
-public void setViewpaiXu(java.lang.String viewpaiXu) {
+public void setViewpaiXu(java.lang.Integer viewpaiXu) {
 	this.viewpaiXu = viewpaiXu;
 }
 

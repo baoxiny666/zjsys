@@ -85,6 +85,21 @@ private java.lang.String handInput_lidu;
 
 private java.lang.String handInput_na2o;
 
+
+//boxy新加
+private java.lang.String handInput_tfe;
+private java.lang.String handInput_cao;
+private java.lang.String handInput_mgo;
+private java.lang.String handInput_sio2;
+private java.lang.String handInput_al2o3;
+private java.lang.String handInput_tio2;
+private java.lang.String handInput_mno;
+private java.lang.String handInput_cr2o3;
+private java.lang.String handInput_k2o;
+private java.lang.String handInput_pb;
+private java.lang.String handInput_zn;
+private java.lang.String handInput_ni;
+
  public void setRecordTime(java.util.Date  recordTime){
  this.recordTime=recordTime;
 }
@@ -676,6 +691,103 @@ public java.lang.String getHandInput_na2o() {
 public void setHandInput_na2o(java.lang.String handInput_na2o) {
 	this.handInput_na2o = handInput_na2o;
 }
+
+public java.lang.String getHandInput_tfe() {
+	return handInput_tfe;
+}
+
+public void setHandInput_tfe(java.lang.String handInput_tfe) {
+	this.handInput_tfe = handInput_tfe;
+}
+
+public java.lang.String getHandInput_cao() {
+	return handInput_cao;
+}
+
+public void setHandInput_cao(java.lang.String handInput_cao) {
+	this.handInput_cao = handInput_cao;
+}
+
+public java.lang.String getHandInput_mgo() {
+	return handInput_mgo;
+}
+
+public void setHandInput_mgo(java.lang.String handInput_mgo) {
+	this.handInput_mgo = handInput_mgo;
+}
+
+public java.lang.String getHandInput_sio2() {
+	return handInput_sio2;
+}
+
+public void setHandInput_sio2(java.lang.String handInput_sio2) {
+	this.handInput_sio2 = handInput_sio2;
+}
+
+public java.lang.String getHandInput_al2o3() {
+	return handInput_al2o3;
+}
+
+public void setHandInput_al2o3(java.lang.String handInput_al2o3) {
+	this.handInput_al2o3 = handInput_al2o3;
+}
+
+public java.lang.String getHandInput_tio2() {
+	return handInput_tio2;
+}
+
+public void setHandInput_tio2(java.lang.String handInput_tio2) {
+	this.handInput_tio2 = handInput_tio2;
+}
+
+public java.lang.String getHandInput_mno() {
+	return handInput_mno;
+}
+
+public void setHandInput_mno(java.lang.String handInput_mno) {
+	this.handInput_mno = handInput_mno;
+}
+
+public java.lang.String getHandInput_cr2o3() {
+	return handInput_cr2o3;
+}
+
+public void setHandInput_cr2o3(java.lang.String handInput_cr2o3) {
+	this.handInput_cr2o3 = handInput_cr2o3;
+}
+
+public java.lang.String getHandInput_k2o() {
+	return handInput_k2o;
+}
+
+public void setHandInput_k2o(java.lang.String handInput_k2o) {
+	this.handInput_k2o = handInput_k2o;
+}
+
+public java.lang.String getHandInput_pb() {
+	return handInput_pb;
+}
+
+public void setHandInput_pb(java.lang.String handInput_pb) {
+	this.handInput_pb = handInput_pb;
+}
+
+public java.lang.String getHandInput_zn() {
+	return handInput_zn;
+}
+
+public void setHandInput_zn(java.lang.String handInput_zn) {
+	this.handInput_zn = handInput_zn;
+}
+
+public java.lang.String getHandInput_ni() {
+	return handInput_ni;
+}
+
+public void setHandInput_ni(java.lang.String handInput_ni) {
+	this.handInput_ni = handInput_ni;
+}
  
+
  
 }

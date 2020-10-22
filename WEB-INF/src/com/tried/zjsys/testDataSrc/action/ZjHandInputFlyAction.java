@@ -91,7 +91,7 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 	public void wlHead(){
 		try {
 			if(strIsNotNull(wlCode)){
-				outJsonList(dataKeyMaxMinService.findAll("FROM DataKeyMaxMin where deviceName='"+wlCode+"' order by viewpaiXu asc "));
+				outJsonList(dataKeyMaxMinService.findAll("FROM DataKeyMaxMin where deviceName='"+wlCode+"' order by cast(viewpaiXu  as int)  asc "));
 			}else{
 				outJsonList(dataKeyMaxMinService.findAll());
 			}
@@ -306,11 +306,25 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 		    	 hand.setCo((dataMap.containsKey("co"))?dataMap.get("co"):"");
 		    	 hand.setLidu((dataMap.containsKey("lidu"))?dataMap.get("lidu"):"");
 		    	 
-		    	 boolean rrr = dataMap.containsKey("na2o");
-		    	 String nnnn  = dataMap.get("na2o").toString();
-		    	 System.out.println(rrr);
-		    	 System.out.println(nnnn);
+		    	 //boolean rrr = dataMap.containsKey("na2o");
+		    	 //String nnnn  = dataMap.get("na2o").toString();
+		    	 //System.out.println(rrr);
+		    	 //System.out.println(nnnn);
 		    	 hand.setNa2o((dataMap.containsKey("na2o"))?dataMap.get("na2o"):"");
+		    	
+		    	 
+		    	 hand.setTfe((dataMap.containsKey("tfe"))?dataMap.get("tfe"):"");
+		    	 hand.setCao((dataMap.containsKey("cao"))?dataMap.get("cao"):"");
+		    	 hand.setMgo((dataMap.containsKey("mgo"))?dataMap.get("mgo"):"");
+		    	 hand.setSio2((dataMap.containsKey("sio2"))?dataMap.get("sio2"):"");
+		    	 hand.setAl2o3((dataMap.containsKey("al2o3"))?dataMap.get("al2o3"):"");
+		    	 hand.setTio2((dataMap.containsKey("tio2"))?dataMap.get("tio2"):"");
+		    	 hand.setMno((dataMap.containsKey("mno"))?dataMap.get("mno"):"");
+		    	 hand.setCr2o3((dataMap.containsKey("cr2o3"))?dataMap.get("cr2o3"):"");
+		    	 hand.setK2o((dataMap.containsKey("k2o"))?dataMap.get("k2o"):"");
+		    	 hand.setPb((dataMap.containsKey("pb"))?dataMap.get("pb"):"");
+		    	 hand.setZn((dataMap.containsKey("zn"))?dataMap.get("zn"):"");
+		    	 hand.setNi((dataMap.containsKey("ni"))?dataMap.get("ni"):"");
 		  
 		    	 
 		    	 hand.setRecordTime(new Date());

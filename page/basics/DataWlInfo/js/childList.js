@@ -343,14 +343,14 @@ function func_sort(){
 		recordIds=recordIds+rows[i].id+",";
 	}
 	$.ajax( {
-		url : getContextPath() + "/tried_system/systemMenuAction_sort.action",
+		url : getContextPath() + "/zjsys_testDataSrc/dataKeyMaxMinAction_sort.action",
 		type : "post",
 		dataType : "json",
 		data : "recordIdS=" + recordIds,
 		async : true,
 		success : function(DATA, request, settings) {
 			 if(DATA.STATUS=='SUCCESS'){
-				 initDataGrid();
+				 $("#childGrid").datagrid("reload");
 			 }
 		},
 		error : function(event, request, settings) {
@@ -359,28 +359,3 @@ function func_sort(){
 	});
 }
 
-/**
- * 排序
- */
-function func_sort(){
-	var rows = $('#childGrid').datagrid('getRows');
-	var recordIds="";
-	for(var i=0;i<rows.length;i++){
-		recordIds=recordIds+rows[i].id+",";
-	}
-	$.ajax( {
-		url : getContextPath() + "/zjsys_testDataSrc/dataKeyMaxMinAction_sort.action",
-		type : "post",
-		dataType : "json",
-		data : "recordIdS=" + recordIds,
-		async : true,
-		success : function(DATA, request, settings) {
-			 if(DATA.STATUS=='SUCCESS'){
-				 initDataGrid();
-			 }
-		},
-		error : function(event, request, settings) {
-			$.messager.alert('信息','<font style="font-weight: bold;font-size: 15;color: red">网络异常!</font>','error');
-		}
-	});
-}

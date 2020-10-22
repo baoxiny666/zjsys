@@ -2,7 +2,10 @@ package com.tried.zjsys.basics.action;
 
 import java.util.Date;
 import java.util.List;
-
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
@@ -15,6 +18,7 @@ import com.tried.zjsys.basics.model.DataWlInfo;
 import com.tried.zjsys.basics.service.DataWlInfoService;
 import com.tried.zjsys.testDataSrc.model.DataKeyMaxMin;
 import com.tried.zjsys.testDataSrc.service.DataKeyMaxMinService;
+import com.utils.JdbcUtils;
 
 /**
  * @Description 物料名称 管理
@@ -46,7 +50,8 @@ public class DataWlInfoAction extends BaseAction<DataWlInfo> {
 			if (strIsNotNull(model.getWlName())) {
 				this.condition = " and wlName like '%" + model.getWlName() + "%'";
 			}
-			this.condition +=  this.getOrderColumn();
+			this.condition +=" order by cast(viewpaiXu  as int)  desc ";
+			//this.condition +=  this.getOrderColumn();
 			outJsonData(dataWlInfoService.findPage(new Page<DataWlInfo>(page, rows), "from DataWlInfo where 1=1 " + this.condition).getResult());
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -62,8 +67,23 @@ public class DataWlInfoAction extends BaseAction<DataWlInfo> {
 	 */
 	public void add() {
 		try {
+		
+			 String sql = "select NEXT VALUE FOR wuliaoSeq as wuliaoSeq";
+			  
+			 Connection con = JdbcUtils.getConnection(); 
+			 Statement statement =con.createStatement();
+			 
+			 ResultSet resultSet = statement.executeQuery(sql); 
+			 String wuliaoSeq = null;
+			 while (resultSet.next()) { 
+				 wuliaoSeq = resultSet.getString("wuliaoSeq");
+			 
+			 }
+			 
+			
 			model.setRecordTime(new Date());
 			model.setRecordUser(getCurrentUser().getId());
+			model.setViewpaiXu(wuliaoSeq);
 			List<DataWlInfo> dataWlInfoList=dataWlInfoService.findAll("from DataWlInfo where wlCode='"+model.getWlCode()+"'");
 		if(dataWlInfoList.size()==0){
 			dataWlInfoService.add(model);
