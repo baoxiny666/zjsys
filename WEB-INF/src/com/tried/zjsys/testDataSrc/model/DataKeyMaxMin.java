@@ -22,6 +22,7 @@ private java.lang.String recordUser;
 private java.lang.String recordUserName;
 //;
 private java.lang.String fieldName;
+private java.lang.String  viewpaiXu;
 private java.util.Date recordTime;
 public String jsField;
  public void setId(java.lang.String  id){
@@ -97,6 +98,18 @@ public java.lang.String getKeyMin() {
 public void setKeyMin(java.lang.String keyMin) {
 	this.keyMin = keyMin;
 }
+
+
+
+public java.lang.String getViewpaiXu() {
+	return viewpaiXu;
+}
+
+
+public void setViewpaiXu(java.lang.String viewpaiXu) {
+	this.viewpaiXu = viewpaiXu;
+}
+
 
 public void setRecordUser(java.lang.String  recordUser){
  this.recordUser=recordUser;

@@ -1,9 +1,14 @@
 package com.tried.zjsys.testDataSrc.action;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.annotation.Resource;
 
@@ -15,6 +20,7 @@ import com.tried.base.action.BaseAction;
 import com.tried.common.Page;
 import com.tried.zjsys.testDataSrc.model.DataKeyMaxMin;
 import com.tried.zjsys.testDataSrc.service.DataKeyMaxMinService;
+import com.utils.JdbcUtils;
 
 /**
  * @Description 设备属性阈值 管理
@@ -39,8 +45,8 @@ public class DataKeyMaxMinAction extends BaseAction<DataKeyMaxMin> {
 	public void list() {
 		try {
 			if (strIsNotNull(model.getDeviceName())) {
-				this.condition = " and  deviceName='" + model.getDeviceName() + "'";
-				this.condition +=  this.getOrderColumn();
+				this.condition = " and  deviceName='" + model.getDeviceName() + "' order by viewpaiXu asc ";
+				//this.condition +=  this.getOrderColumn();
 				outJsonData(dataKeyMaxMinService.findPage(new Page<DataKeyMaxMin>(page, rows), "from DataKeyMaxMin where 1=1 " + this.condition).getResult());
 			}
 		 } catch (Exception e) {
@@ -57,9 +63,26 @@ public class DataKeyMaxMinAction extends BaseAction<DataKeyMaxMin> {
 	 */
 	public void add() {
 		try {
+			//需要执行的Sql语句
+	        String sql = "select NEXT VALUE FOR materialyuansuSeq as viewpaiXu";
+	        //通过工具类获取连接
+	        Connection con = JdbcUtils.getConnection();
+	        Statement statement = con.createStatement();
+	        //执行sql语句
+	        ResultSet resultSet = statement.executeQuery(sql);
+	        String viewpaiXu = null;
+	        while (resultSet.next()) {
+	            viewpaiXu = resultSet.getString("viewpaiXu");
+	            
+	        }
+	        //释放资源
+	        
 			model.setRecordTime(new Date());
 			model.setRecordUser(getCurrentUser().getId());
+			
+			model.setViewpaiXu(viewpaiXu);
 			dataKeyMaxMinService.add(model);
+			JdbcUtils.release(con, statement, resultSet);
 			outSuccessJson("添加成功");
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -95,6 +118,28 @@ public class DataKeyMaxMinAction extends BaseAction<DataKeyMaxMin> {
 			model.setRecordTime(new Date());
 			model.setRecordUser(getCurrentUser().getId());
 			dataKeyMaxMinService.update(model);
+			outSuccessJson("修改成功");
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			outErrorJson("修改失败");
+		}
+	}
+
+	
+	/**
+	 * @Description 重新排序
+	 * @author boxy tianglhtg
+	 * @date 2020-10-22 09:56:06
+	 * @version V2.0
+	 */
+	public void sort() {
+		try {
+			List<String> sqls=new ArrayList<String>();
+			String[] ids=recordIdS.split(",");
+			for(int i=0;i<ids.length;i++){
+				sqls.add(" update  tried_data_key_max_min  set viewpaiXu="+i+" where id='"+ids[i]+"'");
+			}
+			dataKeyMaxMinService.dbBeatchSql(sqls);
 			outSuccessJson("修改成功");
 		} catch (Exception e) {
 			logger.error(e.getMessage());

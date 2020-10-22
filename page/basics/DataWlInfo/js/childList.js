@@ -39,6 +39,20 @@ var headChile = [ [ {
 	"sortable" : false
 }, 
 {
+	"field" : "_optionsss",
+	"title" : "操作",
+	"width" : "200",
+	"align" : "center",
+	"sortable" : false,
+	"formatter" : function(value, row, index) {
+		var btn = '<input type="button" value="置顶" style="border:0" onclick="func_toFirst(' + index + ')">';
+		btn = btn + ' <input type="button" value="上移"  style="border:0" onclick="func_toPre(' + index + ')">';
+		btn = btn + ' <input type="button" value="下移"  style="border:0" onclick="func_toNext(' + index + ')">';
+		btn = btn + ' <input type="button" value="置底"  style="border:0" onclick="func_toBottom(' + index + ')">';
+		return btn;
+	}
+}, 
+{
 	"field" : "recordUserName",
 	"title" : "操作人",
 	"width" : 60,
@@ -253,6 +267,120 @@ function func_delMaxMin() {
 					func_msg_error("网络异常!");
 				}
 			});
+		}
+	});
+}
+/**
+ * 行置顶
+ */
+function func_toFirst(index){
+	var firstRow = $('#childGrid').datagrid('getData').rows[0];
+    var currentRow = $('#childGrid').datagrid('getData').rows[index];
+    $('#childGrid').datagrid('getData').rows[0] = currentRow;
+    $('#childGrid').datagrid('getData').rows[index] = firstRow;
+    $('#childGrid').datagrid('refreshRow', 0);
+    $('#childGrid').datagrid('refreshRow', index);
+    $('#childGrid').datagrid('unselectAll');
+    $('#childGrid').datagrid('selectRow', 0);
+    func_sort();
+}
+/**
+ * 行上移
+ */
+function func_toPre(index){
+    if(index>0){
+	    var preRow = $('#childGrid').datagrid('getData').rows[index-1];
+	    var currentRow = $('#childGrid').datagrid('getData').rows[index];
+	    $('#childGrid').datagrid('getData').rows[index-1] = currentRow;
+	    $('#childGrid').datagrid('getData').rows[index] = preRow;
+	    $('#childGrid').datagrid('refreshRow', index-1);
+	    $('#childGrid').datagrid('refreshRow', index);
+	    $('#childGrid').datagrid('unselectAll');
+	    $('#childGrid').datagrid('selectRow', index-1);
+	    func_sort();
+	   
+    }
+}
+/**
+ * 行下移
+ */
+function func_toNext(index){
+	var rows = $('#childGrid').datagrid('getRows').length;
+	if (index != rows - 1) {
+		   var nextRow = $('#childGrid').datagrid('getData').rows[index+1];
+		    var currentRow = $('#childGrid').datagrid('getData').rows[index];
+		    $('#childGrid').datagrid('getData').rows[index+1] = currentRow;
+		    $('#childGrid').datagrid('getData').rows[index] = nextRow;
+		    $('#childGrid').datagrid('refreshRow', index+1);
+		    $('#childGrid').datagrid('refreshRow', index);
+		    $('#childGrid').datagrid('unselectAll');
+		    $('#childGrid').datagrid('selectRow', index+1);
+		    func_sort();
+	}
+}
+/**
+ * 行置底
+ */
+function func_toBottom(index){
+			var rows = $('#childGrid').datagrid('getRows').length;
+		    var bottomRow = $('#childGrid').datagrid('getData').rows[rows-1];
+		    var currentRow = $('#childGrid').datagrid('getData').rows[index];
+		    $('#childGrid').datagrid('getData').rows[rows - 1] = currentRow;
+		    $('#childGrid').datagrid('getData').rows[index] = bottomRow;
+		    $('#childGrid').datagrid('refreshRow', rows-1);
+		    $('#childGrid').datagrid('refreshRow', index);
+		    $('#childGrid').datagrid('unselectAll');
+		    $('#childGrid').datagrid('selectRow', rows-1);
+		    func_sort();
+}
+/**
+ * 排序
+ */
+function func_sort(){
+	var rows = $('#childGrid').datagrid('getRows');
+	var recordIds="";
+	for(var i=0;i<rows.length;i++){
+		recordIds=recordIds+rows[i].id+",";
+	}
+	$.ajax( {
+		url : getContextPath() + "/tried_system/systemMenuAction_sort.action",
+		type : "post",
+		dataType : "json",
+		data : "recordIdS=" + recordIds,
+		async : true,
+		success : function(DATA, request, settings) {
+			 if(DATA.STATUS=='SUCCESS'){
+				 initDataGrid();
+			 }
+		},
+		error : function(event, request, settings) {
+			$.messager.alert('信息','<font style="font-weight: bold;font-size: 15;color: red">网络异常!</font>','error');
+		}
+	});
+}
+
+/**
+ * 排序
+ */
+function func_sort(){
+	var rows = $('#childGrid').datagrid('getRows');
+	var recordIds="";
+	for(var i=0;i<rows.length;i++){
+		recordIds=recordIds+rows[i].id+",";
+	}
+	$.ajax( {
+		url : getContextPath() + "/zjsys_testDataSrc/dataKeyMaxMinAction_sort.action",
+		type : "post",
+		dataType : "json",
+		data : "recordIdS=" + recordIds,
+		async : true,
+		success : function(DATA, request, settings) {
+			 if(DATA.STATUS=='SUCCESS'){
+				 initDataGrid();
+			 }
+		},
+		error : function(event, request, settings) {
+			$.messager.alert('信息','<font style="font-weight: bold;font-size: 15;color: red">网络异常!</font>','error');
 		}
 	});
 }

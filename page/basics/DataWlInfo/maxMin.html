@@ -4,7 +4,20 @@
 <title>同步周期管理</title>
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript">
+$.extend($.fn.validatebox.defaults.rules, {
+	
+	viewpaiXu:{
+    	validator:function(value){
+    		var tex = /^[1-9]\d*|0$/;
+    		return tex.test(value);
+    	},
+    	message:'只能输入非负整数'
+    }
+		
 
+});
+</script>
 </head>
 <body>
 	<div align="center" style="margin-top: 10px">
@@ -150,7 +163,10 @@
 					<td style="height: 27px;text-align: right;">最大阈值：</td>
 					<td ><input class="easyui-textbox" name="keyMax" style="width: 200px; height: 25px" /></td>
 				</tr>
-				
+				<tr>
+					<td style="height: 27px;text-align: right;">功能位置：</td>
+					<td><input class="easyui-textbox" type="text" validType="viewpaiXu" name="viewpaiXu" data-options="required:true" placeholder="按 0-1,2,3...的顺序填写"   style="width: 200px; height: 25px" /></td>
+				</tr>
 				 
 			 
 				 
