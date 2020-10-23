@@ -40,6 +40,7 @@ public class DataWlInfoServiceImpl extends BaseServiceImpl<DataWlInfo> implement
 			d.setKeyMax(data.getKeyMax());
 			d.setKeyMin(data.getKeyMin());
 			d.setKeyName(data.getKeyName());
+			d.setViewpaiXu(data.getViewpaiXu());
 			d.setRecordTime(new Date());
 			d.setRecordUser(userId);
 			dataKeyMaxMinService.add(d);

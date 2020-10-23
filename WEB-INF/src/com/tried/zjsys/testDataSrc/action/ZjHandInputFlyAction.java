@@ -90,8 +90,10 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 	 */
 	public void wlHead(){
 		try {
-			if(strIsNotNull(wlCode)){
-				outJsonList(dataKeyMaxMinService.findAll("FROM DataKeyMaxMin where deviceName='"+wlCode+"' order by cast(viewpaiXu  as int)  asc "));
+
+			String wlCode_encode = java.net.URLDecoder.decode(wlCode, "UTF-8");
+			if(strIsNotNull(wlCode_encode)){
+				outJsonList(dataKeyMaxMinService.findAll("FROM DataKeyMaxMin where deviceName='"+wlCode_encode+"' order by cast(viewpaiXu  as int)  asc "));
 			}else{
 				outJsonList(dataKeyMaxMinService.findAll());
 			}
