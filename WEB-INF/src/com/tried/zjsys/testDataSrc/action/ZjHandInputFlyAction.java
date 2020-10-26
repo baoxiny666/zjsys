@@ -307,6 +307,7 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 		    	 hand.setO2((dataMap.containsKey("o2"))?dataMap.get("o2"):"");
 		    	 hand.setCo((dataMap.containsKey("co"))?dataMap.get("co"):"");
 		    	 hand.setLidu((dataMap.containsKey("lidu"))?dataMap.get("lidu"):"");
+		    	 hand.setCaf2((dataMap.containsKey("caf2"))?dataMap.get("caf2"):"");
 		    	 
 		    	 //boolean rrr = dataMap.containsKey("na2o");
 		    	 //String nnnn  = dataMap.get("na2o").toString();
