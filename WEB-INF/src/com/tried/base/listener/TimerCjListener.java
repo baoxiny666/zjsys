@@ -66,6 +66,9 @@ public class TimerCjListener extends HttpServlet implements HttpSessionListener,
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	
+		    (new Thread((Runnable)new YingGuangCircleThread030())).start();
+		   
 //		new Thread(new TluyiCircleThread028()).start();//碳硫仪ZJ-ZX-028
 //	    new Thread(new TluyiCircleThread029()).start();//碳硫仪ZJ-ZX-029
 //		new Thread(new YingGuangCircleThread030()).start();//荧光仪 030
