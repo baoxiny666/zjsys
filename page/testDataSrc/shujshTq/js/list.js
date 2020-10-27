@@ -35,7 +35,7 @@ function func_creatTable(){
 	var _wlCode= $("#wlCode_search").combobox('getValue');
 	
 	$.ajax({
-		url : getContextPath() + "/zjsys_testDataSrc/zjHandInputFlyAction_wlHead.action?wlCode="+_wlCode,
+		url : getContextPath() + "/zjsys_testDataSrc/zjHandInputFlyAction_wlHead.action?wlCode="+encodeURIComponent(encodeURIComponent(_wlCode)),
 		type : "post",
 		dataType : "json",
 		async : false,
@@ -258,10 +258,13 @@ $.fn.rlCombobox = function(wlType,defaultVal){
 			return row[opts.textField].indexOf(q)>= 0;
 		},
 	    onLoadSuccess:function(){
+	    	debugger;
 	 	  if(defaultVal!=undefined){
+	 		 debugger;
 	 	    		$(this).combobox('select',defaultVal);
 	 	    		$(this).combobox('setValue',defaultVal);
 	 	    }else{
+	 	    	debugger;
 	 	    	 var data= $(this).combobox("getData");
 	 	    	  if (data.length > 0) {
 	                  $(this).combobox('select', data[0].wlCode);

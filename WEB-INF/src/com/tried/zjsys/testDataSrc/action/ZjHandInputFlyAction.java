@@ -113,19 +113,27 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 	ViewRanliaoService viewRanliaoService;
 	@Resource
 	ViewYuanliaoService viewYuanliaoService;
+
 	
 	public void listFly(){
 		try {
 			List<DataKeyMaxMin> keyList=dataKeyMaxMinService.findAll("FROM DataKeyMaxMin where deviceName='"+wlCode+"'");
+			List<DataWlInfo> changeTypeList =dataWlInfoService.findAll("FROM DataWlInfo where wlCode ='"+wlCode+"'");
 			String wlType="";
-			for(DataKeyMaxMin KEY :keyList){
-				if(KEY.getFieldName().indexOf("gongye")!=-1){
-					wlType="燃料"; //燃料视图
-				}
-				if(KEY.getFieldName().indexOf("yingguang")!=-1){
-					wlType="原料";//原料视图
-				}
-			}
+			/*
+			 * for(DataKeyMaxMin KEY :keyList){
+			 * if(KEY.getFieldName().indexOf("gongye")!=-1){ wlType="燃料"; //燃料视图 }
+			 * if(KEY.getFieldName().indexOf("yingguang")!=-1){ wlType="原料";//原料视图 } }
+			 */
+			 for(DataWlInfo KEY :changeTypeList){
+				 if("原料".equals(KEY.getWlType().toString())) {
+					 wlType="原料";
+				 }
+				 
+				 if("手录".equals(KEY.getWlType().toString())) {
+					 wlType="手录";
+				 }
+			 }
 			 if(strIsNotNull(getObjStartTime())){
 				 this.condition+=" and handInput_dataTime>='"+getObjStartTime()+"' ";
 			 } if(strIsNotNull(getObjEndTime())){
@@ -141,10 +149,11 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 			
 			 this.condition +=  this.getOrderColumn();
 			 
-			if("燃料".equals(wlType)){
+			/*if("燃料".equals(wlType)){
 				outRowsData(viewRanliaoService.findAll("from ViewRanliao where 1=1  "+this.condition));
 			}
-			else if("原料".equals(wlType)){
+			else*/
+			if("原料".equals(wlType)){
 				outRowsData(viewYuanliaoService.findAll("from ViewYuanliao where  1=1  "+this.condition));
 			}else{
 				outRowsData(viewHandInputService.findAll("from ViewHandInput where  1=1   "+this.condition));
