@@ -131,7 +131,7 @@ public void synCollect(String deviceNo,String cjtime) throws Exception {
   if(cjtime==null){cjtime=ConfigUtils.dataToSimpleString(new Date());}
 	if(ThreadStaticVariable.DataCircleMap.get(deviceNo)==null){return;}
 	  DataCircle device=ThreadStaticVariable.DataCircleMap.get(deviceNo); 
-	 // List<YingguangSrcBxy> resList=new ArrayList<YingguangSrcBxy>();
+	  //List<YingguangSrcBxy> resList=new ArrayList<YingguangSrcBxy>();
 	  Map<String,YingguangSrcBxy> resMap=new HashMap<String,YingguangSrcBxy>();
 	  Map<String,YingguangSrcBxy> DBMap=getAllYinguangSrcBxyByTime(cjtime,deviceNo);
 	  Map<String,String> eleMap=getAllElementMap(); 

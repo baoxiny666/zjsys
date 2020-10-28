@@ -102,8 +102,8 @@ function func_creatTable(){
 		singleSelect:true,
 		selectOnCheck : true,
 		ctrlSelect : false,
-		/*onClickRow: onClickCell,
-		onEndEdit: onEndEdit,*/
+		/*onClickRow: onClickCell,*/
+		onEndEdit: onEndEdit,
 		queryParams : {  //参数传递
 			wlCode:$("#wlCode_search").combobox('getValue'),
 			/*dataStatus:$("#dataStatus_search").combobox('getValue'),*/
@@ -156,13 +156,35 @@ function func_edit(){
 			var template = '<div class="kuang">'+
 						        '<div class="titlestyle">{keyname}: </div>'+
 					            '<div  class="valuesstyle">'+
-					                '<input  class="easyui-validatebox"  data-options="required:true" validType="accountexsit"  type="text" id="{inputid}" name="{inputname}" value="{inputvalue}"   placeholder=""/>'+
+					                '<input  class="easyui-validatebox"   validType="accountexsit"   id="{inputid}" name="{inputname}" value="{inputvalue}"   placeholder=""/>'+
 					            '</div>'+
 					        '</div>';
 			
+			
+			var datetemplate = '<div class="kuang_riq">'+
+							        '<div class="titlestyle">分析日期: </div>'+
+						            '<div  class="valuesstyle">'+
+						                '<input  class="easyui-datebox" required="true" type="text" id="{inputid}" name="{inputname}" value="{inputvalue}"   placeholder=""/>'+
+						            '</div>'+
+						        '</div>';
+			
+			var sampletemplate = '<div class="kuang">'+
+							        '<div class="titlestyle">样品: </div>'+
+						            '<div  class="valuesstyle">'+
+						                '<input  class="class="easyui-text"  required="true" type="text" id="{inputid}" name="{inputname}" value="{inputvalue}"   placeholder=""/>'+
+						            '</div>'+
+						        '</div>';
+			var idtemplate = '<input name="id" type="hidden"  value="{idss}" />'
 			$("#shujsh_edit_table").empty();
+			
+			$("#shujsh_edit_table").append(sampletemplate.replace(/{inputname}/g,"handInput_sampleNum")
+					   .replace(/{inputid}/g,"handInput_sampleNum")
+					   .replace(/{inputvalue}/g,row.handInput_sampleNum)
+			).append(datetemplate.replace(/{inputname}/g,"handInput_dataTime")
+								   .replace(/{inputid}/g,"handInput_dataTime")
+								   .replace(/{inputvalue}/g,row.handInput_dataTime)
+			).append(idtemplate.replace(/{idss}/g,row.id));
 			for(var i=0;i<obj.length;i++){
-				debugger;
 				$("#shujsh_edit_table").append(template.replace(/{inputname}/g,obj[i].fieldName)
 													   .replace(/{inputid}/g,obj[i].fieldName)
 													   .replace(/{inputvalue}/g,obj[i].inputvalue)
@@ -170,7 +192,15 @@ function func_edit(){
 				)
 			}
 			
+			
 			showMessageDialog_edit();
+			
+			
+			$.parser.parse('#modelForm'); 
+			('input[type!="hidden"],select,textarea',$("#modelForm")).each(function(){  
+			    $(this).validatebox();  
+			});
+			
 
 		}else{
 			alert("您选择的记录无手录内容，无法编辑！");
@@ -188,13 +218,14 @@ function func_edit(){
 function func_bainjibxy(){
 	var rows=$("#datagrid").datagrid("getRows");
 	var rowIndex=$('#datagrid').datagrid('getRowIndex',$('#datagrid').datagrid('getSelected'));
-	
+
 	var fields = $('#modelForm').serializeArray();
     var obj = {}; //声明一个对象
     $.each(fields, function(index, field) {
         obj[field.name] = field.value;
         rows[rowIndex][field.name] = field.value;
     })
+    debugger;
 	var _temData= JSON.stringify(rows[rowIndex]);
 	_temData=encodeURI(encodeURI(_temData));
 	$.ajax( {
@@ -227,6 +258,7 @@ function func_bainjibxy(){
 
 var editIndex = undefined;
 function endEditing(){
+	debugger;
 	if (editIndex == undefined){return true}
 	if ($('#datagrid').datagrid('validateRow', editIndex)){
 		$('#datagrid').datagrid('endEdit', editIndex);
@@ -321,7 +353,7 @@ function func_accept(){
  * @param index
  */
 function func_saveRow(_index){
-	
+	debugger;
 	var rows=$("#datagrid").datagrid("getRows");
 	var _temData= JSON.stringify(rows[_index]);
 	_temData=encodeURI(encodeURI(_temData));
@@ -352,9 +384,10 @@ $.fn.rlCombobox = function(wlType,defaultVal){
 	    panelHeight:300,
  	    valueField:'wlCode',    
 	    textField:'wlName',
+	    required:true,
 	    filter: function(q, row){
 			var opts = $(this).combobox('options');
-			return row[opts.textField].indexOf(q)>= 0;
+			return row[opts.textField].indexOf(q) == 0;
 		},
 	    onLoadSuccess:function(){
 	    	debugger;
@@ -372,6 +405,9 @@ $.fn.rlCombobox = function(wlType,defaultVal){
 	 	    }
 	 	},
 	 	onChange:function(newValue, oldValue){
+//	 		func_creatTable();
+	 	},
+	 	onSelect:function(record){
 	 		func_creatTable();
 	 	}
 		

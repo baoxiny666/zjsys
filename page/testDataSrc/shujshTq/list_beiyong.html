@@ -16,9 +16,18 @@
 	<script type="text/javascript" src="./../../../js/jquery.min.js"></script>
 	<script type="text/javascript" src="./../../../js/jquery.tried.min.js"></script>
 	<script type="text/javascript" src="./../../../js/easyui-lang-zh_CN.js"></script>
-		<script type="text/javascript" src="./../../../js/jquery.validatebox.js"></script>
 	<script type="text/javascript" src="./../../../js/tried.js?v=324232"></script>
-    <script type="text/javascript" src="js/list.js?v=324232"></script>
+    <script>
+	    $.extend($.fn.validatebox.defaults.rules, {
+	    	accountexsit : {// 
+	    		validator:function(value){
+		    		var tex = /^[1-9]\d*|0$/;
+		    		return tex.test(value);
+		    	},
+		    	message:'只能输入非负整数'
+		    }
+	    })
+    </script> 
     
    
     
@@ -55,7 +64,7 @@
 	</div>
 	<div class="easyui-window" title="修改" id="editWindow" style="width:900px;height:400px;" closed="true">
 		<form id="modelForm" class="easyui-form" action="#" method="post" >
-			<input name="id" type="hidden" />
+			
 			<div cellpadding="0" cellspacing="0" border="0"  id="shujsh_edit_table">
 				
 			</div>
@@ -67,6 +76,7 @@
 		
 		<script type="text/javascript">
 			function showMessageDialog_edit(){
+				
 				$("#editWindow").window({
 			        title: "修改",
 			        width: 900,
@@ -84,15 +94,7 @@
 		</script>
 	 </div>
 </body>
- <script>
-	    $.extend($.fn.validatebox.defaults.rules, {
-	    	accountexsit : {// 
-	    		validator:function(value){
-		    		var tex = /^[1-9]\d*|0$/;
-		    		return tex.test(value);
-		    	},
-		    	message:'只能输入非负整数'
-		    }
-	    })
-    </script>
+
+
+     <script type="text/javascript" src="js/list.js?v=324232"></script>
 </html>
