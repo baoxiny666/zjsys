@@ -1,5 +1,6 @@
 var _ERPURL="http://10.1.0.22";
 var _currentUserId="";
+var _currentwlCode="";
 $(function() {
 	reWindowSize();
 	$("#wlCode_search").rlCombobox();
@@ -30,10 +31,22 @@ function func_creatTable(){
 	    	            ]];
 	var  head = [[
 	              {"field":"handInput_dataTime","title":"分析日期","width":"100","align":"center","sortable":false,"editor":{ "type":"datebox","options":{required:true}}},
-	             {"field":"dataStatus","title":"状态","width":"100","align":"center","sortable":false}
+	              {"field": "belongcompany", "title": "所属厂", "width": "150", "align": "center",
+	            	 
+	                  "editor": {
+	                      "type": "combobox",
+	                      "options": {
+	                          "valueField": "id",
+	                          "textField": "text",
+	                          "url": getContextPath()+"/page/testDataSrc/shujshTq/json/belongcompany.json",
+	                          "required": true
+	                      }
+	                  }
+                  },
+	              {"field":"dataStatus","title":"状态","width":"100","align":"center","sortable":false}
 	             ]];
 	var _wlCode= $("#wlCode_search").combobox('getValue');
-	
+	_currentwlCode = _wlCode;
 	$.ajax({
 		url : getContextPath() + "/zjsys_testDataSrc/zjHandInputFlyAction_wlHead.action?wlCode="+encodeURIComponent(encodeURIComponent(_wlCode)),
 		type : "post",
@@ -223,7 +236,9 @@ function func_accept(){
  * @param index
  */
 function func_saveRow(_index){
+	debugger;
 	var rows=$("#datagrid").datagrid("getRows");
+	rows[_index]["currentwlCode"] = _currentwlCode;
 	var _temData= JSON.stringify(rows[_index]);
 	_temData=encodeURI(encodeURI(_temData));
 	$.ajax( {
@@ -273,6 +288,9 @@ $.fn.rlCombobox = function(wlType,defaultVal){
 	 	    }
 	 	},
 	 	onChange:function(newValue, oldValue){
+	 		//func_creatTable();
+	 	},
+	 	onSelect:function(record){
 	 		func_creatTable();
 	 	}
 		

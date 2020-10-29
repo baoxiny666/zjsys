@@ -26,6 +26,12 @@ var head = [ [ {
 	"align" : "center",
 	"sortable" : true
 }, {
+	"field" : "belongcompany",
+	"title" : "所属厂",
+	"width" : "150",
+	"align" : "center",
+	"sortable" : true
+}, {
 	"field" : "test_TFe",
 	"title" : "TFe",
 	"width" : "60",
@@ -468,7 +474,7 @@ function initDataGrid() {
 		toolbar : '#tb',
 		url : getContextPath() + "/zjsys_testDataSrc/yingguangSrcBxyAction_list.action",
 		collapsible : false,
-		pagination : false,//分页
+		pagination : true,//分页
 		rownumbers : true, //行号
 		striped : true,    //各行换色
 		checkOnSelect : true, 

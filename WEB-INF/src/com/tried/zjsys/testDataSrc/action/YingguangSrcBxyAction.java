@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import com.tried.base.action.BaseAction;
 import com.tried.common.Page;
+import com.tried.zjsys.testDataSrc.model.YingguangFlyBxy;
 import com.tried.zjsys.testDataSrc.model.YingguangSrcBxy;
 import com.tried.zjsys.testDataSrc.service.YingguangSrcBxyService;
 
@@ -48,8 +49,8 @@ public class YingguangSrcBxyAction extends BaseAction<YingguangSrcBxy> {
 				this.condition += " and  y.sampleNum like '%"+model.getSampleNum()+"%'";
 			}
 			this.condition +=  this.getOrderColumn();
-			
-			outRowsData(yingguangSrcBxyService.findAll("from YingguangSrcBxy y ,DataCircle c where y.circleId=c.id " + this.condition));
+			outJsonData(yingguangSrcBxyService.findPage(new Page<YingguangSrcBxy>(page, rows), "from YingguangSrcBxy y, DataCircle c where y.circleId=c.id  " + this.condition).getResult());
+			//baoxinyu ago outRowsData(yingguangSrcBxyService.findAll("from YingguangSrcBxy y ,DataCircle c where y.circleId=c.id " + this.condition));
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			outErrorJson("失败");

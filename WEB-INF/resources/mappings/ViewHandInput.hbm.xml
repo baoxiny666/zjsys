@@ -228,5 +228,9 @@
     <property name="handInput_ni">
       <column name="handInput_ni"/>
     </property>
+    
+    <property name="belongcompany">
+      <column name="belongcompany"/>
+    </property>
   </class>
 </hibernate-mapping>

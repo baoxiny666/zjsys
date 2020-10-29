@@ -23,6 +23,9 @@ private java.lang.String recordUserName;
 //;
 private java.util.Date recordTime;
 
+//所属厂家
+private java.lang.String belongcompany;
+
  public void setId(java.lang.String  id){
  this.id=id;
 }
@@ -89,4 +92,14 @@ public void setRecordUser(java.lang.String  recordUser){
  public java.util.Date  getRecordTime(){
  return this.recordTime;  
 }
+
+public java.lang.String getBelongcompany() {
+	return belongcompany;
+}
+
+public void setBelongcompany(java.lang.String belongcompany) {
+	this.belongcompany = belongcompany;
+}
+ 
+ 
 }

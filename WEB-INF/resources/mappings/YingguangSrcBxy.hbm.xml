@@ -137,5 +137,9 @@
     <property name="dataStatus">
       <column name="dataStatus"/>
     </property>
+    
+    <property name="belongcompany">
+    	<column name="belongcompany"/>
+    </property>
   </class>
 </hibernate-mapping>

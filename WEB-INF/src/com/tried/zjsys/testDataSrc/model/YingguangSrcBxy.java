@@ -90,6 +90,9 @@ private String deviceNum;
 //设备名称
 private String deviceName;
 
+//所属厂家
+private String belongcompany;
+
  public void setId(java.lang.String  id){
  this.id=id;
 }
@@ -453,5 +456,15 @@ public String getDataStatus() {
 public void setDataStatus(String dataStatus) {
 	this.dataStatus = dataStatus;
 }
+
+public String getBelongcompany() {
+	return belongcompany;
+}
+
+public void setBelongcompany(String belongcompany) {
+	this.belongcompany = belongcompany;
+}
+
+
  
 }

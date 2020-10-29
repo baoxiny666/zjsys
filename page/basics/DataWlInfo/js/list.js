@@ -27,7 +27,13 @@ var head = [ [ {
 	"width" : "140",
 	"align" : "center",
 	"sortable" : false
-}, {
+},{
+	"field" : "belongcompany",
+	"title" : "所属厂",
+	"width" : "140",
+	"align" : "center",
+	"sortable" : false
+},{
 	"field" : "recordUserName",
 	"title" : "操作人",
 	"width" : 100,

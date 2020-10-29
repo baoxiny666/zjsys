@@ -122,7 +122,8 @@ private java.lang.String k2o;
 private java.lang.String pb;
 private java.lang.String zn;
 private java.lang.String ni;
-
+//所属厂家
+private java.lang.String belongcompany;
 
 
  public void setId(java.lang.String  id){
@@ -700,5 +701,15 @@ public String getDataStatus() {
 public void setDataStatus(String dataStatus) {
 	this.dataStatus = dataStatus;
 }
+
+public java.lang.String getBelongcompany() {
+	return belongcompany;
+}
+
+public void setBelongcompany(java.lang.String belongcompany) {
+	this.belongcompany = belongcompany;
+}
+
+
  
 }

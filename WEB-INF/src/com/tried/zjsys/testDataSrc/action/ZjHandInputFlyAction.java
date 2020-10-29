@@ -22,6 +22,8 @@ import com.tried.common.Page;
 import com.tried.zjsys.basics.model.DataWlInfo;
 import com.tried.zjsys.basics.service.DataWlInfoService;
 import com.tried.zjsys.testDataSrc.model.DataKeyMaxMin;
+import com.tried.zjsys.testDataSrc.model.YingguangFlyBxy;
+import com.tried.zjsys.testDataSrc.model.YingguangSrcBxy;
 import com.tried.zjsys.testDataSrc.model.YinguangFly;
 import com.tried.zjsys.testDataSrc.model.ZjDingliuFly;
 import com.tried.zjsys.testDataSrc.model.ZjGongyefenxiFly;
@@ -244,7 +246,7 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 	public void updateHand() {
 		try {
 			
-			 JSONObject row =JSONObject.fromObject( java.net.URLDecoder.decode(getRowsData(),"UTF-8"));
+			 	 JSONObject row =JSONObject.fromObject( java.net.URLDecoder.decode(getRowsData(),"UTF-8"));
 		    	 Iterator<String> rowIt= row.keySet().iterator();
 		    	 Map<String,String> dataMap=new HashMap<String, String>();
 		    	 while(rowIt.hasNext()){
@@ -254,17 +256,48 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 		    		key=key.replace("handInput_", "");
 		    		dataMap.put(key, value);
 		    	}
-		    	 ZjHandInputFly hand=new ZjHandInputFly();
-		    	 if(dataMap.containsKey("id")&&dataMap.get("id")!=null&&!dataMap.get("id").isEmpty()){
+		    	 
+		    	
+		    	List<DataWlInfo> changeTypeList =dataWlInfoService.findAll("FROM DataWlInfo where wlCode ='"+dataMap.get("currentwlCode").toString()+"'");
+		    	String wlType="";
+				for(DataWlInfo KEY :changeTypeList){
+					 if("原料".equals(KEY.getWlType().toString())) {
+						 wlType="原料";
+					 }
+					 
+					 if("手录".equals(KEY.getWlType().toString())) {
+						 wlType="手录";
+					 }
+				}
+				
+				/**
+				    *更新 原料的  所属厂商
+				 */
+				if("原料".equals(wlType)) {
+					String currentBelongCom = (dataMap.containsKey("belongcompany"))?dataMap.get("belongcompany"):"";
+					String currentSampleNum = (dataMap.containsKey("sampleNum"))?dataMap.get("sampleNum"):"";
+					List addBelongComList = new ArrayList();
+					addBelongComList.add("update tried_yinguang_fly  set belongcompany ='"+currentBelongCom+"' where sampleNum='"+currentSampleNum+"'");
+					addBelongComList.add("update tried_yinguang_src  set belongcompany ='"+currentBelongCom+"' where sampleNum='"+currentSampleNum+"'");
+					zjHandInputFlyService.dbBeatchSql(addBelongComList);
+				}
+				
+				
+		    	ZjHandInputFly hand=new ZjHandInputFly();
+		    	if(dataMap.containsKey("id")&&dataMap.get("id")!=null&&!dataMap.get("id").isEmpty()){
 		    		 hand= zjHandInputFlyService.getById(dataMap.get("id"));
-		    	 } 
+		    	} 
 		    	if(dataMap.containsKey("sampleNum")){
 		    		ZjHandInputFly	hand1= zjHandInputFlyService.getFirstRecordByField("from ZjHandInputFly where sampleNum='"+dataMap.get("sampleNum")+"'");
 		    		if(hand1!=null){
 		    			hand=hand1;
 		    		}
 		    	}
+		    	
+		    	
+		    	
 		    	 hand.setSampleNum((dataMap.containsKey("sampleNum"))?dataMap.get("sampleNum"):"");
+		    	 hand.setBelongcompany((dataMap.containsKey("belongcompany"))?dataMap.get("belongcompany"):"");
 		    	 hand.setBurnLoss((dataMap.containsKey("burnLoss"))?dataMap.get("burnLoss"):"");
 		    	 hand.setH2o((dataMap.containsKey("h2o"))?dataMap.get("h2o"):"");
 		    	 hand.setH2o1((dataMap.containsKey("h2o1"))?dataMap.get("h2o1"):"");

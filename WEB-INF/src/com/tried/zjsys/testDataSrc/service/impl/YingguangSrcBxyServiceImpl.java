@@ -20,7 +20,9 @@ import com.tried.base.service.impl.BaseServiceImpl;
 import com.tried.common.ConfigUtils;
 import com.tried.common.FileCommonUtils;
 import com.tried.zjsys.basics.model.DataCircle;
+import com.tried.zjsys.basics.model.DataWlInfo;
 import com.tried.zjsys.basics.service.DataCircleService;
+import com.tried.zjsys.basics.service.DataWlInfoService;
 import com.tried.zjsys.basics.thread.ThreadStaticVariable;
 import com.tried.zjsys.testDataSrc.model.YingguangFlyBxy;
 import com.tried.zjsys.testDataSrc.model.YingguangSrcBxy;
@@ -45,7 +47,8 @@ public class YingguangSrcBxyServiceImpl extends BaseServiceImpl<YingguangSrcBxy>
 	YingguangFlyBxyService yingguangFlyBxyService;
 	@Resource
 	ZjLiangreSrcService zjLiangreSrcService;
-	
+	@Resource
+	DataWlInfoService dataWlInfoService;
 	/**
 	 * 判断记录是否重复
 	 * @param midMap
@@ -115,6 +118,7 @@ public class YingguangSrcBxyServiceImpl extends BaseServiceImpl<YingguangSrcBxy>
 		 
 		 newObj.setDataTime(obj.getDataTime());
 		 newObj.setSampleNum(obj.getSampleNum());
+		 newObj.setBelongcompany(obj.getBelongcompany());
 		 newObj.setRecordTime(model.getRecordTime());
 		 newObj.setRecordUser(model.getRecordUser());	
 		 newObj.setDeviceNum(obj.getDeviceNum());
@@ -162,6 +166,25 @@ public void synCollect(String deviceNo,String cjtime) throws Exception {
         			srcObj.setRecordTime(new Date());
         			srcObj.setFileName("result_last.txt");
         			srcObj.setDataStatus("原始数据");
+        			
+        			
+        			 
+        			//新加的内容 截取荧光仪化验文件中的字符串 进行判断化学物质 boxy 20201029 11:11
+        			if(snum.indexOf("20")>-1) {
+        				String xinname = snum.substring(0,snum.indexOf("20"));
+            			List<DataWlInfo> changeTypeList =dataWlInfoService.findAll("FROM DataWlInfo where wlCode ='"+xinname+"'");
+            			String wlCompany="";
+            			if(null != changeTypeList || changeTypeList.size() !=0 ) {
+            				for(DataWlInfo KEY :changeTypeList){
+                				wlCompany=KEY.getBelongcompany().toString();
+                			}
+                			srcObj.setBelongcompany(wlCompany);
+            			}
+        			}
+        			
+        			
+        			
+        			
         			if(snum.length()< ThreadStaticVariable.invialLength){srcObj=null;}
         	   }
         	if(srcObj!=null){

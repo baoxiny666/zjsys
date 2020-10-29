@@ -29,6 +29,7 @@ public class DataWlInfoServiceImpl extends BaseServiceImpl<DataWlInfo> implement
 		model.setWlCode(dataWlInfo.getWlCode()+"-1");
 		model.setWlName(dataWlInfo.getWlName());
 		model.setWlType(dataWlInfo.getWlType());
+		model.setBelongcompany(dataWlInfo.getBelongcompany());
 		model.setRecordTime(new Date());
 		model.setRecordUser(userId);
 		this.add(model);

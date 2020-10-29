@@ -22,6 +22,9 @@
     <property name="viewpaiXu">
       <column name="viewpaiXu"/>
     </property>
+    <property name="belongcompany">
+    	<column name="belongcompany"/>
+    </property>
     
     <property name="recordTime">
       <column name="recordTime"/>

@@ -85,9 +85,18 @@ private java.lang.String handInput_pb;
 private java.lang.String handInput_zn;
 private java.lang.String handInput_ni;
 
+private java.lang.String belongcompany;
 
 
- public java.lang.String getHandInput_vdaf() {
+ public java.lang.String getBelongcompany() {
+	return belongcompany;
+}
+
+public void setBelongcompany(java.lang.String belongcompany) {
+	this.belongcompany = belongcompany;
+}
+
+public java.lang.String getHandInput_vdaf() {
 	return handInput_vdaf;
 }
 

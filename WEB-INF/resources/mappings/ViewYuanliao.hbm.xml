@@ -326,7 +326,12 @@
      <property name="handInput_m25">
       <column name="handInput_m25"/>
     </property>
-        <property name="recordUserName">
+    
+     <property name="belongcompany">
+      <column name="belongcompany"/>
+    </property>
+    
+    <property name="recordUserName">
         <formula>
       	(select tsu.userName from tried_system_user tsu where tsu.id=recordUser)
       </formula>

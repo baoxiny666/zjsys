@@ -158,6 +158,7 @@ public class DataWlInfoAction extends BaseAction<DataWlInfo> {
 					dataWlInfo.setWlCode(model.getWlCode());
 					dataWlInfo.setWlName(model.getWlName());
 					dataWlInfo.setWlType(model.getWlType());
+					dataWlInfo.setBelongcompany(model.getBelongcompany());
 					dataWlInfo.setRecordTime(new Date());
 					dataWlInfo.setRecordUser(getCurrentUser().getId());
 					dataWlInfoService.update(dataWlInfo);
@@ -175,8 +176,10 @@ public class DataWlInfoAction extends BaseAction<DataWlInfo> {
 				dataWlInfo.setWlCode(model.getWlCode());
 				dataWlInfo.setWlName(model.getWlName());
 				dataWlInfo.setWlType(model.getWlType());
+				dataWlInfo.setBelongcompany(model.getBelongcompany());
 				dataWlInfo.setRecordTime(new Date());
 				dataWlInfo.setRecordUser(getCurrentUser().getId());
+				
 				dataWlInfoService.update(dataWlInfo);
 				
 				outSuccessJson("物料代码重复！");
