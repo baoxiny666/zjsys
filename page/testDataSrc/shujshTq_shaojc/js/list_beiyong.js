@@ -1,7 +1,9 @@
 var _ERPURL="http://10.1.0.22";
 var _currentUserId="";
-var _currentwlCode="";
-var companyType = "";
+var editdialogwidth = 500;
+var editdialogheight = 600;
+
+
 $(function() {
 	reWindowSize();
 	$("#wlCode_search").rlCombobox();
@@ -17,6 +19,9 @@ $(function() {
 	}
 	
 })
+
+
+
 /**
  * 表头信息
  */
@@ -31,30 +36,17 @@ function func_creatTable(){
 	    	             {"field":"handInput_sampleNum","title":"样品编号","width":"200","align":"center","sortable":true,"editor":{ "type":"textbox","options":{required:true}}}
 	    	            ]];
 	var  head = [[
-	              {"field":"handInput_dataTime","title":"分析日期","width":"100","align":"center","sortable":true,"editor":{ "type":"datebox","options":{required:true}}},
-	              {"field": "belongcompany", "title": "所属厂", "width": "150", "align": "center","sortable":true,
-	            	 
-	                  "editor": {
-	                      "type": "combobox",
-	                      "options": {
-	                          "valueField": "id",
-	                          "textField": "text",
-	                          "url": getContextPath()+"/page/testDataSrc/shujshTq/json/belongcompany.json",
-	                          "required": true
-	                      }
-	                  }
-                  },
-	              {"field":"dataStatus","title":"状态","width":"100","align":"center","sortable":false}
+	              {"field":"handInput_dataTime","title":"分析日期","width":"100","align":"center","sortable":false,"editor":{ "type":"datebox","options":{required:true}}},
+	             {"field":"dataStatus","title":"状态","width":"100","align":"center","sortable":false}
 	             ]];
 	var _wlCode= $("#wlCode_search").combobox('getValue');
-	_currentwlCode = _wlCode;
+	
 	$.ajax({
 		url : getContextPath() + "/zjsys_testDataSrc/zjHandInputFlyAction_wlHead.action?wlCode="+encodeURIComponent(encodeURIComponent(_wlCode)),
 		type : "post",
 		dataType : "json",
 		async : false,
 		success : function(DATA, request, settings) {
-			debugger;
 			_currentHead=DATA;
 				$.each(DATA,function(i,v){
 						var _h={"field" : v.fieldName,
@@ -99,7 +91,7 @@ function func_creatTable(){
       
       console.log(head);
       debugger;
-	$('#datagrid').datagrid({
+      $('#datagrid').datagrid({
 		url : getContextPath() + "/zjsys_testDataSrc/zjHandInputFlyAction_listFly.action",
 		toolbar : '#tb',
 		collapsible : false,
@@ -110,11 +102,10 @@ function func_creatTable(){
 		singleSelect:true,
 		selectOnCheck : true,
 		ctrlSelect : false,
-		onClickRow: onClickCell,
+		/*onClickRow: onClickCell,*/
 		onEndEdit: onEndEdit,
 		queryParams : {  //参数传递
 			wlCode:$("#wlCode_search").combobox('getValue'),
-			companyType:companyType,
 			/*dataStatus:$("#dataStatus_search").combobox('getValue'),*/
 			objStartTime: $("#objStartTime_search").datebox('getValue'),
 			objEndTime: $("#objEndTime_search").datebox('getValue'),
@@ -131,28 +122,136 @@ function func_creatTable(){
  * @param gridId
  */
 function func_search(){
-	
-	var combobolistvalue  = $('#wlCode_search').combobox('getValue');
-	if (combobolistvalue.match(/^[ ]*$/)) {
-		$.messager.alert('信息','物料名称下拉框必须选择一个。','info');
-	}else{
-		$('#datagrid').datagrid('load',{
-			wlCode:$("#wlCode_search").combobox('getValue'),
-			companyType:companyType,
-			/*dataStatus:$("#dataStatus_search").combobox('getValue'),*/
-			objStartTime: $("#objStartTime_search").datebox('getValue'),
-			objEndTime: $("#objEndTime_search").datebox('getValue'),
-			sampleNum:$("#sampleNum_search").textbox('getValue')
-		}); 
-	}
-  
-
-	
+	$('#datagrid').datagrid('load',{
+		wlCode:$("#wlCode_search").combobox('getValue'),
+		/*dataStatus:$("#dataStatus_search").combobox('getValue'),*/
+		objStartTime: $("#objStartTime_search").datebox('getValue'),
+		objEndTime: $("#objEndTime_search").datebox('getValue'),
+		sampleNum:$("#sampleNum_search").textbox('getValue')
+	}); 
 }
   
 
 
+function func_edit(){
+	var flag = 0;//用来记录手录 的标志
+	var shuzu = "";//记录当前需要收录的属性  属性值等
+	var row = $('#datagrid').datagrid('getSelected');
+	if(!row){
+		$.messager.alert('信息','请先选择要修改的记录。','info'); 
+		return;
+	}
+	if(_currentHead.length>0){
+		var obj = [];
+		for(var i=0;i<_currentHead.length;i++){
+			var current_string = _currentHead[i].fieldName;
+			if(current_string.indexOf("handInput")!=-1){
+				flag = 1;
+				_currentHead[i]["inputvalue"] = row[_currentHead[i].fieldName];
+				obj.push(_currentHead[i]);
+				
+			}
+		}
+		if(flag == 1){
+			var template = '<div class="kuang">'+
+						        '<div class="titlestyle">{keyname}: </div>'+
+					            '<div  class="valuesstyle">'+
+					                '<input  class="easyui-validatebox"   validType="accountexsit"   id="{inputid}" name="{inputname}" value="{inputvalue}"   placeholder=""/>'+
+					            '</div>'+
+					        '</div>';
+			
+			
+			var datetemplate = '<div class="kuang_riq">'+
+							        '<div class="titlestyle">分析日期: </div>'+
+						            '<div  class="valuesstyle">'+
+						                '<input  class="easyui-datebox" required="true" type="text" id="{inputid}" name="{inputname}" value="{inputvalue}"   placeholder=""/>'+
+						            '</div>'+
+						        '</div>';
+			
+			var sampletemplate = '<div class="kuang">'+
+							        '<div class="titlestyle">样品: </div>'+
+						            '<div  class="valuesstyle">'+
+						                '<input  class="class="easyui-text"  required="true" type="text" id="{inputid}" name="{inputname}" value="{inputvalue}"   placeholder=""/>'+
+						            '</div>'+
+						        '</div>';
+			var idtemplate = '<input name="id" type="hidden"  value="{idss}" />'
+			$("#shujsh_edit_table").empty();
+			
+			$("#shujsh_edit_table").append(sampletemplate.replace(/{inputname}/g,"handInput_sampleNum")
+					   .replace(/{inputid}/g,"handInput_sampleNum")
+					   .replace(/{inputvalue}/g,row.handInput_sampleNum)
+			).append(datetemplate.replace(/{inputname}/g,"handInput_dataTime")
+								   .replace(/{inputid}/g,"handInput_dataTime")
+								   .replace(/{inputvalue}/g,row.handInput_dataTime)
+			).append(idtemplate.replace(/{idss}/g,row.id));
+			for(var i=0;i<obj.length;i++){
+				$("#shujsh_edit_table").append(template.replace(/{inputname}/g,obj[i].fieldName)
+													   .replace(/{inputid}/g,obj[i].fieldName)
+													   .replace(/{inputvalue}/g,obj[i].inputvalue)
+													   .replace(/{keyname}/g,obj[i].keyName)
+				)
+			}
+			
+			
+			showMessageDialog_edit();
+			
+			
+			$.parser.parse('#modelForm'); 
+			('input[type!="hidden"],select,textarea',$("#modelForm")).each(function(){  
+			    $(this).validatebox();  
+			});
+			
 
+		}else{
+			alert("您选择的记录无手录内容，无法编辑！");
+		}
+	}
+	
+	console.log(_currentHead);
+}
+
+
+/**
+ * 
+ * @param boxy 20201026新加内容 --利用弹出框的形式修改编辑手录内容
+  */
+function func_bainjibxy(){
+	var rows=$("#datagrid").datagrid("getRows");
+	var rowIndex=$('#datagrid').datagrid('getRowIndex',$('#datagrid').datagrid('getSelected'));
+
+	var fields = $('#modelForm').serializeArray();
+    var obj = {}; //声明一个对象
+    $.each(fields, function(index, field) {
+        obj[field.name] = field.value;
+        rows[rowIndex][field.name] = field.value;
+    })
+    debugger;
+	var _temData= JSON.stringify(rows[rowIndex]);
+	_temData=encodeURI(encodeURI(_temData));
+	$.ajax( {
+		url : getContextPath() + "/zjsys_testDataSrc/zjHandInputFlyAction_updateHand.action",
+		type : "post",
+		dataType : "json",
+		data : "rowsData="+_temData,
+		async : true,
+		success : function(DATA, request, settings) {
+			 $.messager.progress('close');
+			 if(DATA.STATUS=='SUCCESS'){
+				 func_msg_info(DATA.RETURN_DATA);
+				
+				 func_search();
+				 $("#editWindow").window("close");
+				 
+			 }else{
+				 func_msg_info(DATA.RETURN_DATA);
+				 func_search();
+			 }
+		},
+		error : function(event, request, settings) {
+			 func_msg_error("网络异常!");
+			 }
+	});
+}
 
 
 
@@ -256,7 +355,6 @@ function func_accept(){
 function func_saveRow(_index){
 	debugger;
 	var rows=$("#datagrid").datagrid("getRows");
-	rows[_index]["currentwlCode"] = _currentwlCode;
 	var _temData= JSON.stringify(rows[_index]);
 	_temData=encodeURI(encodeURI(_temData));
 	$.ajax( {
@@ -281,7 +379,7 @@ function func_saveRow(_index){
 }
 $.fn.rlCombobox = function(wlType,defaultVal){
 	this.combobox({    
- 	    url: getContextPath() + "/zjsys_basics/dataWlInfoAction_comboboxWlNotDgAll.action?companyType="+encodeURIComponent(encodeURIComponent(companyType)),//?wlType=燃料",  
+ 	    url: getContextPath() + "/zjsys_basics/dataWlInfoAction_comboboxWlNotDgAll.action",//?wlType=燃料",  
  	    panelWidth:200,
 	    panelHeight:300,
  	    valueField:'wlCode',    
@@ -289,7 +387,7 @@ $.fn.rlCombobox = function(wlType,defaultVal){
 	    required:true,
 	    filter: function(q, row){
 			var opts = $(this).combobox('options');
-			return row[opts.textField].indexOf(q)>= 0;
+			return row[opts.textField].indexOf(q) == 0;
 		},
 	    onLoadSuccess:function(){
 	    	debugger;
@@ -307,7 +405,7 @@ $.fn.rlCombobox = function(wlType,defaultVal){
 	 	    }
 	 	},
 	 	onChange:function(newValue, oldValue){
-	 		//func_creatTable();
+//	 		func_creatTable();
 	 	},
 	 	onSelect:function(record){
 	 		func_creatTable();

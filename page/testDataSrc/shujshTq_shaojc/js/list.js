@@ -1,7 +1,8 @@
 var _ERPURL="http://10.1.0.22";
 var _currentUserId="";
 var _currentwlCode="";
-var companyType = "";
+
+var companyType = "烧结厂";
 $(function() {
 	reWindowSize();
 	$("#wlCode_search").rlCombobox();
@@ -32,14 +33,14 @@ function func_creatTable(){
 	    	            ]];
 	var  head = [[
 	              {"field":"handInput_dataTime","title":"分析日期","width":"100","align":"center","sortable":true,"editor":{ "type":"datebox","options":{required:true}}},
-	              {"field": "belongcompany", "title": "所属厂", "width": "150", "align": "center","sortable":true,
+	              {"field": "belongcompany", "title": "所属厂", "width": "150", "align": "center","sortable" : true,
 	            	 
 	                  "editor": {
 	                      "type": "combobox",
 	                      "options": {
 	                          "valueField": "id",
 	                          "textField": "text",
-	                          "url": getContextPath()+"/page/testDataSrc/shujshTq/json/belongcompany.json",
+	                          "url": getContextPath()+"/page/testDataSrc/shujshTq_shaojc/json/belongcompany.json",
 	                          "required": true
 	                      }
 	                  }
@@ -131,7 +132,6 @@ function func_creatTable(){
  * @param gridId
  */
 function func_search(){
-	
 	var combobolistvalue  = $('#wlCode_search').combobox('getValue');
 	if (combobolistvalue.match(/^[ ]*$/)) {
 		$.messager.alert('信息','物料名称下拉框必须选择一个。','info');
@@ -145,17 +145,8 @@ function func_search(){
 			sampleNum:$("#sampleNum_search").textbox('getValue')
 		}); 
 	}
-  
-
-	
 }
   
-
-
-
-
-
-
 
 var editIndex = undefined;
 function endEditing(){

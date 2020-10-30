@@ -38,6 +38,7 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	protected Integer page;
 	protected String sort; 
 	protected String order ;
+	protected String companyType;//数据审核那块的 分为 烧结厂 炼铁厂
 	protected Page<T> PAGE =null;
 	protected String pkObjName="";
 	protected String pkId="";
@@ -629,6 +630,15 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	public void setObjEndMonth(String objEndMonth) {
 		this.objEndMonth = objEndMonth;
 	}
+
+	public String getCompanyType() {
+		return companyType;
+	}
+
+	public void setCompanyType(String companyType) {
+		this.companyType = companyType;
+	}
  
+	
  
 }

@@ -193,7 +193,11 @@ public class DataWlInfoAction extends BaseAction<DataWlInfo> {
 	
 	public void comboboxWlNotDgAll(){
 		try {
-				outJsonList(dataWlInfoService.findAll("FROM DataWlInfo where wlType!='带钢'"));
+			 String companyTypeXin = java.net.URLDecoder.decode(companyType, "UTF-8");
+			 if(strIsNotNull(getCompanyType())){
+				 this.condition+=" and belongcompany ='"+companyTypeXin+"' "; 
+			 }
+			outJsonList(dataWlInfoService.findAll("FROM DataWlInfo where wlType!='带钢'" +this.condition));
 		}catch (Exception e) {
 			logger.error(e.getMessage());
 			outErrorJson("修改失败");

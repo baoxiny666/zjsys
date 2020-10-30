@@ -144,6 +144,11 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 			 if(strIsNotNull(model.getDataStatus())){
 				 this.condition+=" and dataStatus='"+model.getDataStatus()+"' "; 
 			 }
+			 
+			 if(strIsNotNull(getCompanyType())){
+				 this.condition+=" and belongcompany ='"+getCompanyType()+"' "; 
+			 }
+			 
 			 if(strIsNotNull(model.getSampleNum())){
 				 this.condition+=" and handInput_sampleNum like '%"+model.getSampleNum()+"%' "; 
 			 }
