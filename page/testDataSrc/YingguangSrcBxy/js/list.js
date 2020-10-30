@@ -491,8 +491,8 @@ function initDataGrid() {
 		},
 		columns : head,
 		onLoadSuccess:function(data){
-			 $('#datagrid').datagrid("selectRow",data.rows.length-1);
-			 $('#datagrid').datagrid("scrollTo",data.rows.length-1);
+			 /*$('#datagrid').datagrid("selectRow",data.rows.length-1);
+			 $('#datagrid').datagrid("scrollTo",data.rows.length-1);*/
 		}
 	});
 }

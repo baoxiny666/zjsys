@@ -379,7 +379,7 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 		    	 
 		    	 hand.setRecordTime(new Date());
 		    	 hand.setRecordUser(getCurrentUser().getId());
-		    	 hand.setDataStatus("已提交");
+		    	 hand.setDataStatus("已保存");
 		    	 if(dataMap.containsKey("id")&&dataMap.get("id")!=null&&!dataMap.get("id").isEmpty()){
 		    		   zjHandInputFlyService.update(hand);
 		    	 } else{
