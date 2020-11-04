@@ -200,20 +200,6 @@ var head = [ [ {
 		}
 	}
 }, {
-	"field" : "test_Co2O3",
-	"title" : "Co2O3",
-	"width" : "70",
-	"align" : "center",
-	"sortable" : false,
-	"styler":function(value,row,index){
-		if(!checFieldkMin(maxMinData,row.sample_code+"_"+this.title,value)){
-			 return 'background-color:#9BED7E;color:red;';
-		}
-		if(!checFieldkMax(maxMinData,row.sample_code+"_"+this.title,value)){
-			 return 'background-color:#ffee00;color:red;';
-		}
-	}
-}, {
 	"field" : "test_Pb",
 	"title" : "Pb",
 	"width" : "50",
@@ -297,35 +283,7 @@ var head = [ [ {
 			 return 'background-color:#ffee00;color:red;';
 		}
 	}
-}, {
-	"field" : "test_Au2O",
-	"title" : "Au2O",
-	"width" : "70",
-	"align" : "center",
-	"sortable" : false,
-	"styler":function(value,row,index){
-		if(!checFieldkMin(maxMinData,row.sample_code+"_"+this.title,value)){
-			 return 'background-color:#9BED7E;color:red;';
-		}
-		if(!checFieldkMax(maxMinData,row.sample_code+"_"+this.title,value)){
-			 return 'background-color:#ffee00;color:red;';
-		}
-	}
-}, {
-	"field" : "test_R2",
-	"title" : "R2",
-	"width" : "50",
-	"align" : "center",
-	"sortable" : false,
-	"styler":function(value,row,index){
-		if(!checFieldkMin(maxMinData,row.sample_code+"_"+this.title,value)){
-			 return 'background-color:#9BED7E;color:red;';
-		}
-		if(!checFieldkMax(maxMinData,row.sample_code+"_"+this.title,value)){
-			 return 'background-color:#ffee00;color:red;';
-		}
-	}
-}, {
+},  {
 	"field" : "test_Fe2O3",
 	"title" : "Fe2O3",
 	"width" : "80",
@@ -367,21 +325,7 @@ var head = [ [ {
 			 return 'background-color:#ffee00;color:red;';
 		}
 	}
-}, {
-	"field" : "test_S2",
-	"title" : "S2",
-	"width" : "80",
-	"align" : "center",
-	"sortable" : false,
-	"styler":function(value,row,index){
-		if(!checFieldkMin(maxMinData,row.sample_code+"_"+this.title,value)){
-			 return 'background-color:#9BED7E;color:red;';
-		}
-		if(!checFieldkMax(maxMinData,row.sample_code+"_"+this.title,value)){
-			 return 'background-color:#ffee00;color:red;';
-		}
-	}
-}, {
+},  {
 	"field" : "test_Si",
 	"title" : "Si",
 	"width" : "80",

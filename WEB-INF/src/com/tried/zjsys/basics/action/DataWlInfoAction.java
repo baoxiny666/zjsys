@@ -197,7 +197,9 @@ public class DataWlInfoAction extends BaseAction<DataWlInfo> {
 			 if(strIsNotNull(getCompanyType())){
 				 this.condition+=" and belongcompany ='"+companyTypeXin+"' "; 
 			 }
-			outJsonList(dataWlInfoService.findAll("FROM DataWlInfo where wlType!='带钢'" +this.condition));
+			 this.condition+=" order by cast(viewpaiXu  as int)  asc ";
+			 
+			outJsonList(dataWlInfoService.findAll("FROM DataWlInfo where wlType!='带钢' " +this.condition));
 		}catch (Exception e) {
 			logger.error(e.getMessage());
 			outErrorJson("修改失败");
