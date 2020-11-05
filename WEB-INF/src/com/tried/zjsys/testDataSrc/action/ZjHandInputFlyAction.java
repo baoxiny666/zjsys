@@ -495,7 +495,7 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 			style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 			style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
 			HSSFSheet sheet = workbook.createSheet("sheet");
-
+			sheet.setDefaultColumnWidth(50*256);
 			// 第一行
 			HSSFRow row0 = sheet.createRow(0);
 			HSSFCell cell_00 = row0.createCell(0);
@@ -590,7 +590,7 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 				this.condition += " and handInput_sampleNum like '%" + row.get("sampleNum") + "%' ";
 			}
 			this.condition += " and handInput_sampleNum like '" + row.get("wlCode") + "%'";
-
+			this.condition +=" order by  recordTime desc ";
 			// this.condition += this.getOrderColumn();
 
 			/*
@@ -711,33 +711,7 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 			}
 
 			/*************************************************************/
-			/*
-			 * 
-			 */
-			// 将excel的数据写入文件
-			/*
-			 * ByteArrayOutputStream fos = null; byte[] retArr = null;
-			 * 
-			 * fos = new ByteArrayOutputStream(); workbook.write(fos); retArr =
-			 * fos.toByteArray();
-			 */
-
-			/*
-			 * String realPath = request.getSession().getServletContext().getRealPath("/");
-			 * File file = new File(realPath+""+row.get("wlCode")+new Date()+".xls");
-			 * FileOutputStream fout = new FileOutputStream(file); workbook.write(fout);
-			 * fout.close();
-			 */
-
 			
-			/*
-			 * OutputStream os = getResponse().getOutputStream();
-			 * 
-			 * getResponse().setHeader("Content-Disposition","attachment; filename="+row.get
-			 * ("wlCode")+".xls");//要保存的文件名
-			 * getResponse().setContentType("application/msexcel; charset=utf-8");
-			 * os.write(retArr); os.flush(); os.close(); fos.close();
-			 */
 		
 		      ByteArrayOutputStream os = new ByteArrayOutputStream();
 		      workbook.write(os);
@@ -747,11 +721,7 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 		      getResponse().reset();
 		      getResponse().setContentType("application/vnd.ms-excel;charset=utf-8");
 		      getResponse().setHeader("Content-Disposition", "attachment;filename="+ new String((row.get("wlCode").toString() + ".xls").getBytes(), "iso-8859-1"));
-			/*
-			 * getResponse().setContentType("application/msexcel;charset=utf-8");
-			 * getResponse().setHeader("Content-Disposition",
-			 * "attachment;filename="+(row.get("wlCode").toString()) + ".xls");
-			 */
+			
 		      ServletOutputStream out = getResponse().getOutputStream();
 		      BufferedInputStream bis = null;
 		      BufferedOutputStream bos = null;
