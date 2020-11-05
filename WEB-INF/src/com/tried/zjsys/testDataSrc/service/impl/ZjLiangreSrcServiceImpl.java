@@ -188,7 +188,8 @@ public class ZjLiangreSrcServiceImpl extends BaseServiceImpl<ZjLiangreSrc> imple
 		if(handList.size()==0){
 			ZjHandInputFly zjHandInputFly=new ZjHandInputFly();
 			zjHandInputFly.setSampleNum(sampleNum);
-			zjHandInputFly.setDataTime(ConfigUtils.dataToSimpleString(new Date()));
+			//zjHandInputFly.setDataTime(ConfigUtils.dataToSimpleString(new Date())); --20201105ago 
+			zjHandInputFly.setDataTime(ConfigUtils.dataToString(new Date())); //20201105  boxy新改
 			zjHandInputFlyService.add(zjHandInputFly);
 		}
 	}
