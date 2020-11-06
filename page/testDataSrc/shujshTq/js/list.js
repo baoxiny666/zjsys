@@ -2,11 +2,49 @@ var _ERPURL="http://10.1.0.22";
 var _currentUserId="";
 var _currentwlCode="";
 var companyType = "";
+var xialakuangdata = "";
 $(function() {
 	reWindowSize();
 	$("#wlCode_search").rlCombobox();
-	$("#objStartTime_search").datebox('setValue',func_currentData());
-	$("#objEndTime_search").datebox('setValue',func_currentData());
+	
+
+	
+	
+	
+	
+	
+	 $(".easyui-datetimebox").datetimebox({
+    	stopFirstChangeEvent: true,
+	    onChange: function() {
+	        var options = $(this).datetimebox('options');
+	        if(options.stopFirstChangeEvent) {
+	            options.stopFirstChangeEvent = false;
+	            return;
+	        }
+	        func_search();
+	    }
+
+    
+     });
+
+	
+	var myDate = new Date();
+	var nowdate = myDate.getFullYear()+"-"+
+				 ((myDate.getMonth() + 1)<10?"0"+(myDate.getMonth() + 1):(myDate.getMonth() + 1))+"-"+
+				 (myDate.getDate()<10?"0"+myDate.getDate():myDate.getDate())+" "+
+				 (myDate.getHours()<10?"0"+myDate.getHours():myDate.getHours())+":"+
+				 (myDate.getMinutes()<10?"0"+myDate.getMinutes():myDate.getMinutes())+":"+
+				 (myDate.getSeconds()<10?"0"+myDate.getSeconds():myDate.getSeconds());
+				 
+	var startdate =  myDate.getFullYear()+"-"+
+					 ((myDate.getMonth() + 1)<10?"0"+(myDate.getMonth() + 1):(myDate.getMonth() + 1))+"-"+
+					 (myDate.getDate()<10?"0"+myDate.getDate():myDate.getDate())+" 00:00:00";
+	
+	
+	$("#objStartTime_search").datetimebox('setValue',startdate);
+	$("#objEndTime_search").datetimebox('setValue',nowdate);
+	
+	
 	var erpData=func_erpUrl();
 	if(erpData.remoteUrlPath!=undefined&&erpData.remoteUrlPath!=null){
 		_ERPURL=erpData.remoteUrlPath
@@ -31,8 +69,8 @@ function func_creatTable(){
 	    	             {"field":"handInput_sampleNum","title":"样品编号","width":"200","align":"center","sortable":true,"editor":{ "type":"textbox","options":{required:true}}}
 	    	            ]];
 	var  head = [[
-	              {"field":"handInput_dataTime","title":"分析日期","width":"100","align":"center","sortable":true,"editor":{ "type":"datebox","options":{required:true}}},
-	              {"field": "belongcompany", "title": "所属厂", "width": "150", "align": "center","sortable":true,
+	              {"field":"handInput_dataTime","title":"分析日期","width":"180","align":"center","sortable":true,"formatter":formateRowBxyTime,"editor":{ "type":"datetimebox","options":{required:true}}},
+	              {"field": "belongcompany", "title": "所属厂", "width": "100", "align": "center","sortable":true,
 	            	 
 	                  "editor": {
 	                      "type": "combobox",
@@ -46,6 +84,14 @@ function func_creatTable(){
                   },
 	              {"field":"dataStatus","title":"状态","width":"100","align":"center","sortable":false}
 	             ]];
+	
+	
+	
+	
+	
+	
+	
+	
 	var _wlCode= $("#wlCode_search").combobox('getValue');
 	_currentwlCode = _wlCode;
 	$.ajax({
@@ -99,7 +145,7 @@ function func_creatTable(){
       
       console.log(head);
       debugger;
-	$('#datagrid').datagrid({
+      $('#datagrid').datagrid({
 		url : getContextPath() + "/zjsys_testDataSrc/zjHandInputFlyAction_listFly.action",
 		toolbar : '#tb',
 		collapsible : false,
@@ -116,8 +162,8 @@ function func_creatTable(){
 			wlCode:$("#wlCode_search").combobox('getValue'),
 			companyType:companyType,
 			/*dataStatus:$("#dataStatus_search").combobox('getValue'),*/
-			objStartTime: $("#objStartTime_search").datebox('getValue'),
-			objEndTime: $("#objEndTime_search").datebox('getValue'),
+			objStartTime: $("#objStartTime_search").datetimebox('getValue'),
+			objEndTime: $("#objEndTime_search").datetimebox('getValue'),
 			sampleNum:$("#sampleNum_search").textbox('getValue')
 		},
 		frozenColumns:frozenColumns,
@@ -133,6 +179,7 @@ function func_creatTable(){
 function func_search(){
 	
 	var combobolistvalue  = $('#wlCode_search').combobox('getValue');
+	debugger;
 	if (combobolistvalue.match(/^[ ]*$/)) {
 		$.messager.alert('信息','物料名称下拉框必须选择一个。','info');
 	}else{
@@ -140,8 +187,8 @@ function func_search(){
 			wlCode:$("#wlCode_search").combobox('getValue'),
 			companyType:companyType,
 			/*dataStatus:$("#dataStatus_search").combobox('getValue'),*/
-			objStartTime: $("#objStartTime_search").datebox('getValue'),
-			objEndTime: $("#objEndTime_search").datebox('getValue'),
+			objStartTime: $("#objStartTime_search").datetimebox('getValue'),
+			objEndTime: $("#objEndTime_search").datetimebox('getValue'),
 			sampleNum:$("#sampleNum_search").textbox('getValue')
 		}); 
 	}
@@ -198,6 +245,16 @@ function onClickCell(index, field){
 		alert("已发送，无法编辑！");
 	}
 }
+
+
+function bxyreload(){
+	
+	$('#datagrid').datagrid('reload');//刷新
+}
+
+
+
+
 
 function func_add(){
 	 if (endEditing()){
@@ -294,20 +351,35 @@ $.fn.rlCombobox = function(wlType,defaultVal){
 	    onLoadSuccess:function(){
 	    	debugger;
 	 	  if(defaultVal!=undefined){
-	 		 debugger;
-	 	    		$(this).combobox('select',defaultVal);
-	 	    		$(this).combobox('setValue',defaultVal);
-	 	    }else{
-	 	    	debugger;
-	 	    	 var data= $(this).combobox("getData");
-	 	    	  if (data.length > 0) {
-	                  $(this).combobox('select', data[0].wlCode);
-	                  $(this).combobox('setValue',data[0].wlCode);
-	                }
-	 	    }
+	 			
+            
+ 	    		$(this).combobox('select',defaultVal);
+ 	    		$(this).combobox('setValue',defaultVal);
+ 	    		
+ 	    		
+ 	    	
+ 	    	
+	 	  }else{
+	 		  	xialakuangdata= $(this).combobox("getData");
+ 	    	    if (xialakuangdata.length > 0) {
+ 	    	    	
+	                $(this).combobox('select', xialakuangdata[0].wlCode);
+	                $(this).combobox('setValue',xialakuangdata[0].wlCode);
+	                  
+	                
+	             
+	            	
+	            	
+	            	
+	              	
+                }
+	 	  }
+	 	  
+	 	  
 	 	},
 	 	onChange:function(newValue, oldValue){
-	 		//func_creatTable();
+	 		
+	 		
 	 	},
 	 	onSelect:function(record){
 	 		func_creatTable();
@@ -395,6 +467,50 @@ function func_saveReturnData(rowId){
 	});
 	
 }
+
+/*导出数据到excell*/
+function func_daocexcell(){
+	//var rows=$("#datagrid").datagrid("getRows");
+	
+	
+	/*
+	 * wlCode:$("#wlCode_search").combobox('getValue'),
+			companyType:companyType,
+			
+			objStartTime: $("#objStartTime_search").datebox('getValue'),
+			objEndTime: $("#objEndTime_search").datebox('getValue'),
+			sampleNum:$("#sampleNum_search").textbox('getValue')
+	 */
+	var rows  = {};
+	rows["currentwlCode"] = _currentwlCode;
+	rows["wlCode"] = $("#wlCode_search").combobox('getValue');
+	rows["companyType"] = companyType;
+	rows["objStartTime"] = $("#objStartTime_search").datetimebox('getValue');
+	rows["objEndTime"] = $("#objEndTime_search").datetimebox('getValue');
+	rows["sampleNum"] = $("#sampleNum_search").textbox('getValue');
+	var _temData= JSON.stringify(rows);
+	_temData=encodeURI(encodeURI(_temData));
+	
+	
+	window.location.href = getContextPath() + "/zjsys_testDataSrc/zjHandInputFlyAction_downloadexcell.action?rowsData="+_temData;
+	/*$.ajax( {
+		url : getContextPath() + "/zjsys_testDataSrc/zjHandInputFlyAction_downloadexcell.action",
+		type : "post",
+		dataType : "json",
+		data : "rowsData="+_temData,
+		async : true,
+		success : function(DATA, request, settings) {
+			 $.messager.progress('close');
+			 if(DATA.STATUS=='SUCCESS'){
+				
+			 }else{
+				
+			 }
+		}
+	});*/
+}
+
+
 /**
  * 页面缩放监听事件
  */
