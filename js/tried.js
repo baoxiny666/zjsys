@@ -186,7 +186,16 @@ function func_erpUrl(){
  */
 function func_currentData(){
 	var myDate = new Date();
-	var dt=myDate.getFullYear()+"-"+((myDate.getMonth() + 1)<10?"0"+(myDate.getMonth() + 1):(myDate.getMonth() + 1))+"-"+(myDate.getDate()<10?"0"+myDate.getDate():myDate.getDate())	 
+	var dt=myDate.getFullYear()+"-"+((myDate.getMonth() + 1)<10?"0"+(myDate.getMonth() + 1):(myDate.getMonth() + 1))+"-"+(myDate.getDate()<10?"0"+myDate.getDate():myDate.getDate());	 
+    return dt; 
+}
+/**
+ * 对IE兼容的日期
+ * @returns
+ */
+function func_IecurrentData(){
+	var myDate = new Date();
+	var dt=myDate.getFullYear()+"/"+((myDate.getMonth() + 1)<10?"0"+(myDate.getMonth() + 1):(myDate.getMonth() + 1))+"/"+(myDate.getDate()<10?"0"+myDate.getDate():myDate.getDate());	 
     return dt; 
 }
 function func_currentMonth(){
