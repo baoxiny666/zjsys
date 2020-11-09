@@ -1,5 +1,7 @@
 package com.tried.zjsys.testDataSrc.model;
 import java.io.Serializable;
+
+import org.apache.naming.java.javaURLContextFactory;
 /**
 * @Description -
 * @author sunlunan
@@ -125,8 +127,69 @@ private java.lang.String ni;
 //所属厂家
 private java.lang.String belongcompany;
 
+private java.lang.String currentwlCodeString;
 
- public void setId(java.lang.String  id){
+private java.lang.String wlCodeString;
+private java.lang.String objStartTimeString;
+
+private java.lang.String objEndTimeString;
+private java.lang.String companyTypeString;
+private java.lang.String sampleNumString;
+
+
+
+
+
+
+public java.lang.String getCurrentwlCodeString() {
+	return currentwlCodeString;
+}
+
+public void setCurrentwlCodeString(java.lang.String currentwlCodeString) {
+	this.currentwlCodeString = currentwlCodeString;
+}
+
+public java.lang.String getWlCodeString() {
+	return wlCodeString;
+}
+
+public void setWlCodeString(java.lang.String wlCodeString) {
+	this.wlCodeString = wlCodeString;
+}
+
+public java.lang.String getObjStartTimeString() {
+	return objStartTimeString;
+}
+
+public void setObjStartTimeString(java.lang.String objStartTimeString) {
+	this.objStartTimeString = objStartTimeString;
+}
+
+public java.lang.String getObjEndTimeString() {
+	return objEndTimeString;
+}
+
+public void setObjEndTimeString(java.lang.String objEndTimeString) {
+	this.objEndTimeString = objEndTimeString;
+}
+
+public java.lang.String getCompanyTypeString() {
+	return companyTypeString;
+}
+
+public void setCompanyTypeString(java.lang.String companyTypeString) {
+	this.companyTypeString = companyTypeString;
+}
+
+public java.lang.String getSampleNumString() {
+	return sampleNumString;
+}
+
+public void setSampleNumString(java.lang.String sampleNumString) {
+	this.sampleNumString = sampleNumString;
+}
+
+public void setId(java.lang.String  id){
  this.id=id;
 }
 

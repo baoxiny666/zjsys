@@ -21,10 +21,22 @@ $(function() {
 	            options.stopFirstChangeEvent = false;
 	            return;
 	        }
+	        
 	        func_search();
 	    }
 
     
+     });
+	 
+	 $('#objStartTime_search').datetimebox({
+         onHidePanel: function(date){
+             validateDateTime('objStartTime_search','objEndTime_search','objStartTime_search');
+         }
+     });
+     $('#objEndTime_search').datetimebox({
+         onHidePanel: function(date){
+             validateDateTime('objStartTime_search','objEndTime_search','objEndTime_search');
+         }
      });
 
 	
@@ -64,7 +76,6 @@ $(function() {
  */
  var _currentHead;
 function func_creatTable(){
-	debugger;
 	var frozenColumns=[[ {"field":"ck","checkbox":true},
 	    	             {"field":"handInput_sampleNum","title":"样品编号","width":"200","align":"center","sortable":true,"editor":{ "type":"textbox","options":{required:true}}}
 	    	            ]];
@@ -100,7 +111,6 @@ function func_creatTable(){
 		dataType : "json",
 		async : false,
 		success : function(DATA, request, settings) {
-			debugger;
 			_currentHead=DATA;
 				$.each(DATA,function(i,v){
 						var _h={"field" : v.fieldName,
@@ -144,7 +154,6 @@ function func_creatTable(){
       head[0].push({"field":"recordUserName","title":"操作人","width":"100","align":"center","sortable":false});
       
       console.log(head);
-      debugger;
       $('#datagrid').datagrid({
 		url : getContextPath() + "/zjsys_testDataSrc/zjHandInputFlyAction_listFly.action",
 		toolbar : '#tb',
@@ -179,7 +188,6 @@ function func_creatTable(){
 function func_search(){
 	
 	var combobolistvalue  = $('#wlCode_search').combobox('getValue');
-	debugger;
 	if (combobolistvalue.match(/^[ ]*$/)) {
 		$.messager.alert('信息','物料名称下拉框必须选择一个。','info');
 	}else{
@@ -206,7 +214,6 @@ function func_search(){
 
 var editIndex = undefined;
 function endEditing(){
-	debugger;
 	if (editIndex == undefined){return true}
 	if ($('#datagrid').datagrid('validateRow', editIndex)){
 		$('#datagrid').datagrid('endEdit', editIndex);
@@ -228,7 +235,6 @@ function onEndEdit(index, row){
 function onClickCell(index, field){
 	var row = $('#datagrid').datagrid('getSelected');
 	if(row.dataStatus!="已发送"){
-		debugger;
 		if (editIndex != index){
 			if (endEditing()){
 				$('#datagrid').datagrid('selectRow', index).datagrid('beginEdit', index);
@@ -301,7 +307,6 @@ function func_del(){
 	
 }
 function func_accept(){
-	debugger;
 	if (endEditing()){
 		$('#datagrid').datagrid('acceptChanges');
 	}
@@ -311,7 +316,6 @@ function func_accept(){
  * @param index
  */
 function func_saveRow(_index){
-	debugger;
 	var rows=$("#datagrid").datagrid("getRows");
 	rows[_index]["currentwlCode"] = _currentwlCode;
 	var _temData= JSON.stringify(rows[_index]);
@@ -349,7 +353,6 @@ $.fn.rlCombobox = function(wlType,defaultVal){
 			return row[opts.textField].indexOf(q)>= 0;
 		},
 	    onLoadSuccess:function(){
-	    	debugger;
 	 	  if(defaultVal!=undefined){
 	 			
             
@@ -389,7 +392,6 @@ $.fn.rlCombobox = function(wlType,defaultVal){
 }
 
 function func_fly(){
-	debugger;
 	var row= $('#datagrid').datagrid('getSelected');
 	if(!row){
 		$.messager.alert('信息','请先选择要删除的记录。','info'); 
@@ -470,46 +472,105 @@ function func_saveReturnData(rowId){
 
 /*导出数据到excell*/
 function func_daocexcell(){
-	//var rows=$("#datagrid").datagrid("getRows");
+
+	
+
 	
 	
-	/*
-	 * wlCode:$("#wlCode_search").combobox('getValue'),
-			companyType:companyType,
-			
-			objStartTime: $("#objStartTime_search").datebox('getValue'),
-			objEndTime: $("#objEndTime_search").datebox('getValue'),
-			sampleNum:$("#sampleNum_search").textbox('getValue')
-	 */
-	var rows  = {};
-	rows["currentwlCode"] = _currentwlCode;
-	rows["wlCode"] = $("#wlCode_search").combobox('getValue');
-	rows["companyType"] = companyType;
-	rows["objStartTime"] = $("#objStartTime_search").datetimebox('getValue');
-	rows["objEndTime"] = $("#objEndTime_search").datetimebox('getValue');
-	rows["sampleNum"] = $("#sampleNum_search").textbox('getValue');
-	var _temData= JSON.stringify(rows);
-	_temData=encodeURI(encodeURI(_temData));
 	
+	 var form=$("<form>"); //定义一个form表单,通过form表单来发送请求
+	    form.attr("style","display:none");  //设置表单状态为不显示
+	    form.attr("method","post");//method属性设置请求类型为post
+	    form.attr("action",getContextPath() + "/zjsys_testDataSrc/zjHandInputFlyAction_downloadexcell.action");//action属性设置请求路径，请求类型是post时,路径后面跟参数的方式不可用，可以通过表单中的input来传递参数
+	    $("body").append(form);//将表单放置在web中
+	    var input1=$("<input>"); //在表单中添加input标签来传递参数，如有多个参数可添加多个input标签
+	    input1.attr("type","hidden");//设置为隐藏域
+	    input1.attr("name","currentwlCodeString");//设置参数名称
+	    input1.attr("value",_currentwlCode);//设置参数值
 	
-	window.location.href = getContextPath() + "/zjsys_testDataSrc/zjHandInputFlyAction_downloadexcell.action?rowsData="+_temData;
-	/*$.ajax( {
-		url : getContextPath() + "/zjsys_testDataSrc/zjHandInputFlyAction_downloadexcell.action",
-		type : "post",
-		dataType : "json",
-		data : "rowsData="+_temData,
-		async : true,
-		success : function(DATA, request, settings) {
-			 $.messager.progress('close');
-			 if(DATA.STATUS=='SUCCESS'){
-				
-			 }else{
-				
-			 }
-		}
-	});*/
+	    
+	    var input2=$("<input>"); //
+	    input2.attr("type","hidden");//设置为隐藏域
+	    input2.attr("name","wlCodeString");//设置参数名称
+	    input2.attr("value",$("#wlCode_search").combobox('getValue'));//设置参数值
+	    
+	    var input3=$("<input>"); //
+	    input3.attr("type","hidden");//设置为隐藏域
+	    input3.attr("name","companyTypeString");//设置参数名称
+	    input3.attr("value",companyType);//设置参数值
+	    
+	    var input4=$("<input>"); //
+	    input4.attr("type","hidden");//设置为隐藏域
+	    input4.attr("name","objStartTimeString");//设置参数名称
+	    input4.attr("value",$("#objStartTime_search").datetimebox('getValue'));//设置参数值
+	    
+	    var input5=$("<input>"); //
+	    input5.attr("type","hidden");//设置为隐藏域
+	    input5.attr("name","objEndTimeString");//设置参数名称
+	    input5.attr("value",$("#objEndTime_search").datetimebox('getValue'));//设置参数值
+	    
+	    var input6=$("<input>"); //
+	    input6.attr("type","hidden");//设置为隐藏域
+	    input6.attr("name","sampleNumString");//设置参数名称
+	    input6.attr("value",$("#sampleNum_search").textbox('getValue'));//设置参数值
+	    
+	    form.append(input1).append(input2).append(input3).append(input4).append(input5).append(input6);//添加到表单中
+	    form.submit();//表单提交
+	
+
 }
 
+
+/*开始时间要小于结束时间*/
+
+function validateDateTime(beginTimeId,endTimeId,whichTimeId){
+	
+	var myDate = new Date();
+	var nowdate = myDate.getFullYear()+"-"+
+				 ((myDate.getMonth() + 1)<10?"0"+(myDate.getMonth() + 1):(myDate.getMonth() + 1))+"-"+
+				 (myDate.getDate()<10?"0"+myDate.getDate():myDate.getDate())+" "+
+				 (myDate.getHours()<10?"0"+myDate.getHours():myDate.getHours())+":"+
+				 (myDate.getMinutes()<10?"0"+myDate.getMinutes():myDate.getMinutes())+":"+
+				 (myDate.getSeconds()<10?"0"+myDate.getSeconds():myDate.getSeconds());
+				 
+	var startdate =  myDate.getFullYear()+"-"+
+					 ((myDate.getMonth() + 1)<10?"0"+(myDate.getMonth() + 1):(myDate.getMonth() + 1))+"-"+
+					 (myDate.getDate()<10?"0"+myDate.getDate():myDate.getDate())+" 00:00:00";
+	
+    var v1=$('#'+beginTimeId).datetimebox("getValue").replace(/-/g,'/');
+    console.log(v1);
+    var date1 = new Date(v1);
+    var v2=$('#'+endTimeId).datetimebox("getValue").replace(/-/g,'/');
+    console.log(v2);
+    var date2 = new Date(v2);
+    
+    if(v1==''||v2==''){
+        return true;
+    }    
+    
+    
+    if(date1<date2){
+        console.log(date1+"<"+date2);
+      
+        return true;
+    }else{
+    	if(whichTimeId == "objStartTime_search"){
+    			
+        	 $('#'+whichTimeId).datetimebox("setValue",startdate);
+        	 $.messager.alert('提示','开始时间要小于或等于结束时间！');
+        }else{
+        	$('#'+whichTimeId).datetimebox("setValue",nowdate);
+        	 $.messager.alert('提示','结束时间要大于或等于开始时间！');
+        }
+    }
+   
+    
+    return false;       
+}
+
+function DateDiff(date11,date22){
+	return Math.floor((date22 - date11) / 1000 / 60 / 60 / 24);
+}
 
 /**
  * 页面缩放监听事件

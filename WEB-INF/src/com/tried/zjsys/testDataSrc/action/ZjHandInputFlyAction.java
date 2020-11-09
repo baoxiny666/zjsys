@@ -69,6 +69,8 @@ import com.tried.zjsys.testDataSrc.service.ZjHandInputFlyService;
 import com.tried.zjsys.testDataSrc.service.ZjLiangreFlyService;
 import com.tried.zjsys.testDataSrc.service.ZjTanliuFlyService;
 
+import java.net.URLDecoder;
+
 /**
  * @Description - 管理
  * @author sunlunan
@@ -487,15 +489,62 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 	public void downloadexcell() {
 
 		try {
-
-			JSONObject row = JSONObject.fromObject(java.net.URLDecoder.decode(getRowsData(), "UTF-8"));
-
+			/*
+			 * String currentwlCodeString_no =
+			 * getRequest().getParameter("currentwlCode")==null?"":getRequest().getParameter
+			 * ("currentwlCode").toString(); String currentwlCodeString =
+			 * URLDecoder.decode(currentwlCodeString_no,"UTF-8");
+			 * 
+			 * String wlCodeString_no =
+			 * getRequest().getParameter("wlCode")==null?"":getRequest().getParameter(
+			 * "wlCode").toString(); String wlCodeString =
+			 * URLDecoder.decode(wlCodeString_no,"UTF-8");
+			 * 
+			 * 
+			 * String companyTypeString_no =
+			 * getRequest().getParameter("companyType")==null?"":getRequest().getParameter(
+			 * "companyType").toString(); String companyTypeString="";
+			 * if("undefined".equals(companyTypeString_no)) { companyTypeString = ""; }else
+			 * { companyTypeString = URLDecoder.decode(companyTypeString_no,"UTF-8"); }
+			 * 
+			 * 
+			 * 
+			 * String objStartTimeString =
+			 * getRequest().getParameter("objStartTime")==null?"":getRequest().getParameter(
+			 * "objStartTime").toString();
+			 * 
+			 * 
+			 * String objEndTimeString =
+			 * getRequest().getParameter("objEndTime")==null?"":getRequest().getParameter(
+			 * "objEndTime").toString();
+			 * 
+			 * 
+			 * String sampleNumString_on =
+			 * getRequest().getParameter("sampleNum")==null?"":getRequest().getParameter(
+			 * "sampleNum").toString(); String sampleNumString =
+			 * URLDecoder.decode(sampleNumString_on,"UTF-8");
+			 * 
+			 */
+			String objStartTimeString = model.getObjStartTimeString();
+			String objEndTimeString = model.getObjEndTimeString();
+			String currentwlCodeString = model.getCurrentwlCodeString()==null?"":model.getCurrentwlCodeString();
+			String wlCodeString = model.getWlCodeString()==null?"":model.getWlCodeString();
+			String companyTypeString="";
+			if("undefined".equals(model.getCompanyTypeString())) {
+				companyTypeString = "";
+			}else {
+				companyTypeString = model.getCompanyTypeString()==null?"":model.getCompanyTypeString();
+			}
+			String sampleNumString = model.getSampleNumString()==null?"":model.getSampleNumString();
+			
 			HSSFWorkbook workbook = new HSSFWorkbook();
 			HSSFCellStyle style = workbook.createCellStyle();
 			style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 			style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
 			HSSFSheet sheet = workbook.createSheet("sheet");
-			sheet.setDefaultColumnWidth(50*256);
+			sheet.setColumnWidth(0, 256*30+184);
+			sheet.setColumnWidth(1, 256*30+184);
+			sheet.setColumnWidth(2, 256*50+184);
 			// 第一行
 			HSSFRow row0 = sheet.createRow(0);
 			HSSFCell cell_00 = row0.createCell(0);
@@ -504,19 +553,22 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 
 			HSSFCell cell_01 = row0.createCell(1);
 			cell_01.setCellStyle(style);
-			cell_01.setCellValue(row.get("currentwlCode").toString());
-
-			HSSFCell cell_02 = row0.createCell(2);
-			cell_02.setCellStyle(style);
-			cell_02.setCellValue("日期从：");
+			cell_01.setCellValue(currentwlCodeString);
 
 			Date dd = new Date();
 			SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String time = sim.format(dd);
 
-			HSSFCell cell_03 = row0.createCell(3);
-			cell_03.setCellStyle(style);
-			cell_03.setCellValue(row.get("objStartTime").toString() + "到" + row.get("objEndTime"));
+			HSSFCell cell_02 = row0.createCell(2);
+			cell_02.setCellStyle(style);
+			cell_02.setCellValue("日期从："+objStartTimeString + "到" + objEndTimeString);
+
+		
+			/*
+			 * HSSFCell cell_03 = row0.createCell(3); cell_03.setCellStyle(style);
+			 * cell_03.setCellValue(row.get("objStartTime").toString() + "到" +
+			 * row.get("objEndTime"));
+			 */
 
 			// 第二行
 			HSSFRow row1 = sheet.createRow(1);
@@ -534,7 +586,7 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 
 			// 填充表头动态元素
 			List<DataKeyMaxMin> datakeymaxminList = dataKeyMaxMinService
-					.findAll("FROM DataKeyMaxMin where deviceName ='" + row.get("currentwlCode").toString()
+					.findAll("FROM DataKeyMaxMin where deviceName ='" + currentwlCodeString
 							+ "'  order by cast(viewpaiXu  as int) asc  ");
 			int biaozhi = 3;
 			int biaozhisize = datakeymaxminList.size() + 3;
@@ -561,9 +613,9 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 			/*****************************************************************/
 
 			List<DataKeyMaxMin> keyList = dataKeyMaxMinService
-					.findAll("FROM DataKeyMaxMin where deviceName='" + row.get("wlCode") + "'");
+					.findAll("FROM DataKeyMaxMin where deviceName='" + wlCodeString + "'");
 			List<DataWlInfo> changeTypeList = dataWlInfoService
-					.findAll("FROM DataWlInfo where wlCode ='" + row.get("wlCode") + "'");
+					.findAll("FROM DataWlInfo where wlCode ='" + wlCodeString  + "'");
 			String wlType = "";
 			this.condition = "";
 			for (DataWlInfo KEY : changeTypeList) {
@@ -575,22 +627,22 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 					wlType = "手录";
 				}
 			}
-			if (strIsNotNull(row.get("objStartTime").toString())) {
-				this.condition += " and handInput_dataTime>='" + row.get("objStartTime") + "' ";
+			if (strIsNotNull(objStartTimeString)) {
+				this.condition += " and handInput_dataTime>='" + objStartTimeString + "' ";
 			}
-			if (strIsNotNull(row.get("objEndTime").toString())) {
-				this.condition += " and handInput_dataTime<='" + row.get("objEndTime") + "' ";
-			}
-
-			if (strIsNotNull(row.get("companyType").toString())) {
-				this.condition += " and belongcompany ='" + getCompanyType() + "' ";
+			if (strIsNotNull(objEndTimeString)) {
+				this.condition += " and handInput_dataTime<='" + objEndTimeString  + "' ";
 			}
 
-			if (strIsNotNull(row.get("sampleNum").toString())) {
-				this.condition += " and handInput_sampleNum like '%" + row.get("sampleNum") + "%' ";
+			if (strIsNotNull(companyTypeString)) {
+				this.condition += " and belongcompany ='" + companyTypeString  + "' ";
 			}
-			this.condition += " and handInput_sampleNum like '" + row.get("wlCode") + "%'";
-			this.condition +=" order by  recordTime desc ";
+
+			if (strIsNotNull(sampleNumString )) {
+				this.condition += " and handInput_sampleNum like '%" + sampleNumString  + "%' ";
+			}
+			this.condition += " and handInput_sampleNum like '" + wlCodeString  + "%'";
+			this.condition +=" order by  handInput_dataTime,belongcompany desc ";
 			// this.condition += this.getOrderColumn();
 
 			/*
@@ -720,7 +772,7 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 		      // 设置response参数，可以打开下载页面
 		      getResponse().reset();
 		      getResponse().setContentType("application/vnd.ms-excel;charset=utf-8");
-		      getResponse().setHeader("Content-Disposition", "attachment;filename="+ new String((row.get("wlCode").toString() + ".xls").getBytes(), "iso-8859-1"));
+		      getResponse().setHeader("Content-Disposition", "attachment;filename="+ new String((wlCodeString  + ".xls").getBytes(), "iso-8859-1"));
 			
 		      ServletOutputStream out = getResponse().getOutputStream();
 		      BufferedInputStream bis = null;
