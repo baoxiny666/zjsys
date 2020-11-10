@@ -171,11 +171,12 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 				}
 			}
 			if (strIsNotNull(getObjStartTime())) {
-				this.condition += " and handInput_dataTime>='" + getObjStartTime() + "' ";
+				this.condition += " and CONVERT(varchar(10), handInput_dataTime, 23) >='" + getObjStartTime() + "' ";
 			}
 			if (strIsNotNull(getObjEndTime())) {
-				this.condition += " and handInput_dataTime<='" + getObjEndTime() + "' ";
+				this.condition += " and CONVERT(varchar(10), handInput_dataTime, 23) <='" + getObjEndTime()  + "' ";
 			}
+			
 			if (strIsNotNull(model.getDataStatus())) {
 				this.condition += " and dataStatus='" + model.getDataStatus() + "' ";
 			}
@@ -628,10 +629,10 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 				}
 			}
 			if (strIsNotNull(objStartTimeString)) {
-				this.condition += " and handInput_dataTime>='" + objStartTimeString + "' ";
+				this.condition += " and CONVERT(varchar(10), handInput_dataTime, 23) >= '" + objStartTimeString + "' ";
 			}
 			if (strIsNotNull(objEndTimeString)) {
-				this.condition += " and handInput_dataTime<='" + objEndTimeString  + "' ";
+				this.condition += " and CONVERT(varchar(10), handInput_dataTime, 23) <= '" + objEndTimeString  + "' ";
 			}
 
 			if (strIsNotNull(companyTypeString)) {

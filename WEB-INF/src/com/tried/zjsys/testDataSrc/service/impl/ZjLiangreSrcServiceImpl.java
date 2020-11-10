@@ -190,6 +190,29 @@ public class ZjLiangreSrcServiceImpl extends BaseServiceImpl<ZjLiangreSrc> imple
 			zjHandInputFly.setSampleNum(sampleNum);
 			//zjHandInputFly.setDataTime(ConfigUtils.dataToSimpleString(new Date())); --20201105ago 
 			zjHandInputFly.setDataTime(ConfigUtils.dataToString(new Date())); //20201105  boxy新改
+			
+			zjHandInputFlyService.add(zjHandInputFly);
+		}
+	}
+	
+	
+	@Override
+	public void checkAddSampleNumBxyNew(String sampleNum,String dateTime) throws Exception {
+		List<ZjLiangreSrc>  srcList=this.findAll("from ZjLiangreSrc where sampleNum='"+sampleNum+"'");
+		if(srcList.size()==0){
+			ZjLiangreSrc zjLiangreSrc=new ZjLiangreSrc();
+			zjLiangreSrc.setDataStatus("原始数据");
+			zjLiangreSrc.setSampleNum(sampleNum);
+			zjLiangreSrc.setTestDate(ConfigUtils.dataToSimpleString(new Date()));
+			this.add(zjLiangreSrc);
+		}
+		List<ZjHandInputFly>  handList=zjHandInputFlyService.findAll("from ZjHandInputFly where sampleNum='"+sampleNum+"'");
+		if(handList.size()==0){
+			ZjHandInputFly zjHandInputFly=new ZjHandInputFly();
+			zjHandInputFly.setSampleNum(sampleNum);
+			//zjHandInputFly.setDataTime(ConfigUtils.dataToSimpleString(new Date())); --20201105ago 
+			//zjHandInputFly.setDataTime(ConfigUtils.dataToString(new Date())); //20201105  boxy新改
+			zjHandInputFly.setDataTime(dateTime);
 			zjHandInputFlyService.add(zjHandInputFly);
 		}
 	}

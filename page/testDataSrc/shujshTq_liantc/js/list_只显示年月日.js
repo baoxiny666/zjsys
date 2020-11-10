@@ -480,25 +480,19 @@ function validateDateTime(beginTimeId,endTimeId,whichTimeId){
     var v1=$('#'+beginTimeId).datebox("getValue").replace(/-/g,'/');
     console.log(v1);
     var date1 = new Date(v1);
-    var date1Srting = date1.getTime();
     var v2=$('#'+endTimeId).datebox("getValue").replace(/-/g,'/');
     console.log(v2);
     var date2 = new Date(v2);
-    var date2Srting = date2.getTime();
     
     if(v1==''||v2==''){
         return true;
     }    
     
     
-    if(date1Srting<date2Srting){
+    if(date1<date2){
         console.log(date1+"<"+date2);
       
         return true;
-    }else if(date1Srting == date2Srting){
-    	  console.log(date1+"<"+date2);
-          
-          return true;
     }else{
     	if(whichTimeId == "objStartTime_search"){
     			

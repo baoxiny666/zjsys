@@ -48,6 +48,12 @@ public interface ZjLiangreSrcService extends BaseService<ZjLiangreSrc> {
 	 * @param ids
 	 * @throws Exception
 	 */
-	void checkAddSampleNum(String sampleNum ) throws Exception;
+	void checkAddSampleNum(String sampleNum) throws Exception;
 	
+	/**
+	 * 检查样品 新加的内容 boxy20201110
+	 * @param sampleNum
+	 * @param dateTime
+	 */
+	void checkAddSampleNumBxyNew(String sampleNum,String dateTime ) throws Exception;
 }

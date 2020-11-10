@@ -21,8 +21,8 @@ $(function() {
              func_search();
         }
 	})
-	$("#objStartTime_search").datebox('setValue',func_currentData());
-	$("#objEndTime_search").datebox('setValue',func_currentData());
+	$("#objStartTime_search").datebox('setValue',func_IecurrentData());
+	$("#objEndTime_search").datebox('setValue',func_IecurrentData());
 	
 	var erpData=func_erpUrl();
 	if(erpData.remoteUrlPath!=undefined&&erpData.remoteUrlPath!=null){
@@ -48,8 +48,8 @@ function func_creatTable(){
 	    	             {"field":"handInput_sampleNum","title":"样品编号","width":"200","align":"center","sortable":true,"editor":{ "type":"textbox","options":{required:true}}}
 	    	            ]];
 	var  head = [[
-	              {"field":"handInput_dataTime","title":"分析日期","width":"100","align":"center","sortable":true,"formatter":formateRowBxyTime,"editor":{ "type":"datetimebox","options":{required:true}}},
-	              {"field": "belongcompany", "title": "所属厂", "width": "150", "align": "center","sortable":true,
+	              {"field":"handInput_dataTime","title":"分析日期","width":"180","align":"center","sortable":true,"formatter":formateRowBxyTime,"editor":{ "type":"datetimebox","options":{required:true}}},
+	              {"field": "belongcompany", "title": "所属厂", "width": "100", "align": "center","sortable":true,
 	            	 
 	                  "editor": {
 	                      "type": "combobox",
@@ -480,19 +480,25 @@ function validateDateTime(beginTimeId,endTimeId,whichTimeId){
     var v1=$('#'+beginTimeId).datebox("getValue").replace(/-/g,'/');
     console.log(v1);
     var date1 = new Date(v1);
+    var date1Srting = date1.getTime();
     var v2=$('#'+endTimeId).datebox("getValue").replace(/-/g,'/');
     console.log(v2);
     var date2 = new Date(v2);
+    var date2Srting = date2.getTime();
     
     if(v1==''||v2==''){
         return true;
     }    
     
     
-    if(date1<date2){
+    if(date1Srting<date2Srting){
         console.log(date1+"<"+date2);
       
         return true;
+    }else if(date1Srting == date2Srting){
+    	  console.log(date1+"<"+date2);
+          
+          return true;
     }else{
     	if(whichTimeId == "objStartTime_search"){
     			

@@ -123,7 +123,7 @@ public class YingguangSrcBxyServiceImpl extends BaseServiceImpl<YingguangSrcBxy>
 		 newObj.setRecordUser(model.getRecordUser());	
 		 newObj.setDeviceNum(obj.getDeviceNum());
 		 yingguangFlyBxyService.add(newObj);		
-		 zjLiangreSrcService.checkAddSampleNum(newObj.getSampleNum());//核对量热仪、手录标样品编号
+		 zjLiangreSrcService.checkAddSampleNumBxyNew(newObj.getSampleNum(),obj.getDataTime());//核对量热仪、手录标样品编号
 	 }
 		
 	}
