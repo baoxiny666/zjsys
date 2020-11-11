@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>原料质量日报</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Expires" content="0"/>
+	<meta http-equiv="Pragma" content="no-cache"/>
+	<meta http-equiv="Cache-control" content="no-cache"/>
+	<meta http-equiv="Cache" content="no-cache"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/material/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/icon.css"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/zTreeStyle/zTreeStyle.css"/>
+	<script type="text/javascript" src="./../../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="./../../../js/jquery.tried.min.js"></script>
+	<script type="text/javascript" src="./../../../js/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="./../../../js/ztree/jquery.ztree.js"></script>
+	<script type="text/javascript" src="./../../../js/ztree/jquery.ztree.exedit-3.2.js"></script>
+	<script type="text/javascript" src="./../../../js/tried.js"></script>
+	
+	
+</head>
+
+
+<body style="overflow: hidden;margin: 0,0,0,0;">
+
+	<div id="treeDiv" class="easyui-layout" style="width: 100%;">
+		<div data-options="region:'west',split:true" title="原料质量日报" style="width: 15%;">
+		 	<input class="easyui-searchbox" id="search_menu_id" data-options="prompt:'检索菜单',searcher:doSearch"  style="width:100%;"></input>
+			 <ul id="menuTree" class="ztree"></ul>
+		</div>
+		<div data-options="region:'center'"   style="width: 85%;height:100%;padding: 5px">
+			<iframe frameborder="0" src="datagrid.html" id="zhilrbframe" width="100%" height="100%"></iframe>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="js/list_tree.js"></script>
+</html>

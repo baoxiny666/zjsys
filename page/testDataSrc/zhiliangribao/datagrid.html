@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>-铁前信息</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Cache-control" content="no-cache"/>
+<meta http-equiv="Cache" content="no-cache"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/material/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/icon.css"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/tried.css" />
+	<link rel="stylesheet" type="text/css" href="./../../../js/layui/css/layui.css" />
+	<script type="text/javascript" src="./../../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="./../../../js/jquery.tried.min.js"></script>
+	<script type="text/javascript" src="./../../../js/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="./../../../js/tried.js"></script>
+	<script type="text/javascript" src="js/list_datagrid.js"></script>
+	
+	<style>
+		html,body{
+			width:100%;
+			height:100%;
+			padding:0;
+			margin:0;
+		}
+	
+	</style>
+</head>
+<body>
+		
+			<div id="divConId" style="width:100%;height:100%;">   
+				<table  id="datagrid" class="easyui-datagrid" data-options="fit:true">
+		 			
+	    	  	</table>
+				<!-- <div id="datagrid"  data-options="fit:true"></div> -->
+			</div>
+			
+			
+			<div id="tb" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+				    <tr>
+				    	<td>
+				    		样品编号： <input id="sampleNum_search"   class= "easyui-searchbox"  data-options="onSelect:func_search"  style="width:100px"/>
+							日期：<input  id="objStartTime_search"   class= "easyui-datebox"   style="width:100px"/>
+							~<input  id="objEndTime_search"   class= "easyui-datebox" style="width:100px"/>
+			                 <a href="javascript:void(0);" class="layui-btn  layui-btn-sm" onclick="func_search()">   <i class="layui-icon">&#xe615;</i>检索 </a>	
+			                 
+			                 <a href="javascript:void(0);" class="layui-btn  layui-btn-sm layui-btn-warm" onclick="func_daocexcell()">   <i class="layui-icon"> &#xe609;</i>导出Excel</a>	
+						</td>
+					</tr>
+				</table>
+			</div>
+
+	
+</body>
+</html>
