@@ -87,6 +87,12 @@ function func_creatTable(){
 		            			"width" : 80,
 		            			"halign" : "center",
 		            			"align" : "left",
+		            			"avg": true,
+		            			"avgCol": "handInput_sampleNum",
+		            			"max": true,
+		            			"maxCol":"handInput_sampleNum",
+		            			"min": true,
+		            			"minCol":"handInput_sampleNum",
 		            			"sortable" : false
 							}
 						if(v.fieldName.indexOf("handInput_")!=-1 ){
@@ -96,6 +102,13 @@ function func_creatTable(){
 			            			"halign" : "center",
 			            			"align" : "left",
 			            			"sortable" : false,
+			            			"avg": true,
+			            			"avgCol": "handInput_sampleNum",
+			            			"max": true,
+			            			"maxCol":"handInput_sampleNum",
+			            			"min": true,
+			            			"minCol":"handInput_sampleNum",
+			            		
 			            			"editor":{ "type":"textbox"}
 								}
 							}
@@ -106,6 +119,12 @@ function func_creatTable(){
 			            			"halign" : "center",
 			            			"align" : "left",
 			            			"formatter" :formate3num,
+			            			"avg": true,
+			            			"avgCol": "handInput_sampleNum",
+			            			"max": true,
+			            			"maxCol":"handInput_sampleNum",
+			            			"min": true,
+			            			"minCol":"handInput_sampleNum",
 			            			"sortable" : false
 								}
 						}
@@ -127,7 +146,7 @@ function func_creatTable(){
 		url : getContextPath() + "/zjsys_testDataSrc/zjHandInputFlyAction_listFly.action",
 		toolbar : '#tb',
 		collapsible : false,
-		pagination : true,//分页
+		pagination : false,//分页
 		rownumbers : true, //行号
 		striped : true,    //各行换色
 		checkOnSelect : true,
@@ -135,6 +154,8 @@ function func_creatTable(){
 		selectOnCheck : true,
 		ctrlSelect : false,
 		fitColumns:true,//宽度自适应
+		showFooter : true,
+		view:myfootview,
 		queryParams : {  //参数传递
 			wlCode:_currentwlCode,
 			companyType:companyType,
@@ -143,7 +164,26 @@ function func_creatTable(){
 			sampleNum:$("#sampleNum_search").textbox('getValue')
 		},
 		frozenColumns:frozenColumns,
-		columns : head
+		columns : head,
+		onLoadSuccess: function (data) { 
+			 $('#datagrid').datagrid('statistics');
+
+			//左边的复选按钮
+			var body1 = $(".datagrid-body",$(".datagrid-view1"));
+			var footer1 = $(".datagrid-footer",$(".datagrid-view1"));
+			//添加到header div 之后
+			$('.datagrid-view1').find("div").eq(0).after(footer1);
+			 
+			//右边的数据内容                
+			var body2 = $(".datagrid-body",$(".datagrid-view2"));
+			var footer2 = $(".datagrid-footer",$(".datagrid-view2"));
+			//添加到header div 之后
+			$('.datagrid-view2').find("div").eq(0).after(footer2);
+		},rowStyler: function(index,row){
+            if (row.handInput_sampleNum == "最大值" || row.handInput_sampleNum == "最小值" || row.handInput_sampleNum == "平均值" ){
+                return 'background-color:#6293BB;color:#fff;font-weight:bold;';
+            }
+        }
 	});
 }
  

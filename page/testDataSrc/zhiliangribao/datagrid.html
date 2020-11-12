@@ -14,6 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="./../../../js/layui/css/layui.css" />
 	<script type="text/javascript" src="./../../../js/jquery.min.js"></script>
 	<script type="text/javascript" src="./../../../js/jquery.tried.min.js"></script>
+	<script type="text/javascript" src="./../../../js/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="./../../../js/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="./../../../js/tried.js"></script>
 	<script type="text/javascript" src="js/list_datagrid.js"></script>
@@ -55,4 +56,160 @@
 
 	
 </body>
+	<script type="text/javascript">
+		$.extend($.fn.datagrid.methods, {
+		    statistics: function (jq) {
+		        var opt = $(jq).datagrid('options').columns;
+		        var rows = $(jq).datagrid("getRows");
+		 
+		        var footer = new Array();
+		        footer['sum'] = "";
+		        footer['avg'] = "";
+		        footer['max'] = "";
+		        footer['min'] = "";
+		 
+		        var sumCol = '',
+		            avgCol = '',
+		            maxCol = '',
+		            minCol = '';
+		 
+		        for (var i = 0; i < opt[0].length; i++) {
+		            if (opt[0][i].sumCol) sumCol = opt[0][i].sumCol;
+		            if (opt[0][i].avgCol) avgCol = opt[0][i].avgCol;
+		            if (opt[0][i].maxCol) maxCol = opt[0][i].maxCol;
+		            if (opt[0][i].minCol) minCol = opt[0][i].minCol;
+		 
+		            if (opt[0][i].sum) {
+		                footer['sum'] = footer['sum'] + sum(opt[0][i].field) + ',';
+		            }
+		            if (opt[0][i].avg) {
+		                footer['avg'] = footer['avg'] + avg(opt[0][i].field) + ',';
+		            }
+		            if (opt[0][i].max) {
+		                footer['max'] = footer['max'] + max(opt[0][i].field) + ',';
+		            }
+		            if (opt[0][i].min) {
+		                footer['min'] = footer['min'] + min(opt[0][i].field) + ',';
+		            }
+		        }
+		 
+		        var footerObj = new Array();
+		        var tmp, obj;
+		        if (footer['sum'] != "") {
+		            tmp = '{' + footer['sum'].substring(0, footer['sum'].length - 1) + "}";
+		            obj = eval('(' + tmp + ')');
+		            if (sumCol.length > 0) obj[sumCol] = '合计';
+		            footerObj.push(obj);
+		        }
+		 
+		        if (footer['avg'] != "") {
+		            tmp = '{' + footer['avg'].substring(0, footer['avg'].length - 1) + "}";
+		            obj = eval('(' + tmp + ')');
+		            if (avgCol.length > 0) obj[avgCol] = '平均值';
+		            footerObj.push(obj);
+		        }
+		 
+		        if (footer['max'] != "") {
+		            tmp = '{' + footer['max'].substring(0, footer['max'].length - 1) + "}";
+		            obj = eval('(' + tmp + ')');
+		            if (maxCol.length > 0) obj[maxCol] = '最大值';
+		            footerObj.push(obj);
+		        }
+		 
+		        if (footer['min'] != "") {
+		            tmp = '{' + footer['min'].substring(0, footer['min'].length - 1) + "}";
+		            obj = eval('(' + tmp + ')');
+		            if (minCol.length > 0) obj[minCol] = '最小值';
+		            footerObj.push(obj);
+		        }
+		 
+		        if (footerObj.length > 0) {
+		            $(jq).datagrid('reloadFooter', footerObj);
+		        }
+		 
+		        function sum(filed) {
+		            var sumNum = 0;
+		            for (var i = 0; i < rows.length; i++) {
+		                sumNum += Number(rows[i][filed]);
+		            }
+		            return '"' + filed + '":"' + sumNum.toFixed(2) + '"';
+		        };
+		 
+		        function avg(filed) {
+		            var sumNum = 0;
+		            for (var i = 0; i < rows.length; i++) {
+		                sumNum += Number(rows[i][filed]);
+		            }
+		            return '"' + filed + '":"' + (sumNum / rows.length).toFixed(2) + '"';
+		        }
+		 
+		        function max(filed) {
+		            var max = 0;
+		            for (var i = 0; i < rows.length; i++) {
+		                if (i == 0) {
+		                    max = Number(rows[i][filed]);
+		                } else {
+		                    max = Math.max(max, Number(rows[i][filed]));
+		                }
+		            }
+		            return '"' + filed + '":"' + max + '"';
+		        }
+		 
+		        function min(filed) {
+		            var min = 0;
+		            for (var i = 0; i < rows.length; i++) {
+		                if (i == 0) {
+		                    min = Number(rows[i][filed]);
+		                } else {
+		                    min = Math.min(min, Number(rows[i][filed]));
+		                }
+		            }
+		            return '"' + filed + '":"' + min + '"';
+		        }
+		    }
+		});
+		
+		
+		
+		
+
+		var myfootview = $.extend({}, $.fn.datagrid.defaults.view, {
+		 
+		    renderFooter: function(target, container, frozen){
+		 
+		        var opts = $.data(target, 'datagrid').options;
+		 
+		        var rows = $.data(target, 'datagrid').footer || [];
+		 
+		        var fields = $(target).datagrid('getColumnFields', frozen);
+		 
+		        var table = ['<table class="datagrid-ftable" cellspacing="0" cellpadding="0" border="0"><tbody>'];
+		 
+		         
+		 
+		        for(var i=0; i<rows.length; i++){
+		 
+		            var styleValue = opts.rowStyler ? opts.rowStyler.call(target, i, rows[i]) : '';
+		 
+		            var style = styleValue ? 'style="' + styleValue + '"' : '';
+		 
+		            table.push('<tr class="datagrid-row" datagrid-row-index="' + i + '"' + style + '>');
+		 
+		            table.push(this.renderRow.call(this, target, fields, frozen, i, rows[i]));
+		 
+		            table.push('</tr>');
+		 
+		        }
+		 
+		         
+		 
+		        table.push('</tbody></table>');
+		 
+		        $(container).html(table.join(''));
+		 
+		    }
+		 
+		});
+
+	</script>
 </html>
