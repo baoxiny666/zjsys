@@ -7,7 +7,7 @@ $(function() {
 	countload_jishu();
 	
 	$("#objStartTime_search").datebox({
-		onSelect: function(date){
+		onChange: function(date){
              validateDateTime('objStartTime_search','objEndTime_search','objStartTime_search');
              func_search();
          }
@@ -15,7 +15,7 @@ $(function() {
 	
 	
 	$("#objEndTime_search").datebox({
-		onSelect: function(date){
+		onChange: function(date){
              validateDateTime('objStartTime_search','objEndTime_search','objEndTime_search');
              func_search();
         }
@@ -86,7 +86,7 @@ function func_creatTable(){
 								"title" :"<font  style='font-weight: bold;color: #000'>"+v.keyName+"</font>",
 		            			"width" : 80,
 		            			"halign" : "center",
-		            			"align" : "left",
+		            			"align" : "center",
 		            			"avg": true,
 		            			"avgCol": "handInput_sampleNum",
 		            			"max": true,
@@ -100,7 +100,7 @@ function func_creatTable(){
 									"title" :"<font  style='font-weight: bold;color: red'>"+v.keyName+"</font>",
 			            			"width" : 80,
 			            			"halign" : "center",
-			            			"align" : "left",
+			            			"align" : "center",
 			            			"sortable" : false,
 			            			"avg": true,
 			            			"avgCol": "handInput_sampleNum",
@@ -117,7 +117,7 @@ function func_creatTable(){
 									"title" :"<font  style='font-weight: bold;color: #000'>"+v.keyName+"</font>",
 			            			"width" : 80,
 			            			"halign" : "center",
-			            			"align" : "left",
+			            			"align" : "center",
 			            			"formatter" :formate3num,
 			            			"avg": true,
 			            			"avgCol": "handInput_sampleNum",
@@ -157,7 +157,7 @@ function func_creatTable(){
 		showFooter : true,
 		view:myfootview,
 		queryParams : {  //参数传递
-			wlCode:_currentwlCode,
+			wlCode:parent.currentCode,
 			companyType:companyType,
 			objStartTime: $("#objStartTime_search").datebox('getValue'),
 			objEndTime: $("#objEndTime_search").datebox('getValue'),
@@ -194,7 +194,7 @@ function func_creatTable(){
  */
 function func_search(){
 	$('#datagrid').datagrid('load',{
-		wlCode:_currentwlCode,
+		wlCode:parent.currentCode,
 		companyType:companyType,
 		objStartTime: $("#objStartTime_search").datebox('getValue'),
 		objEndTime: $("#objEndTime_search").datebox('getValue'),
@@ -216,13 +216,13 @@ function func_daocexcell(){
 	    var input1=$("<input>"); //在表单中添加input标签来传递参数，如有多个参数可添加多个input标签
 	    input1.attr("type","hidden");//设置为隐藏域
 	    input1.attr("name","currentwlCodeString");//设置参数名称
-	    input1.attr("value",_currentwlCode);//设置参数值
+	    input1.attr("value",parent.currentCode);//设置参数值
 	
 	    
 	    var input2=$("<input>"); //
 	    input2.attr("type","hidden");//设置为隐藏域
 	    input2.attr("name","wlCodeString");//设置参数名称
-	    input2.attr("value",$("#wlCode_search").combobox('getValue'));//设置参数值
+	    input2.attr("value",parent.currentCode);//设置参数值
 	    
 	    var input3=$("<input>"); //
 	    input3.attr("type","hidden");//设置为隐藏域
