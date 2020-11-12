@@ -211,7 +211,7 @@ function func_daocexcell(){
 	 var form=$("<form>"); //定义一个form表单,通过form表单来发送请求
 	    form.attr("style","display:none");  //设置表单状态为不显示
 	    form.attr("method","post");//method属性设置请求类型为post
-	    form.attr("action",getContextPath() + "/zjsys_testDataSrc/zjHandInputFlyAction_downloadexcell.action");//action属性设置请求路径，请求类型是post时,路径后面跟参数的方式不可用，可以通过表单中的input来传递参数
+	    form.attr("action",getContextPath() + "/zjsys_testDataSrc/zjHandInputFlyAction_download_avg_max_minexcell.action");//action属性设置请求路径，请求类型是post时,路径后面跟参数的方式不可用，可以通过表单中的input来传递参数
 	    $("body").append(form);//将表单放置在web中
 	    var input1=$("<input>"); //在表单中添加input标签来传递参数，如有多个参数可添加多个input标签
 	    input1.attr("type","hidden");//设置为隐藏域

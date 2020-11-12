@@ -130,41 +130,90 @@
 		        function sum(filed) {
 		            var sumNum = 0;
 		            for (var i = 0; i < rows.length; i++) {
-		                sumNum += Number(rows[i][filed]);
+		            	if(rows[i][filed] == "" || rows[i][filed] == undefiend ||  rows[i][filed] == null){
+		            		if(rows)
+		            		rows.length--;
+		            	}else{
+		            		sumNum += Number(rows[i][filed]);
+		            	}
+		                
 		            }
 		            return '"' + filed + '":"' + sumNum.toFixed(2) + '"';
 		        };
-		 
+
 		        function avg(filed) {
 		            var sumNum = 0;
+		            var indexnew = 0;
 		            for (var i = 0; i < rows.length; i++) {
-		                sumNum += Number(rows[i][filed]);
+		            	
+		            	if(rows[i][filed] == "" || rows[i][filed] == "undefiend"  ||  rows[i][filed] == null){
+		            		continue;
+		            	}else{
+		            		sumNum += Number(rows[i][filed]);
+		            		indexnew++;
+		            	}
+		                
 		            }
-		            return '"' + filed + '":"' + (sumNum / rows.length).toFixed(3) + '"';
+		            
+		            if(indexnew == 0){
+		            	return;
+		            }else{
+		            	return '"' + filed + '":"' + (sumNum / indexnew).toFixed(3) + '"';
+		            }
+		            
+		            
 		        }
 		 
 		        function max(filed) {
-		            var max = 0;
+		            var max = -Infinity;
+		            var indexnew = 0;
 		            for (var i = 0; i < rows.length; i++) {
-		                if (i == 0) {
-		                    max = Number(rows[i][filed]);
-		                } else {
-		                    max = Math.max(max, Number(rows[i][filed]));
-		                }
+		            	if(rows[i][filed] == "" || rows[i][filed] == "undefiend"  ||  rows[i][filed] == null){
+		            		continue;
+		            	}else{
+			                if (i == 0) {
+			                    max = Number(rows[i][filed]);
+			                } else {
+			                    max = Math.max(max, Number(rows[i][filed]));
+			                }
+			                
+			                indexnew++;
+		            	}
 		            }
-		            return '"' + filed + '":"' + max + '"';
+		            
+		            if(indexnew == 0){
+		            	return;
+		            }else{
+		            	return '"' + filed + '":"' + max + '"';
+		            }
+		            
 		        }
 		 
 		        function min(filed) {
-		            var min = 0;
+		            var min = Infinity;
+		            var indexnew = 0;
 		            for (var i = 0; i < rows.length; i++) {
-		                if (i == 0) {
-		                    min = Number(rows[i][filed]);
-		                } else {
-		                    min = Math.min(min, Number(rows[i][filed]));
-		                }
+		            	if(rows[i][filed] == "" || rows[i][filed] == "undefiend"  ||  rows[i][filed] == null){
+		            		continue;
+		            	}else{
+			                if (i == 0) {
+			                    min = Number(rows[i][filed]);
+			                } else {
+			                    min = Math.min(min, Number(rows[i][filed]));
+			                }
+			                indexnew++;
+		            	}
+		            	
+		            	
 		            }
-		            return '"' + filed + '":"' + min + '"';
+		            
+		            
+		            if(indexnew == 0){
+		            	return;
+		            }else{
+		            	return '"' + filed + '":"' + min + '"';
+		            }
+		            
 		        }
 		    }
 		});
@@ -210,6 +259,8 @@
 		    }
 		 
 		});
+		
+
 
 	</script>
 </html>
