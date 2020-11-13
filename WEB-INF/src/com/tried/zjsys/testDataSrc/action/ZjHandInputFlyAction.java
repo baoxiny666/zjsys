@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,6 +38,7 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.bouncycastle.jce.provider.BrokenJCEBlockCipher.BrokePBEWithMD5AndDES;
 import org.drools.lang.dsl.DSLMapParser.variable_definition2_return;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -850,7 +852,477 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 		}
 		return returnMap;
 	}
+	
+	
+	
+	public void download_avg_max_minexcell() {
 
+		try {
+			String objStartTimeString = model.getObjStartTimeString();
+			String objEndTimeString = model.getObjEndTimeString();
+			String currentwlCodeString = model.getCurrentwlCodeString()==null?"":model.getCurrentwlCodeString();
+			String wlCodeString = model.getWlCodeString()==null?"":model.getWlCodeString();
+			String companyTypeString="";
+			if("undefined".equals(model.getCompanyTypeString())) {
+				companyTypeString = "";
+			}else {
+				companyTypeString = model.getCompanyTypeString()==null?"":model.getCompanyTypeString();
+			}
+			String sampleNumString = model.getSampleNumString()==null?"":model.getSampleNumString();
+			
+			HSSFWorkbook workbook = new HSSFWorkbook();
+			HSSFCellStyle style = workbook.createCellStyle();
+			style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+			style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
+			HSSFSheet sheet = workbook.createSheet("sheet");
+			sheet.setColumnWidth(0, 256*30+184);
+			sheet.setColumnWidth(1, 256*30+184);
+			sheet.setColumnWidth(2, 256*50+184);
+			// 第一行
+			HSSFRow row0 = sheet.createRow(0);
+			HSSFCell cell_00 = row0.createCell(0);
+			cell_00.setCellStyle(style);
+			cell_00.setCellValue("选中类型：");
+
+			HSSFCell cell_01 = row0.createCell(1);
+			cell_01.setCellStyle(style);
+			cell_01.setCellValue(currentwlCodeString);
+
+			Date dd = new Date();
+			SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String time = sim.format(dd);
+
+			HSSFCell cell_02 = row0.createCell(2);
+			cell_02.setCellStyle(style);
+			cell_02.setCellValue("日期从："+objStartTimeString + "到" + objEndTimeString);
+
+		
+			/*
+			 * HSSFCell cell_03 = row0.createCell(3); cell_03.setCellStyle(style);
+			 * cell_03.setCellValue(row.get("objStartTime").toString() + "到" +
+			 * row.get("objEndTime"));
+			 */
+
+			// 第二行
+			HSSFRow row1 = sheet.createRow(1);
+			HSSFCell cell_10 = row1.createCell(0);
+			cell_10.setCellStyle(style);
+			cell_10.setCellValue("样品编号");
+
+			HSSFCell cell_11 = row1.createCell(1);
+			cell_11.setCellStyle(style);
+			cell_11.setCellValue("分析日期");
+
+			HSSFCell cell_12 = row1.createCell(2);
+			cell_12.setCellStyle(style);
+			cell_12.setCellValue("所属厂");
+
+			// 填充表头动态元素
+			List<DataKeyMaxMin> datakeymaxminList = dataKeyMaxMinService
+					.findAll("FROM DataKeyMaxMin where deviceName ='" + currentwlCodeString
+							+ "'  order by cast(viewpaiXu  as int) asc  ");
+			int biaozhi = 3;
+			int biaozhisize = datakeymaxminList.size() + 3;
+			List list = new ArrayList();
+			for (int i = 0; i < datakeymaxminList.size(); i++) {
+				String currentStringHead = datakeymaxminList.get(i).getKeyName();
+				String fieldName = datakeymaxminList.get(i).getFieldName();
+				HSSFCell forrowcell = row1.createCell(biaozhi);
+				forrowcell.setCellStyle(style);
+				forrowcell.setCellValue(currentStringHead);
+				list.add(fieldName);
+				biaozhi++;
+			}
+
+			HSSFCell cell999 = row1.createCell(biaozhisize);
+			cell999.setCellStyle(style);
+			cell999.setCellValue("操作时间");
+
+			HSSFCell cell998 = row1.createCell(biaozhisize + 1);
+			cell998.setCellStyle(style);
+			cell998.setCellValue("操作人");
+
+			/***************************************************************/
+			/*****************************************************************/
+
+			List<DataKeyMaxMin> keyList = dataKeyMaxMinService
+					.findAll("FROM DataKeyMaxMin where deviceName='" + wlCodeString + "'");
+			List<DataWlInfo> changeTypeList = dataWlInfoService
+					.findAll("FROM DataWlInfo where wlCode ='" + wlCodeString  + "'");
+			String wlType = "";
+			this.condition = "";
+			for (DataWlInfo KEY : changeTypeList) {
+				if ("原料".equals(KEY.getWlType().toString())) {
+					wlType = "原料";
+				}
+
+				if ("手录".equals(KEY.getWlType().toString())) {
+					wlType = "手录";
+				}
+			}
+			if (strIsNotNull(objStartTimeString)) {
+				this.condition += " and CONVERT(varchar(10), handInput_dataTime, 23) >= '" + objStartTimeString + "' ";
+			}
+			if (strIsNotNull(objEndTimeString)) {
+				this.condition += " and CONVERT(varchar(10), handInput_dataTime, 23) <= '" + objEndTimeString  + "' ";
+			}
+
+			if (strIsNotNull(companyTypeString)) {
+				this.condition += " and belongcompany ='" + companyTypeString  + "' ";
+			}
+
+			if (strIsNotNull(sampleNumString )) {
+				this.condition += " and handInput_sampleNum like '%" + sampleNumString  + "%' ";
+			}
+			this.condition += " and handInput_sampleNum like '" + wlCodeString  + "%'";
+			this.condition +=" order by  handInput_dataTime,belongcompany desc ";
+
+			if ("原料".equals(wlType)) {
+				List<ViewYuanliao> findAllViewYuanliao = viewYuanliaoService
+						.findAll("from ViewYuanliao where  1=1  " + this.condition);
+				List<Map> convertListBean2ListMapViewYuanliao = convertListBean2ListMap(findAllViewYuanliao,
+						ViewYuanliao.class);
+				
+				//筛选出只剩元素的总的list值集合
+				List<Map> totalYuanliaoList = new ArrayList<Map>();
+				int yuanliaoline = 2;
+				for (int uu = 0; uu < convertListBean2ListMapViewYuanliao.size(); uu++) {
+					HSSFRow rowrecord = sheet.createRow(yuanliaoline);
+					Map yunaliaoMap = convertListBean2ListMapViewYuanliao.get(uu);
+
+					// 分割线
+					HSSFCell cellyuanexceptYuansu = rowrecord.createCell(0);
+					cellyuanexceptYuansu.setCellStyle(style);
+					cellyuanexceptYuansu.setCellValue(yunaliaoMap.get("handInput_sampleNum") == null ? ""
+							: yunaliaoMap.get("handInput_sampleNum").toString());
+
+					HSSFCell cellyuanexceptYuansu1 = rowrecord.createCell(1);
+					cellyuanexceptYuansu1.setCellStyle(style);
+					cellyuanexceptYuansu1.setCellValue(yunaliaoMap.get("handInput_dataTime") == null ? ""
+							: yunaliaoMap.get("handInput_dataTime").toString());
+
+					HSSFCell cellyuanexceptYuansu2 = rowrecord.createCell(2);
+					cellyuanexceptYuansu2.setCellStyle(style);
+					cellyuanexceptYuansu2.setCellValue(yunaliaoMap.get("belongcompany") == null ? ""
+							: yunaliaoMap.get("belongcompany").toString());
+
+					int biaozhiyuanliao = 3;
+					int biaozhiyuanliaolistsize = list.size() + 3;
+					Map totalYuanliaoXiaoMap = new HashMap();
+					for (int hh = 0; hh < list.size(); hh++) {
+						HSSFCell cellyuanliao = rowrecord.createCell(biaozhiyuanliao);
+						//小单元格内容
+						String cellyuanliaoValue = yunaliaoMap.get(list.get(hh)) == null ? "" : yunaliaoMap.get(list.get(hh)).toString();
+						cellyuanliao.setCellStyle(style);
+						cellyuanliao.setCellValue(cellyuanliaoValue);
+						totalYuanliaoXiaoMap.put(list.get(hh), cellyuanliaoValue);
+						
+						biaozhiyuanliao++;
+					}
+					totalYuanliaoList.add(totalYuanliaoXiaoMap);
+
+					// 分割线
+					HSSFCell cellyuanexceptYuansu3 = rowrecord.createCell(biaozhiyuanliaolistsize);
+					cellyuanexceptYuansu3.setCellStyle(style);
+
+					cellyuanexceptYuansu3.setCellValue(
+							yunaliaoMap.get("recordTime") == null ? "" : yunaliaoMap.get("recordTime").toString());
+
+					HSSFCell cellyuanexceptYuansu4 = rowrecord.createCell(biaozhiyuanliaolistsize + 1);
+					cellyuanexceptYuansu4.setCellStyle(style);
+					cellyuanexceptYuansu4.setCellValue(yunaliaoMap.get("recordUserName") == null ? ""
+							: yunaliaoMap.get("recordUserName").toString());
+					
+					yuanliaoline++;
+					
+					
+					
+					
+
+				}
+				
+				System.out.println(JSONArray.fromObject(totalYuanliaoList).toString());
+				
+				List<Map> excellList = new ArrayList<Map>();
+				
+				//去生成最大最小平均值的excel结尾
+				List avglist = new  ArrayList();
+				DecimalFormat df=new DecimalFormat("0.000");//设置保留位数
+				//获取物料最大值
+				for(int wuliaoYsindex = 0;wuliaoYsindex<list.size();wuliaoYsindex++) {
+					Double maxDoublevalue = Double.NEGATIVE_INFINITY;
+					Double minDoublevalue = Double.POSITIVE_INFINITY;
+					double avgDoublevalue = 0.000;
+					double sumNum = 0.000;
+					int indexnew = 0;
+					for(int totalwuliaodetailYsVindex=0;totalwuliaodetailYsVindex<totalYuanliaoList.size();totalwuliaodetailYsVindex++) {
+						String currentvalue =  totalYuanliaoList.get(totalwuliaodetailYsVindex).get(list.get(wuliaoYsindex)).toString();
+						double currentValueDouble = 0.0;
+						if(!strIsNotNull(currentvalue)) {
+							continue;
+						}else {
+							currentValueDouble = Double.parseDouble(currentvalue);
+							if (totalwuliaodetailYsVindex == 0) {
+								maxDoublevalue = currentValueDouble;
+								minDoublevalue = currentValueDouble;
+			                } else {
+			                	if(maxDoublevalue < currentValueDouble) {
+									 maxDoublevalue = currentValueDouble;
+								}
+			                	if(minDoublevalue>currentValueDouble) {
+									 minDoublevalue = currentValueDouble;
+								}
+			                }
+							sumNum+=currentValueDouble;
+			                indexnew++;
+						}
+						avglist.add(currentValueDouble);
+					}
+					Map zuheMap = new HashMap();
+					if(indexnew==0) {
+						zuheMap.put("maxvalue", "");
+						zuheMap.put("minvalue", "");
+						zuheMap.put("avgvalue", "");
+					}else {
+						avgDoublevalue =  Double.parseDouble(df.format(sumNum/indexnew).toString());
+						zuheMap.put("maxvalue", maxDoublevalue);
+						zuheMap.put("minvalue", minDoublevalue);
+						zuheMap.put("avgvalue", avgDoublevalue);
+					}
+					excellList.add(zuheMap);
+				}
+				//拼装excell中的最大最小平均值
+				
+				HSSFRow rowmin = sheet.createRow(yuanliaoline);
+				HSSFCell cell_rowmin = rowmin.createCell(0);
+				cell_rowmin.setCellStyle(style);
+				cell_rowmin.setCellValue("最小值");
+				
+				HSSFRow rowmax = sheet.createRow(yuanliaoline+1);
+				HSSFCell cell_rowmax = rowmax.createCell(0);
+				cell_rowmax.setCellStyle(style);
+				cell_rowmax.setCellValue("最大值");
+				
+				HSSFRow rowavg = sheet.createRow(yuanliaoline+2);
+				HSSFCell cell_rowavg= rowavg.createCell(0);
+				cell_rowavg.setCellStyle(style);
+				cell_rowavg.setCellValue("平均值");
+				
+				int xuhaopinjie = 3;
+				for(int pinzhungindex=0;pinzhungindex < excellList.size();pinzhungindex++) {
+					
+					//最小单元格内容
+					HSSFCell mincellpinjie = rowmin.createCell(xuhaopinjie);
+					mincellpinjie.setCellStyle(style);
+					mincellpinjie.setCellValue(excellList.get(pinzhungindex).get("minvalue").toString());
+					
+					//最大单元格内容
+					HSSFCell maxcellpinjie = rowmax.createCell(xuhaopinjie);
+					maxcellpinjie.setCellStyle(style);
+					maxcellpinjie.setCellValue(excellList.get(pinzhungindex).get("maxvalue").toString());
+					
+					//平均单元格内容
+					HSSFCell avgcellpinjie = rowavg.createCell(xuhaopinjie);
+					avgcellpinjie.setCellStyle(style);
+					avgcellpinjie.setCellValue(excellList.get(pinzhungindex).get("avgvalue").toString());
+					
+					xuhaopinjie++;
+				}
+				
+			} else {
+				List<ViewHandInput> findAllViewHandInput = viewHandInputService
+						.findAll("from ViewHandInput where  1=1   " + this.condition);
+
+				List<Map> convertListBean2ListMapViewHandInput = convertListBean2ListMap(findAllViewHandInput,
+						ViewHandInput.class);
+				
+				//筛选出只剩元素的总的list值集合
+				List<Map> totalHandInputList = new ArrayList<Map>();
+				int handInputLine = 2;
+				for (int uu = 0; uu < convertListBean2ListMapViewHandInput.size(); uu++) {
+					HSSFRow rowrecord = sheet.createRow(handInputLine);
+					Map handInputMap = convertListBean2ListMapViewHandInput.get(uu);
+
+					// 分割线
+					HSSFCell cellyuanexceptHandInput = rowrecord.createCell(0);
+					cellyuanexceptHandInput.setCellStyle(style);
+					cellyuanexceptHandInput.setCellValue(handInputMap.get("handInput_sampleNum") == null ? ""
+							: handInputMap.get("handInput_sampleNum").toString());
+
+					HSSFCell cellyuanexceptHandInput1 = rowrecord.createCell(1);
+					cellyuanexceptHandInput1.setCellStyle(style);
+					cellyuanexceptHandInput1.setCellValue(handInputMap.get("handInput_dataTime") == null ? ""
+							: handInputMap.get("handInput_dataTime").toString());
+
+					HSSFCell cellyuanexceptHandInput2 = rowrecord.createCell(2);
+					cellyuanexceptHandInput2.setCellStyle(style);
+					cellyuanexceptHandInput2.setCellValue(handInputMap.get("belongcompany") == null ? ""
+							: handInputMap.get("belongcompany").toString());
+
+					int biaozhihandInput = 3;
+					int biaozhihandInputlistsize = list.size() + 3;
+					
+					Map totalhandInputMap = new HashMap();
+					for (int hh = 0; hh < list.size(); hh++) {
+						String cellhandInputValue =  handInputMap.get(list.get(hh)) == null ? "": handInputMap.get(list.get(hh)).toString();
+						HSSFCell cellhandinput = rowrecord.createCell(biaozhihandInput);
+						cellhandinput.setCellStyle(style);
+						cellhandinput.setCellValue(cellhandInputValue);
+						totalhandInputMap.put(list.get(hh), cellhandInputValue);
+						biaozhihandInput++;
+					}
+					totalHandInputList.add(totalhandInputMap);
+					// 分割线
+					HSSFCell cellyuanexceptHandInput3 = rowrecord.createCell(biaozhihandInputlistsize);
+					cellyuanexceptHandInput3.setCellStyle(style);
+
+					cellyuanexceptHandInput3.setCellValue(
+							handInputMap.get("recordTime") == null ? "" : handInputMap.get("recordTime").toString());
+
+					HSSFCell cellyuanexceptHandInput4 = rowrecord.createCell(biaozhihandInputlistsize + 1);
+					cellyuanexceptHandInput4.setCellStyle(style);
+					cellyuanexceptHandInput4.setCellValue(handInputMap.get("recordUserName") == null ? ""
+							: handInputMap.get("recordUserName").toString());
+
+					handInputLine++;
+
+				}
+				
+				
+				System.out.println(JSONArray.fromObject(totalHandInputList).toString());
+				
+				List<Map> excellList = new ArrayList<Map>();
+				
+				//去生成最大最小平均值的excel结尾
+				List avglist = new  ArrayList();
+				DecimalFormat df=new DecimalFormat("0.000");//设置保留位数
+				//获取物料最大值
+				for(int wuliaoYsindex = 0;wuliaoYsindex<list.size();wuliaoYsindex++) {
+					Double maxDoublevalue = Double.NEGATIVE_INFINITY;
+					Double minDoublevalue = Double.POSITIVE_INFINITY;
+					double avgDoublevalue = 0.000;
+					double sumNum = 0.000;
+					int indexnew = 0;
+					for(int totalwuliaodetailYsVindex=0;totalwuliaodetailYsVindex<totalHandInputList.size();totalwuliaodetailYsVindex++) {
+						
+						String currentvalue =  totalHandInputList.get(totalwuliaodetailYsVindex).get(list.get(wuliaoYsindex)).toString();
+						double currentValueDouble = 0.0;
+						if(!strIsNotNull(currentvalue)) {
+							continue;
+						}else {
+							
+							currentValueDouble = Double.parseDouble(currentvalue);
+							if (totalwuliaodetailYsVindex == 0) {
+								maxDoublevalue = currentValueDouble;
+								minDoublevalue = currentValueDouble;
+			                } else {
+			                	if(maxDoublevalue < currentValueDouble) {
+									 maxDoublevalue = currentValueDouble;
+								}
+			                	
+			                	if(minDoublevalue>currentValueDouble) {
+									 minDoublevalue = currentValueDouble;
+								}
+			                }
+							sumNum+=currentValueDouble;
+			                indexnew++;
+						}
+						avglist.add(currentValueDouble);
+					}
+					Map zuheMap = new HashMap();
+					if(indexnew==0) {
+						zuheMap.put("maxvalue", "");
+						zuheMap.put("minvalue", "");
+						zuheMap.put("avgvalue", "");
+					}else {
+						avgDoublevalue =  Double.parseDouble(df.format(sumNum/indexnew).toString());
+						zuheMap.put("maxvalue", maxDoublevalue);
+						zuheMap.put("minvalue", minDoublevalue);
+						zuheMap.put("avgvalue", avgDoublevalue);
+					}
+					excellList.add(zuheMap);
+				}
+				//拼装excell中的最大最小平均值
+				
+				HSSFRow rowmin = sheet.createRow(handInputLine);
+				HSSFCell cell_rowmin = rowmin.createCell(0);
+				cell_rowmin.setCellStyle(style);
+				cell_rowmin.setCellValue("最小值");
+				
+				HSSFRow rowmax = sheet.createRow(handInputLine+1);
+				HSSFCell cell_rowmax = rowmax.createCell(0);
+				cell_rowmax.setCellStyle(style);
+				cell_rowmax.setCellValue("最大值");
+				
+				HSSFRow rowavg = sheet.createRow(handInputLine+2);
+				HSSFCell cell_rowavg= rowavg.createCell(0);
+				cell_rowavg.setCellStyle(style);
+				cell_rowavg.setCellValue("平均值");
+				
+				int xuhaopinjie = 3;
+				for(int pinzhungindex=0;pinzhungindex < excellList.size();pinzhungindex++) {
+					//最小单元格内容
+					HSSFCell mincellpinjie = rowmin.createCell(xuhaopinjie);
+					mincellpinjie.setCellStyle(style);
+					mincellpinjie.setCellValue(excellList.get(pinzhungindex).get("minvalue").toString());
+
+					//最大单元格内容
+					HSSFCell maxcellpinjie = rowmax.createCell(xuhaopinjie);
+					maxcellpinjie.setCellStyle(style);
+					maxcellpinjie.setCellValue(excellList.get(pinzhungindex).get("maxvalue").toString());
+					
+					//平均单元格内容
+					HSSFCell avgcellpinjie = rowavg.createCell(xuhaopinjie);
+					avgcellpinjie.setCellStyle(style);
+					avgcellpinjie.setCellValue(excellList.get(pinzhungindex).get("avgvalue").toString());
+					
+					xuhaopinjie++;
+				}
+			}
+
+			/*************************************************************/
+		      ByteArrayOutputStream os = new ByteArrayOutputStream();
+		      workbook.write(os);
+		      byte[] content = os.toByteArray();
+		      InputStream is = new ByteArrayInputStream(content);
+		      // 设置response参数，可以打开下载页面
+		      getResponse().reset();
+		      getResponse().setContentType("application/vnd.ms-excel;charset=utf-8");
+		      getResponse().setHeader("Content-Disposition", "attachment;filename="+ new String((wlCodeString  + ".xls").getBytes(), "iso-8859-1"));
+			
+		      ServletOutputStream out = getResponse().getOutputStream();
+		      BufferedInputStream bis = null;
+		      BufferedOutputStream bos = null;
+
+		      try {
+		        bis = new BufferedInputStream(is);
+		        bos = new BufferedOutputStream(out);
+		        byte[] buff = new byte[2048];
+		        int bytesRead;
+		        // Simple read/write loop.
+		        while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
+		          bos.write(buff, 0, bytesRead);
+		        }
+		      } catch (Exception e) {
+		        // TODO: handle exception
+		        e.printStackTrace();
+		      } finally {
+		        if (bis != null)
+		          bis.close();
+		        if (bos != null)
+		          bos.close();
+		      }
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+	}
+
+
+	
+	
+	
 	public String getWlType() {
 		return wlType;
 	}
