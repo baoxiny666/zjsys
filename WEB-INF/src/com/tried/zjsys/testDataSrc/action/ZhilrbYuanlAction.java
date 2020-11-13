@@ -50,7 +50,10 @@ public class ZhilrbYuanlAction extends BaseAction<ZhilrbYuanlMenu> {
 	 */
 	public void zhilrbInitMenu() {
 		try {
-			outSuccessJson(zhilrbYuanlService.findAll("from ZhilrbYuanlMenu where flag='是'  order by sequence asc "));
+			if (strIsNotNull(model.getBelongcompany())) {
+				this.condition += " and belongcompany ='" + model.getBelongcompany() + "' ";
+			}
+			outSuccessJson(zhilrbYuanlService.findAll("from ZhilrbYuanlMenu where flag='是'  "+this.condition+ " order by sequence asc "));
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			outErrorJson("失败");

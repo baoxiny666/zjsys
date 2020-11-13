@@ -1,7 +1,7 @@
 
 var _currentUserId="";
 var _currentwlCode="";
-var companyType = "";
+var companyType = parent.companyfactorynew;
 var countload = 0; 
 $(function() {
 	countload_jishu();

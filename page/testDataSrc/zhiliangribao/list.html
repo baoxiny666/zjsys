@@ -12,20 +12,25 @@
 	<link rel="stylesheet" type="text/css" href="./../../../css/themes/icon.css"/>
 	<link rel="stylesheet" type="text/css" href="./../../../css/zTreeStyle/zTreeStyle.css"/>
 	<script type="text/javascript" src="./../../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="./../../../js/jquery.param.js"></script>
+
 	<script type="text/javascript" src="./../../../js/jquery.tried.min.js"></script>
 	<script type="text/javascript" src="./../../../js/jquery.easyui.min.js"></script>
-	
 	<script type="text/javascript" src="./../../../js/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="./../../../js/ztree/jquery.ztree.js"></script>
 	<script type="text/javascript" src="./../../../js/ztree/jquery.ztree.exedit-3.2.js"></script>
 	<script type="text/javascript" src="./../../../js/tried.js"></script>
 	
+	<script type="text/javascript">
+	 	var companyfactory = $.query.get("companyfactory");
+	 	var companyfactorynew = companyfactory.substring(0,companyfactory.indexOf("?"));
+	</script>
 	
 </head>
 
 
 <body style="overflow: hidden;margin: 0,0,0,0;">
-
+	
 	<div id="treeDiv" class="easyui-layout" style="width: 100%;">
 		<div data-options="region:'west',split:true" title="原料质量日报" style="width: 15%;">
 		 	<input class="easyui-searchbox" id="search_menu_id" data-options="prompt:'检索菜单',searcher:doSearch"  style="width:100%;"></input>

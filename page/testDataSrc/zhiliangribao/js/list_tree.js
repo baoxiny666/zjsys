@@ -46,6 +46,7 @@ function initTree(){
 			url : getContextPath() + "/zjsys_testDataSrc/zhilrbYuanlAction_zhilrbInitMenu.action",
 			type : "post",
 			dataType : "json",
+			data:{"belongcompany":companyfactorynew},
 			async : false,
 			success : function(DATA, request, settings) {
 				if(DATA.STATUS=='SUCCESS'){
@@ -56,9 +57,18 @@ function initTree(){
 						}
 					});
 					var menuzhiltree =  $.fn.zTree.init($("#menuTree"), setting, zNodes);
-					var menuzhilnode = menuzhiltree.getNodes()[0].children[0].children[0];
-					menuzhiltree.selectNode(menuzhilnode);
-					setting.callback.onClick(null, menuzhiltree.setting.treeId, menuzhilnode);
+					if(companyfactorynew  == '烧结厂' || companyfactorynew == '炼铁厂'){
+						var menuzhilnode = menuzhiltree.getNodes()[0].children[0];
+						menuzhiltree.selectNode(menuzhilnode);
+						setting.callback.onClick(null, menuzhiltree.setting.treeId, menuzhilnode);
+					
+					}else{
+						var menuzhilnode = menuzhiltree.getNodes()[0].children[0].children[0];
+						menuzhiltree.selectNode(menuzhilnode);
+						setting.callback.onClick(null, menuzhiltree.setting.treeId, menuzhilnode);
+					}
+					
+					
 					
 				}
 			},

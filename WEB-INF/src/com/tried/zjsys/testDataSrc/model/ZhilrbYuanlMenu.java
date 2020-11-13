@@ -26,6 +26,9 @@ private java.lang.String flag;
 //所属厂
 private java.lang.String belongcompany;
 
+
+
+
 //树形结构父id
 private java.lang.String pId;
 //临时id
