@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>原料质量日报</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Expires" content="0"/>
+	<meta http-equiv="Pragma" content="no-cache"/>
+	<meta http-equiv="Cache-control" content="no-cache"/>
+	<meta http-equiv="Cache" content="no-cache"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/material/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/icon.css"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/zTreeStyle/zTreeStyle.css"/>
+	<link rel="stylesheet" type="text/css" href="./../../../js/layui/css/layui.css" />
+	<script type="text/javascript" src="./../../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="./../../../js/jquery.param.js"></script>
+
+	<script type="text/javascript" src="./../../../js/jquery.tried.min.js"></script>
+	<script type="text/javascript" src="./../../../js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="./../../../js/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="./../../../js/ztree/jquery.ztree.js"></script>
+	<script type="text/javascript" src="./../../../js/ztree/jquery.ztree.exedit-3.2.js"></script>
+	<script type="text/javascript" src="./../../../js/tried.js"></script>
+	
+	<script type="text/javascript">
+	 	var companyfactory = $.query.get("companyfactory");
+	 	var companyfactorynew = companyfactory.substring(0,companyfactory.indexOf("?"));
+	</script>
+	
+</head>
+
+
+<body style="overflow: hidden;margin: 0,0,0,0;">
+	
+	<div id="treeDiv" class="easyui-layout" style="width: 100%;">
+		<div data-options="region:'west',split:true" title="原料质量日报" style="width: 15%;">
+		 	<input class="easyui-searchbox" id="search_menu_id" data-options="prompt:'检索菜单',searcher:doSearch"  style="width:100%;"></input>
+			 <ul id="menuTree" class="ztree"></ul>
+		</div>
+		<div data-options="region:'center'"   style="width: 85%;height:100%;padding: 5px">
+			<!-- <iframe frameborder="0" src="datagrid.html" id="zhilrbframe" width="100%" height="100%"></iframe> -->
+			<div id="divConId" style="width:100%;height:100%;">   
+				<table  id="datagrid" class="easyui-datagrid" data-options="fit:true">
+		 			
+	    	  	</table>
+				<!-- <div id="datagrid"  data-options="fit:true"></div> -->
+			</div>
+			
+			
+			<div id="tb" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+				    <tr>
+				    	<td>
+				    		样品编号： <input id="sampleNum_search"   class= "easyui-searchbox"  data-options="searcher:func_search"  style="width:150px"/>
+							日期：<input  id="objStartTime_search"   class= "easyui-datebox"   style="width:150px"/>
+							~<input  id="objEndTime_search"   class= "easyui-datebox" style="width:150px"/>
+			                 <a href="javascript:void(0);" class="layui-btn  layui-btn-sm" onclick="func_search()">   <i class="layui-icon">&#xe615;</i>检索 </a>	
+			                 
+			                 <a href="javascript:void(0);" class="layui-btn  layui-btn-sm layui-btn-warm" onclick="func_daocexcell()">   <i class="layui-icon"> &#xe609;</i>导出Excel</a>	
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/list_tree_xin.js"></script>
+	<script type="text/javascript">
+		$.extend($.fn.datagrid.methods, {
+		    statistics: function (jq) {
+		        var opt = $(jq).datagrid('options').columns;
+		        var rows = $(jq).datagrid("getRows");
+		 
+		        var footer = new Array();
+		        footer['sum'] = "";
+		        footer['avg'] = "";
+		        footer['max'] = "";
+		        footer['min'] = "";
+		 
+		        var sumCol = '',
+		            avgCol = '',
+		            maxCol = '',
+		            minCol = '';
+		 
+		        for (var i = 0; i < opt[0].length; i++) {
+		            if (opt[0][i].sumCol) sumCol = opt[0][i].sumCol;
+		            if (opt[0][i].avgCol) avgCol = opt[0][i].avgCol;
+		            if (opt[0][i].maxCol) maxCol = opt[0][i].maxCol;
+		            if (opt[0][i].minCol) minCol = opt[0][i].minCol;
+		 
+		            if (opt[0][i].sum) {
+		                footer['sum'] = footer['sum'] + sum(opt[0][i].field) + ',';
+		            }
+		            if (opt[0][i].avg) {
+		                footer['avg'] = footer['avg'] + avg(opt[0][i].field) + ',';
+		            }
+		            if (opt[0][i].max) {
+		                footer['max'] = footer['max'] + max(opt[0][i].field) + ',';
+		            }
+		            if (opt[0][i].min) {
+		                footer['min'] = footer['min'] + min(opt[0][i].field) + ',';
+		            }
+		        }
+		 
+		        var footerObj = new Array();
+		        var tmp, obj;
+		        if (footer['sum'] != "") {
+		            tmp = '{' + footer['sum'].substring(0, footer['sum'].length - 1) + "}";
+		            obj = eval('(' + tmp + ')');
+		            if (sumCol.length > 0) obj[sumCol] = '合计';
+		            footerObj.push(obj);
+		        }
+		 
+		        if (footer['avg'] != "") {
+		            tmp = '{' + footer['avg'].substring(0, footer['avg'].length - 1) + "}";
+		            obj = eval('(' + tmp + ')');
+		            if (avgCol.length > 0) obj[avgCol] = '平均值';
+		            footerObj.push(obj);
+		        }
+		 
+		        if (footer['max'] != "") {
+		            tmp = '{' + footer['max'].substring(0, footer['max'].length - 1) + "}";
+		            obj = eval('(' + tmp + ')');
+		            if (maxCol.length > 0) obj[maxCol] = '最大值';
+		            footerObj.push(obj);
+		        }
+		 
+		        if (footer['min'] != "") {
+		            tmp = '{' + footer['min'].substring(0, footer['min'].length - 1) + "}";
+		            obj = eval('(' + tmp + ')');
+		            if (minCol.length > 0) obj[minCol] = '最小值';
+		            footerObj.push(obj);
+		        }
+		 
+		        if (footerObj.length > 0) {
+		            $(jq).datagrid('reloadFooter', footerObj);
+		        }
+		 
+		        function sum(filed) {
+		            var sumNum = 0;
+		            for (var i = 0; i < rows.length; i++) {
+		            	if(rows[i][filed] == "" || rows[i][filed] == undefiend ||  rows[i][filed] == null){
+		            		
+		            		
+		            	}else{
+		            		sumNum += Number(rows[i][filed]);
+		            	}
+		                
+		            }
+		            return '"' + filed + '":"' + sumNum.toFixed(2) + '"';
+		        };
+
+		        function avg(filed) {
+		            var sumNum = 0;
+		            var indexnew = 0;
+		            for (var i = 0; i < rows.length; i++) {
+		            	
+		            	if(rows[i][filed] == "" || rows[i][filed] == "undefiend"  ||  rows[i][filed] == null){
+		            		continue;
+		            	}else{
+		            		sumNum += Number(rows[i][filed]);
+		            		indexnew++;
+		            	}
+		                
+		            }
+		            
+		            if(indexnew == 0){
+		            	return;
+		            }else{
+		            	return '"' + filed + '":"' + (sumNum / indexnew).toFixed(3) + '"';
+		            }
+		            
+		            
+		        }
+		 
+		        function max(filed) {
+		            var max = -Infinity;
+		            var indexnew = 0;
+		            for (var i = 0; i < rows.length; i++) {
+		            	if(rows[i][filed] == "" || rows[i][filed] == "undefiend"  ||  rows[i][filed] == null){
+		            		continue;
+		            	}else{
+			                if (i == 0) {
+			                    max = Number(rows[i][filed]);
+			                } else {
+			                    max = Math.max(max, Number(rows[i][filed]));
+			                }
+			                
+			                indexnew++;
+		            	}
+		            }
+		            
+		            if(indexnew == 0){
+		            	return;
+		            }else{
+		            	return '"' + filed + '":"' + max + '"';
+		            }
+		            
+		        }
+		 
+		        function min(filed) {
+		            var min = Infinity;
+		            var indexnew = 0;
+		            for (var i = 0; i < rows.length; i++) {
+		            	if(rows[i][filed] == "" || rows[i][filed] == "undefiend"  ||  rows[i][filed] == null){
+		            		continue;
+		            	}else{
+			                if (i == 0) {
+			                    min = Number(rows[i][filed]);
+			                } else {
+			                    min = Math.min(min, Number(rows[i][filed]));
+			                }
+			                indexnew++;
+		            	}
+		            	
+		            	
+		            }
+		            
+		            
+		            if(indexnew == 0){
+		            	return;
+		            }else{
+		            	return '"' + filed + '":"' + min + '"';
+		            }
+		            
+		        }
+		    }
+		});
+		
+		
+		
+		
+
+		var myfootview = $.extend({}, $.fn.datagrid.defaults.view, {
+		 
+		    renderFooter: function(target, container, frozen){
+		 
+		        var opts = $.data(target, 'datagrid').options;
+		 
+		        var rows = $.data(target, 'datagrid').footer || [];
+		 
+		        var fields = $(target).datagrid('getColumnFields', frozen);
+		 
+		        var table = ['<table class="datagrid-ftable" cellspacing="0" cellpadding="0" border="0"><tbody>'];
+		 
+		         
+		 
+		        for(var i=0; i<rows.length; i++){
+		 
+		            var styleValue = opts.rowStyler ? opts.rowStyler.call(target, i, rows[i]) : '';
+		 
+		            var style = styleValue ? 'style="' + styleValue + '"' : '';
+		 
+		            table.push('<tr class="datagrid-row" datagrid-row-index="' + i + '"' + style + '>');
+		 
+		            table.push(this.renderRow.call(this, target, fields, frozen, i, rows[i]));
+		 
+		            table.push('</tr>');
+		 
+		        }
+		 
+		         
+		 
+		        table.push('</tbody></table>');
+		 
+		        $(container).html(table.join(''));
+		 
+		    }
+		 
+		});
+		
+
+
+	</script>
+</body>
+
+</html>

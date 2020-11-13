@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>原料质量日报</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Expires" content="0"/>
+	<meta http-equiv="Pragma" content="no-cache"/>
+	<meta http-equiv="Cache-control" content="no-cache"/>
+	<meta http-equiv="Cache" content="no-cache"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/material/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/themes/icon.css"/>
+	<link rel="stylesheet" type="text/css" href="./../../../css/zTreeStyle/zTreeStyle.css"/>
+	<link rel="stylesheet" type="text/css" href="./../../../js/layui/css/layui.css" />
+	<script type="text/javascript" src="./../../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="./../../../js/jquery.param.js"></script>
+	<script type="text/javascript" src="./../../../js/jquery.tried.min.js"></script>
+	<script type="text/javascript" src="./../../../js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="./../../../js/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="./../../../js/ztree/jquery.ztree.js"></script>
+	<script type="text/javascript" src="./../../../js/ztree/jquery.ztree.exedit-3.2.js"></script>
+	<script type="text/javascript" src="./../../../js/tried.js"></script>
+	
+	<script type="text/javascript">
+	 	var companyfactory = $.query.get("companyfactory");
+	 	var companyfactorynew = companyfactory.substring(0,companyfactory.indexOf("?"));
+	</script>
+	
+	
+</head>
+
+
+<body style="overflow:hidden;" >
+
+	<div id="treeDiv" class="easyui-layout" style="width: 100%;">
+		<div data-options="region:'west',split:true" title="" style="width: 15%;">
+		 	<input class="easyui-searchbox" id="search_menu_id" data-options="prompt:'检索菜单',searcher:doSearch"  style="width:100%;"></input>
+			 <ul id="menuTree" class="ztree"></ul>
+		</div>
+		<div data-options="region:'center'"   style="width: 85%;height:100%;padding: 5px">
+			<!-- <iframe frameborder="0" src="datagrid.html" id="shenheframe" width="100%" height="100%"></iframe> -->
+			<div id="divConId" data-options="region:'center'">   
+				<div id="datagrid"   style="width:97%" data-options="fit:true"></div>
+			</div>
+			<div id="tb" style="padding:2px 5px;" >
+			    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+				    <tr>
+				    	<td>
+							样品编号： <input id="sampleNum_search"   class= "easyui-searchbox"  data-options="searcher:func_search"  style="width:150px"/>
+							日期：<input  id="objStartTime_search"   class= "easyui-datebox"   style="width:150px"/>
+							~<input  id="objEndTime_search"   class= "easyui-datebox" style="width:150px"/>
+							
+			                 <a href="javascript:void(0)" class="layui-btn  layui-btn-sm" onclick="func_search()">   <i class="layui-icon">&#xe615;</i>检索 </a>		
+							&nbsp;&nbsp;&nbsp;
+							<a href="javascript:void(0)" class="layui-btn layui-btn-sm"  onclick="func_add()"><i class="layui-icon">&#xe624;</i>新增</a>
+							<a href="javascript:void(0)" class="layui-btn layui-btn-sm layui-btn-danger" onclick="func_del()">   <i class="layui-icon">&#xe640;</i>删除 </a>
+							<a href="javascript:void(0)" class="layui-btn layui-btn-sm layui-btn-normal" onclick="func_accept()">   <i class="layui-icon">&#xe605;</i>保存 </a>
+							<a href="javascript:void(0)" class="layui-btn  layui-btn-sm layui-btn-warm" onclick="func_daocexcell()">   <i class="layui-icon"> &#xe609;</i>导出Excel</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="./js/list_tree.js"></script>
+	<script type="text/javascript" src="./js/list_datagrid.js"></script>
+</body>
+
+</html>
