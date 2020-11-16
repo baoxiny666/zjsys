@@ -1,7 +1,7 @@
 
 var _currentUserId="";
 var _currentwlCode="";
-var companyType = parent.companyfactorynew;
+var companyType = companyfactorynew;
 var countload = 0; 
 //父节点id
 var pId=0;
@@ -177,7 +177,7 @@ function func_creatTable(){
                   },
 	              {"field":"dataStatus","title":"状态","width":"100","align":"center","sortable":false}
 	             ]];
-	var _wlCode=parent.currentCode;
+	var _wlCode=currentCode;
 	_currentwlCode = _wlCode;
 	$.ajax({
 		url : getContextPath() + "/zjsys_testDataSrc/zjHandInputFlyAction_wlHead.action?wlCode="+encodeURIComponent(encodeURIComponent(_wlCode)),
