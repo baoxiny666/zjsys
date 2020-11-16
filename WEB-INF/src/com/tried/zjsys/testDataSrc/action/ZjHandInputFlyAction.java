@@ -1275,7 +1275,7 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 		      // 设置response参数，可以打开下载页面
 		      getResponse().reset();
 		      getResponse().setContentType("application/vnd.ms-excel;charset=utf-8");
-		      getResponse().setHeader("Content-Disposition", "attachment;filename="+ new String((wlCodeString  + ".xls").getBytes(), "iso-8859-1"));
+		      getResponse().setHeader("Content-Disposition", "attachment;filename="+ new String((wlCodeString  + "-原料质量日报.xls").getBytes(), "iso-8859-1"));
 			
 		      ServletOutputStream out = getResponse().getOutputStream();
 		      BufferedInputStream bis = null;
