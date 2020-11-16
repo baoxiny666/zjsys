@@ -51,7 +51,7 @@ public class ZhilrbYuanlAction extends BaseAction<ZhilrbYuanlMenu> {
 	public void zhilrbInitMenu() {
 		try {
 			if (strIsNotNull(model.getBelongcompany())) {
-				this.condition += " and belongcompany ='" + model.getBelongcompany() + "' ";
+				this.condition += " and (belongcompany ='" + model.getBelongcompany() + "' or id = '8aa2838c75b093580175b098a3470003') ";
 			}
 			outSuccessJson(zhilrbYuanlService.findAll("from ZhilrbYuanlMenu where flag='是'  "+this.condition+ " order by sequence asc "));
 		} catch (Exception e) {

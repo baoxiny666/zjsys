@@ -77,16 +77,11 @@ function initTree(){
 					
 					
 					var menuzhiltree =  $.fn.zTree.init($("#menuTree"), setting, zNodes);
-					if(companyfactorynew  == '烧结厂' || companyfactorynew == '炼铁厂'){
-						var menuzhilnode = menuzhiltree.getNodes()[0].children[0];
-						menuzhiltree.selectNode(menuzhilnode);
-						setting.callback.onClick(null, menuzhiltree.setting.treeId, menuzhilnode);
 					
-					}else{
-						var menuzhilnode = menuzhiltree.getNodes()[0].children[0].children[0];
-						menuzhiltree.selectNode(menuzhilnode);
-						setting.callback.onClick(null, menuzhiltree.setting.treeId, menuzhilnode);
-					}
+					var menuzhilnode = menuzhiltree.getNodes()[0].children[0].children[0];
+					menuzhiltree.selectNode(menuzhilnode);
+					setting.callback.onClick(null, menuzhiltree.setting.treeId, menuzhilnode);
+					
 					
 					
 					
