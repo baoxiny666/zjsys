@@ -3,12 +3,15 @@ var _currentUserId="";
 var _currentwlCode="";
 var companyType = companyfactorynew;
 var countload = 0; 
+//取得的各个元素所对应的小数点位数
+var xiaoshudian;
 //父节点id
 var pId=0;
 //父节点名称
 var pName="";
 
 var currentCode = "";
+
 
 $(function() {
 	initTree();
@@ -89,6 +92,7 @@ function initTree(){
 					setting.callback.onClick(null, menuzhiltree.setting.treeId, menuzhilnode);
 					
 					
+	
 					
 					
 				}
@@ -100,6 +104,22 @@ function initTree(){
 		
 }
 
+
+function execute_point(){
+	$.ajax({
+		url : getContextPath() + "/zjsys_testDataSrc/zjHandInputFlyAction_wlHead_Please_Point.action?wlCode="+encodeURIComponent(encodeURIComponent(currentCode)),
+		type : "post",
+		
+		dataType : "json",
+		async : false,
+		success : function(DATA, request, settings) {
+			if(DATA.STATUS=='SUCCESS'){
+				xiaoshudian = DATA.RETURN_DATA;
+				console.log("核对是否："+xiaoshudian);
+			}
+		}
+	});
+}
 
 
 
@@ -117,7 +137,8 @@ function reSetContent(event, treeId, treeNode, clickFlag) {
 		console.log("此节点为长辈目录，不能点击");
 	}else{
 		currentCode = pName;
-
+		/*执行查询各元素的小数点位数*/
+		execute_point();
 		func_creatTable();  
 	}
 	

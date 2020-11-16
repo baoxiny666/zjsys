@@ -23,6 +23,7 @@ private java.lang.String recordUserName;
 //;
 private java.lang.String fieldName;
 private java.lang.Integer  viewpaiXu;
+private java.lang.Integer  numberDecimal;
 private java.util.Date recordTime;
 public String jsField;
  public void setId(java.lang.String  id){
@@ -134,4 +135,16 @@ public void setRecordUser(java.lang.String  recordUser){
  public java.util.Date  getRecordTime(){
  return this.recordTime;  
 }
+
+
+public java.lang.Integer getNumberDecimal() {
+	return numberDecimal;
+}
+
+
+public void setNumberDecimal(java.lang.Integer numberDecimal) {
+	this.numberDecimal = numberDecimal;
+}
+ 
+ 
 }

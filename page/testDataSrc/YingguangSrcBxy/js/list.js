@@ -131,7 +131,7 @@ var head = [ [ {
 	}
 }, {
 	"field" : "test_V2O5",
-	"title" : "V2o5",
+	"title" : "V2O5",
 	"width" : "70",
 	"align" : "center",
 	"sortable" : false,

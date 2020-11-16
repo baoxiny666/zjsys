@@ -31,6 +31,10 @@
     <property name="viewpaiXu" >
       <column name="viewpaiXu"/>
     </property>
+    <property name="numberDecimal" >
+      <column name="numberDecimal"/>
+    </property>
+    
     <property name="recordUserName">
         <formula>
       	(select tsu.userName from tried_system_user tsu where tsu.id=recordUser)

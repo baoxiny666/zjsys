@@ -126,6 +126,31 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 			outErrorJson("修改失败");
 		}
 	}
+	
+	/**
+	   *   根据物料代码获取物料每个元素的小数点位数
+	 */
+	public void wlHead_Please_Point() {
+		try {
+
+			String wlCode_encode = java.net.URLDecoder.decode(wlCode, "UTF-8");
+			if (strIsNotNull(wlCode_encode)) {
+				List<DataKeyMaxMin> list = dataKeyMaxMinService.findAll("FROM DataKeyMaxMin where deviceName='" + wlCode_encode+ "' order by cast(viewpaiXu  as int)  asc ");
+				JSONObject jbJsonObject = new JSONObject();
+				
+				for (DataKeyMaxMin dataKeyMaxMin : list) {
+					jbJsonObject.put(dataKeyMaxMin.getFieldName(),dataKeyMaxMin.getNumberDecimal());
+				}
+				outSuccessJson(jbJsonObject);
+				
+			} else {
+				outJsonList(dataKeyMaxMinService.findAll());
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			outErrorJson("修改失败");
+		}
+	}
 
 	/**
 	 * 获取物料信息
@@ -908,16 +933,22 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 			List<DataKeyMaxMin> datakeymaxminList = dataKeyMaxMinService
 					.findAll("FROM DataKeyMaxMin where deviceName ='" + currentwlCodeString
 							+ "'  order by cast(viewpaiXu  as int) asc  ");
+			
+			
 			int biaozhi = 3;
 			int biaozhisize = datakeymaxminList.size() + 3;
 			List list = new ArrayList();
+			List<Integer> xiaoshudianList = new ArrayList<Integer>();
 			for (int i = 0; i < datakeymaxminList.size(); i++) {
 				String currentStringHead = datakeymaxminList.get(i).getKeyName();
+				
 				String fieldName = datakeymaxminList.get(i).getFieldName();
+				Integer xiaoshuNumber = datakeymaxminList.get(i).getNumberDecimal();
 				HSSFCell forrowcell = row1.createCell(biaozhi);
 				forrowcell.setCellStyle(style);
 				forrowcell.setCellValue(currentStringHead);
 				list.add(fieldName);
+				xiaoshudianList.add(xiaoshuNumber);
 				biaozhi++;
 			}
 
@@ -1034,7 +1065,7 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 				
 				//去生成最大最小平均值的excel结尾
 				List avglist = new  ArrayList();
-				DecimalFormat df=new DecimalFormat("0.000");//设置保留位数
+				DecimalFormat df=null;//设置保留位数
 				//获取物料最大值
 				for(int wuliaoYsindex = 0;wuliaoYsindex<list.size();wuliaoYsindex++) {
 					Double maxDoublevalue = Double.NEGATIVE_INFINITY;
@@ -1066,6 +1097,25 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 						avglist.add(currentValueDouble);
 					}
 					Map zuheMap = new HashMap();
+					
+					//保留一位小数
+					if(xiaoshudianList.get(wuliaoYsindex) == 1) {
+						df=new DecimalFormat("0.0");
+					}
+					//保留两位小数
+					if(xiaoshudianList.get(wuliaoYsindex) == 2) {
+						df=new DecimalFormat("0.00");
+					} 
+					
+					//保留三位小数
+					if(xiaoshudianList.get(wuliaoYsindex) == 3) {
+						df=new DecimalFormat("0.000");
+					}
+					
+					//保留四位小数
+					if(xiaoshudianList.get(wuliaoYsindex) == 4) {
+						df=new DecimalFormat("0.0000");
+					}
 					if(indexnew==0) {
 						zuheMap.put("maxvalue", "");
 						zuheMap.put("minvalue", "");
