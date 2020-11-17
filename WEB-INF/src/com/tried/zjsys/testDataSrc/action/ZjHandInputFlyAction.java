@@ -204,7 +204,8 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 			}
 			this.condition += " and handInput_sampleNum like '" + wlCode + "%'";
 
-			this.condition += this.getOrderColumn();
+			//this.condition += this.getOrderColumn();
+			this.condition += " order by  handInput_dataTime desc ";
 
 			/*
 			 * if("燃料".equals(wlType)){
@@ -657,7 +658,7 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 				this.condition += " and handInput_sampleNum like '%" + sampleNumString  + "%' ";
 			}
 			this.condition += " and handInput_sampleNum like '" + wlCodeString  + "%'";
-			this.condition +=" order by  handInput_dataTime,belongcompany desc ";
+			this.condition +=" order by  handInput_dataTime desc ";
 			// this.condition += this.getOrderColumn();
 
 			/*
@@ -993,7 +994,7 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 				this.condition += " and handInput_sampleNum like '%" + sampleNumString  + "%' ";
 			}
 			this.condition += " and handInput_sampleNum like '" + wlCodeString  + "%'";
-			this.condition +=" order by  handInput_dataTime,belongcompany desc ";
+			this.condition +=" order by  handInput_dataTime desc ";
 
 			if ("原料".equals(wlType)) {
 				List<ViewYuanliao> findAllViewYuanliao = viewYuanliaoService
@@ -1066,16 +1067,36 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 				//去生成最大最小平均值的excel结尾
 				List avglist = new  ArrayList();
 				DecimalFormat df=null;//设置保留位数
+				
 				//获取物料最大值
 				for(int wuliaoYsindex = 0;wuliaoYsindex<list.size();wuliaoYsindex++) {
 					Double maxDoublevalue = Double.NEGATIVE_INFINITY;
 					Double minDoublevalue = Double.POSITIVE_INFINITY;
-					double avgDoublevalue = 0.000;
-					double sumNum = 0.000;
+					String avgDoublevalue = "";
+					double sumNum = 0;
 					int indexnew = 0;
+					
+					//保留一位小数
+					if(xiaoshudianList.get(wuliaoYsindex) == 1) {
+						df=new DecimalFormat("#####0.0");
+					}
+					//保留两位小数
+					if(xiaoshudianList.get(wuliaoYsindex) == 2) {
+						df=new DecimalFormat("#####0.00");
+					} 
+					
+					//保留三位小数
+					if(xiaoshudianList.get(wuliaoYsindex) == 3) {
+						df=new DecimalFormat("#####0.000");
+					}
+					
+					//保留四位小数
+					if(xiaoshudianList.get(wuliaoYsindex) == 4) {
+						df=new DecimalFormat("#####0.0000");
+					}
 					for(int totalwuliaodetailYsVindex=0;totalwuliaodetailYsVindex<totalYuanliaoList.size();totalwuliaodetailYsVindex++) {
-						String currentvalue =  totalYuanliaoList.get(totalwuliaodetailYsVindex).get(list.get(wuliaoYsindex)).toString();
-						double currentValueDouble = 0.0;
+						String currentvalue =  totalYuanliaoList.get(totalwuliaodetailYsVindex).get(list.get(wuliaoYsindex))==null?"": totalYuanliaoList.get(totalwuliaodetailYsVindex).get(list.get(wuliaoYsindex)).toString();
+						double currentValueDouble = 0;
 						if(!strIsNotNull(currentvalue)) {
 							continue;
 						}else {
@@ -1096,34 +1117,17 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 						}
 						avglist.add(currentValueDouble);
 					}
-					Map zuheMap = new HashMap();
+					Map<String,String> zuheMap = new HashMap<String,String>();
 					
-					//保留一位小数
-					if(xiaoshudianList.get(wuliaoYsindex) == 1) {
-						df=new DecimalFormat("0.0");
-					}
-					//保留两位小数
-					if(xiaoshudianList.get(wuliaoYsindex) == 2) {
-						df=new DecimalFormat("0.00");
-					} 
 					
-					//保留三位小数
-					if(xiaoshudianList.get(wuliaoYsindex) == 3) {
-						df=new DecimalFormat("0.000");
-					}
-					
-					//保留四位小数
-					if(xiaoshudianList.get(wuliaoYsindex) == 4) {
-						df=new DecimalFormat("0.0000");
-					}
 					if(indexnew==0) {
 						zuheMap.put("maxvalue", "");
 						zuheMap.put("minvalue", "");
 						zuheMap.put("avgvalue", "");
 					}else {
-						avgDoublevalue =  Double.parseDouble(df.format(sumNum/indexnew).toString());
-						zuheMap.put("maxvalue", maxDoublevalue);
-						zuheMap.put("minvalue", minDoublevalue);
+						avgDoublevalue = df.format(sumNum/indexnew);
+						zuheMap.put("maxvalue", df.format(maxDoublevalue));
+						zuheMap.put("minvalue", df.format(minDoublevalue));
 						zuheMap.put("avgvalue", avgDoublevalue);
 					}
 					excellList.add(zuheMap);
@@ -1232,23 +1236,44 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 				
 				//去生成最大最小平均值的excel结尾
 				List avglist = new  ArrayList();
-				DecimalFormat df=new DecimalFormat("0.000");//设置保留位数
+				DecimalFormat df=null;//设置保留位数
 				//获取物料最大值
 				for(int wuliaoYsindex = 0;wuliaoYsindex<list.size();wuliaoYsindex++) {
 					Double maxDoublevalue = Double.NEGATIVE_INFINITY;
 					Double minDoublevalue = Double.POSITIVE_INFINITY;
-					double avgDoublevalue = 0.000;
-					double sumNum = 0.000;
+					String avgDoublevalue = "";
+					double sumNum = 0;
 					int indexnew = 0;
+					
+					//保留一位小数
+					if(xiaoshudianList.get(wuliaoYsindex) == 1) {
+						df=new DecimalFormat("#####0.0");
+					}
+					//保留两位小数
+					if(xiaoshudianList.get(wuliaoYsindex) == 2) {
+						df=new DecimalFormat("#####0.00");
+					} 
+					
+					//保留三位小数
+					if(xiaoshudianList.get(wuliaoYsindex) == 3) {
+						df=new DecimalFormat("#####0.000");
+					}
+					
+					//保留四位小数
+					if(xiaoshudianList.get(wuliaoYsindex) == 4) {
+						df=new DecimalFormat("#####0.0000");
+					}
+					
 					for(int totalwuliaodetailYsVindex=0;totalwuliaodetailYsVindex<totalHandInputList.size();totalwuliaodetailYsVindex++) {
 						
-						String currentvalue =  totalHandInputList.get(totalwuliaodetailYsVindex).get(list.get(wuliaoYsindex)).toString();
-						double currentValueDouble = 0.0;
+						String currentvalue =  totalHandInputList.get(totalwuliaodetailYsVindex).get(list.get(wuliaoYsindex))==null?"":totalHandInputList.get(totalwuliaodetailYsVindex).get(list.get(wuliaoYsindex)).toString();
+						double currentValueDouble = 0;
 						if(!strIsNotNull(currentvalue)) {
 							continue;
 						}else {
 							
 							currentValueDouble = Double.parseDouble(currentvalue);
+							
 							if (totalwuliaodetailYsVindex == 0) {
 								maxDoublevalue = currentValueDouble;
 								minDoublevalue = currentValueDouble;
@@ -1266,15 +1291,16 @@ public class ZjHandInputFlyAction extends BaseAction<ZjHandInputFly> {
 						}
 						avglist.add(currentValueDouble);
 					}
-					Map zuheMap = new HashMap();
+					Map<String,String> zuheMap = new HashMap<String,String>();
+				
 					if(indexnew==0) {
 						zuheMap.put("maxvalue", "");
 						zuheMap.put("minvalue", "");
 						zuheMap.put("avgvalue", "");
 					}else {
-						avgDoublevalue =  Double.parseDouble(df.format(sumNum/indexnew).toString());
-						zuheMap.put("maxvalue", maxDoublevalue);
-						zuheMap.put("minvalue", minDoublevalue);
+						avgDoublevalue = df.format(sumNum/indexnew);
+						zuheMap.put("maxvalue", df.format(maxDoublevalue));
+						zuheMap.put("minvalue", df.format(minDoublevalue));
 						zuheMap.put("avgvalue", avgDoublevalue);
 					}
 					excellList.add(zuheMap);

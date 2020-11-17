@@ -181,9 +181,9 @@
 		            		continue;
 		            	}else{
 			                if (i == 0) {
-			                    max = Number(rows[i][filed]);
+			                    max = (Number(rows[i][filed])).toFixed(xiaoshudian[filed]);
 			                } else {
-			                    max = Math.max(max, Number(rows[i][filed]));
+			                    max = (Math.max(max, Number(rows[i][filed]))).toFixed(xiaoshudian[filed]);
 			                }
 			                
 			                indexnew++;
@@ -206,9 +206,9 @@
 		            		continue;
 		            	}else{
 			                if (i == 0) {
-			                    min = Number(rows[i][filed]);
+			                    min = (Number(rows[i][filed])).toFixed(xiaoshudian[filed]);
 			                } else {
-			                    min = Math.min(min, Number(rows[i][filed]));
+			                    min = (Math.min(min, Number(rows[i][filed]))).toFixed(xiaoshudian[filed]);
 			                }
 			                indexnew++;
 		            	}
