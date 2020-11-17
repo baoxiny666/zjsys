@@ -189,14 +189,7 @@ function func_creatTable(){
 		            			"width" : 80,
 		            			"halign" : "center",
 		            			"align" : "left",
-		            			"sortable" : false,
-		            			 "editor": {
-		                             "type": "numberbox",
-		                             "options": {
-		                                
-		                                 "validType": "isNumber"
-		                             },
-		                         }
+		            			"sortable" : false
 							}
 						if(v.fieldName.indexOf("handInput_")!=-1 ){
 								_h={"field" : v.fieldName,
@@ -205,12 +198,11 @@ function func_creatTable(){
 			            			"halign" : "center",
 			            			"align" : "left",
 			            			"sortable" : false,
-			            			 "editor": {
-			                             "type": "numberbox",
+			            			"editor": {
+			            				 "type":"textbox",
 			                             "options": {
-			                                
 			                                 "validType": "isNumber"
-			                             },
+			                             }
 			                         }
 								}
 							}
@@ -221,14 +213,7 @@ function func_creatTable(){
 			            			"halign" : "center",
 			            			"align" : "left",
 			            			"formatter" :formate3num,
-			            			"sortable" : false,
-			            			 "editor": {
-			                             "type": "numberbox",
-			                             "options": {
-			                                
-			                                 "validType": "isNumber"
-			                             },
-			                         }
+			            			"sortable" : false
 								}
 						}
 					head[0].push(_h);
