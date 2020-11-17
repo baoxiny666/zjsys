@@ -25,7 +25,10 @@
 	<script type="text/javascript">
 	 	var companyfactory = $.query.get("companyfactory");
 	 	var companyfactorynew = companyfactory.substring(0,companyfactory.indexOf("?"));
-	 	
+	 	function decimal(num,v){
+            var vv = Math.pow(10,v);
+            return Math.round(num*vv)/vv;
+        }
 	 	
 	</script>
 	
@@ -167,7 +170,8 @@
 		            if(indexnew == 0){
 		            	return;
 		            }else{
-		            	return '"' + filed + '":"' + (sumNum / indexnew).toFixed(xiaoshudian[filed]) + '"';
+		            	/* return '"' + filed + '":"' + (sumNum / indexnew).toFixed(xiaoshudian[filed]) + '"'; */
+		            	return '"' + filed + '":"' + decimal((sumNum / indexnew),xiaoshudian[filed]).toFixed(xiaoshudian[filed]) + '"';
 		            }
 		            
 		            
