@@ -24,6 +24,16 @@
 	<script type="text/javascript">
 	 	var companyfactory = $.query.get("companyfactory");
 	 	var companyfactorynew = companyfactory.substring(0,companyfactory.indexOf("?"));
+	 	
+	 	
+	 	 $.extend($.fn.validatebox.defaults.rules, {
+	         isNumber: {// 验证数值
+	             validator: function (value) {
+	                 return /^\d+$|^\d+[.]?\d+$/.test(value);
+	             },
+	             message: '请输入数字！！！'
+	         }
+	     })
 	</script>
 	
 	

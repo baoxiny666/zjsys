@@ -189,7 +189,14 @@ function func_creatTable(){
 		            			"width" : 80,
 		            			"halign" : "center",
 		            			"align" : "left",
-		            			"sortable" : false
+		            			"sortable" : false,
+		            			 "editor": {
+		                             "type": "numberbox",
+		                             "options": {
+		                                
+		                                 "validType": "isNumber"
+		                             },
+		                         }
 							}
 						if(v.fieldName.indexOf("handInput_")!=-1 ){
 								_h={"field" : v.fieldName,
@@ -198,7 +205,13 @@ function func_creatTable(){
 			            			"halign" : "center",
 			            			"align" : "left",
 			            			"sortable" : false,
-			            			"editor":{ "type":"textbox"}
+			            			 "editor": {
+			                             "type": "numberbox",
+			                             "options": {
+			                                
+			                                 "validType": "isNumber"
+			                             },
+			                         }
 								}
 							}
 						if(v.fieldName.indexOf("tanliu_S")!=-1 ){//碳硫仪保留3位
@@ -208,7 +221,14 @@ function func_creatTable(){
 			            			"halign" : "center",
 			            			"align" : "left",
 			            			"formatter" :formate3num,
-			            			"sortable" : false
+			            			"sortable" : false,
+			            			 "editor": {
+			                             "type": "numberbox",
+			                             "options": {
+			                                
+			                                 "validType": "isNumber"
+			                             },
+			                         }
 								}
 						}
 					head[0].push(_h);
