@@ -3,6 +3,9 @@ var _currentUserId="";
 var _currentwlCode="";
 var companyType = companyfactorynew;
 var countload = 0; 
+
+
+var riqzlflag = 0;
 //取得的各个元素所对应的小数点位数
 var xiaoshudian;
 //父节点id
@@ -29,8 +32,7 @@ $(function() {
              func_search();
         }
 	})
-	$("#objStartTime_search").datebox('setValue',func_IecurrentData());
-	$("#objEndTime_search").datebox('setValue',func_IecurrentData());
+
 	
 	var erpData=func_erpUrl();
 	if(erpData.remoteUrlPath!=undefined&&erpData.remoteUrlPath!=null){
@@ -280,13 +282,23 @@ function func_creatTable(){
 		queryParams : {  //参数传递
 			wlCode:_currentwlCode,
 			companyType:companyType,
-			objStartTime: $("#objStartTime_search").datebox('getValue'),
-			objEndTime: $("#objEndTime_search").datebox('getValue'),
+			/*objStartTime: $("#objStartTime_search").datebox('getValue'),*/
+			objStartTime: func_IecurrentData(),
+		/*	objEndTime: $("#objEndTime_search").datebox('getValue'),*/
+			objEndTime: func_IecurrentData(),
 			sampleNum:$("#sampleNum_search").textbox('getValue')
 		},
 		frozenColumns:frozenColumns,
 		columns : head,
 		onLoadSuccess: function (data) { 
+			if(riqzlflag == 0){
+				$("#objStartTime_search").datebox('setValue',func_IecurrentData());
+				$("#objEndTime_search").datebox('setValue',func_IecurrentData());
+				riqzlflag++;
+			}else{
+				
+			}
+			
 			 $('#datagrid').datagrid('statistics');
 
 			//左边的复选按钮

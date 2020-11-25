@@ -2,6 +2,8 @@ var _ERPURL="http://10.1.0.22";
 var _currentUserId="";
 var _currentwlCode="";
 var companyType = "";
+
+var riqflag = 0;
 //父节点id
 var pId=0;
 //父节点名称
@@ -26,8 +28,7 @@ $(function() {
              func_search();
         }
 	})
-	$("#objStartTime_search").datebox('setValue',func_IecurrentData());
-	$("#objEndTime_search").datebox('setValue',func_IecurrentData());
+	
 	
 	
 	reWindowSize();
@@ -116,6 +117,7 @@ function reSetContent(event, treeId, treeNode, clickFlag) {
 
 		
 		func_creatTable();  
+		
 		
 		
 	}
@@ -248,9 +250,21 @@ function func_creatTable(){
 			wlCode:_currentwlCode,
 			companyType:companyType,
 			/*dataStatus:$("#dataStatus_search").combobox('getValue'),*/
-			objStartTime: $("#objStartTime_search").datebox('getValue'),
-			objEndTime: $("#objEndTime_search").datebox('getValue'),
+			/*objStartTime: $("#objStartTime_search").datebox('getValue'),*/
+			objStartTime: func_IecurrentData(),
+			/*objEndTime: $("#objEndTime_search").datebox('getValue'),*/
+			objEndTime: func_IecurrentData(),
 			sampleNum:$("#sampleNum_search").textbox('getValue')
+		},
+		onLoadSuccess:function(data){
+			if(riqflag == 0){
+				$("#objStartTime_search").datebox('setValue',func_IecurrentData());
+				$("#objEndTime_search").datebox('setValue',func_IecurrentData());
+				riqflag++;
+			}else{
+				
+			}
+			
 		},
 		frozenColumns:frozenColumns,
 		columns : head
